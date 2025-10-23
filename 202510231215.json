@@ -1352,7 +1352,7 @@
     "type": "function",
     "z": "ba6153df2a5704ba",
     "name": "Init/Read State & Globals (All Vars)",
-    "func": "const projectVersion = \"2025-10-23_1\";\nconst currentFlowVersion = flow.get(\"version\");\nif (currentFlowVersion !== projectVersion) {\n    flow.set(\"version\", projectVersion);\n}\nconst currentGlobalVersion = global.get(\"currentVersion\");\nif (currentGlobalVersion !== projectVersion) {\n    global.set(\"currentVersion\", projectVersion);\n}\nconst uiStateMetaInit = global.get(\"uiState_meta\") || {};\nif (uiStateMetaInit.version !== projectVersion) {\n    uiStateMetaInit.version = projectVersion;\n    global.set(\"uiState_meta\", uiStateMetaInit);\n}\n\nconst defaultVars = {\n    n1: -100, k1: 100, h1: 10, p1: 200, pk1: 1000,\n    n2: -200, k2: 200, h2: 20, p2: 300, pk2: 1100,\n    n3: -300, k3: 300, h3: 30, p3: 400, pk3: 1200,\n    n4: -400, k4: 400, h4: 40, p4: 500, pk4: 1300,\n    n5: -500, k5: 500, h5: 50, p5: 600, pk5: 1400\n};\n\nlet loadedVars = {};\nlet source = msg.topic === 'init' ? '[INIT_ALL]' : '[READ_ALL_BTN]';\n\nconst requiredKeys = Object.keys(defaultVars);\nconst isValidPayload = msg.payload && typeof msg.payload === 'object' && !Array.isArray(msg.payload) && requiredKeys.every(key => msg.payload.hasOwnProperty(key));\n\nif (isValidPayload) {\n    loadedVars = msg.payload;\n    node.warn(source + \" Переменные (1-5) загружены из файла.\");\n} else {\n    loadedVars = { ...defaultVars };\n    if (msg.error) {\n         node.warn(source + \" Ошибка чтения файла переменных (1-5): \" + msg.error.message + \". Используются значения по умолчанию.\");\n    } else if (msg.topic !== 'init'){\n         node.warn(source + \" Файл переменных (1-5) не найден/поврежден/неполный. Используются значения по умолчанию.\");\n    } else {\n        node.log(source + \" Файл переменных (1-5) не найден. Используются значения по умолчанию.\");\n    }\n}\n\nlet globalsChanged = false;\nfor (const key in defaultVars) {\n    let currentVal = loadedVars.hasOwnProperty(key) ? loadedVars[key] : defaultVars[key];\n    const numValue = Number(currentVal);\n\n    if (isNaN(numValue)) {\n        node.warn(`Invalid number format for ${key}: ${currentVal}. Using default.`);\n        currentVal = defaultVars[key];\n        loadedVars[key] = currentVal;\n    } else {\n         currentVal = numValue;\n         // Add clamping if needed\n         // Example: if (key.startsWith('p') && currentVal < 0) currentVal = 0;\n         loadedVars[key] = currentVal;\n    }\n    \n    if (global.get(key) !== currentVal) {\n        global.set(key, currentVal);\n        globalsChanged = true;\n    }\n}\n\nglobal.set('savedStateAll', { ...loadedVars });\nglobal.set('uiStateAll', { ...loadedVars });\n\nif (globalsChanged) {\n    node.log(source + \" Глобальные переменные (1-5) установлены/обновлены: \" + JSON.stringify(loadedVars));\n} else if (msg.topic === 'init') {\n    node.log(source + \" Глобальные переменные (1-5) уже были установлены.\");\n}\n\nreturn { payload: true };",
+    "func": "const projectVersion = \"202510231215\";\nconst versionNumber = Number(projectVersion);\nconst currentFlowVersion = flow.get(\"version\");\nif (currentFlowVersion !== projectVersion) {\n    flow.set(\"version\", projectVersion);\n}\nconst currentGlobalVersion = global.get(\"currentVersion\");\nif (currentGlobalVersion !== projectVersion) {\n    global.set(\"currentVersion\", projectVersion);\n}\nif (Number.isFinite(versionNumber) && global.get(\"VER\") !== versionNumber) {\n    global.set(\"VER\", versionNumber);\n}\nconst uiStateMetaInit = global.get(\"uiState_meta\") || {};\nlet metaUpdated = false;\nif (uiStateMetaInit.version !== projectVersion) {\n    uiStateMetaInit.version = projectVersion;\n    metaUpdated = true;\n}\nif (Number.isFinite(versionNumber) && uiStateMetaInit.versionNumber !== versionNumber) {\n    uiStateMetaInit.versionNumber = versionNumber;\n    metaUpdated = true;\n}\nif (metaUpdated) {\n    global.set(\"uiState_meta\", uiStateMetaInit);\n}\n\nconst defaultVars = {\n    n1: -100, k1: 100, h1: 10, p1: 200, pk1: 1000,\n    n2: -200, k2: 200, h2: 20, p2: 300, pk2: 1100,\n    n3: -300, k3: 300, h3: 30, p3: 400, pk3: 1200,\n    n4: -400, k4: 400, h4: 40, p4: 500, pk4: 1300,\n    n5: -500, k5: 500, h5: 50, p5: 600, pk5: 1400\n};\n\nlet loadedVars = {};\nlet source = msg.topic === 'init' ? '[INIT_ALL]' : '[READ_ALL_BTN]';\n\nconst requiredKeys = Object.keys(defaultVars);\nconst isValidPayload = msg.payload && typeof msg.payload === 'object' && !Array.isArray(msg.payload) && requiredKeys.every(key => msg.payload.hasOwnProperty(key));\n\nif (isValidPayload) {\n    loadedVars = msg.payload;\n    node.warn(source + \" Переменные (1-5) загружены из файла.\");\n} else {\n    loadedVars = { ...defaultVars };\n    if (msg.error) {\n         node.warn(source + \" Ошибка чтения файла переменных (1-5): \" + msg.error.message + \". Используются значения по умолчанию.\");\n    } else if (msg.topic !== 'init'){\n         node.warn(source + \" Файл переменных (1-5) не найден/поврежден/неполный. Используются значения по умолчанию.\");\n    } else {\n        node.log(source + \" Файл переменных (1-5) не найден. Используются значения по умолчанию.\");\n    }\n}\n\nlet globalsChanged = false;\nfor (const key in defaultVars) {\n    let currentVal = loadedVars.hasOwnProperty(key) ? loadedVars[key] : defaultVars[key];\n    const numValue = Number(currentVal);\n\n    if (isNaN(numValue)) {\n        node.warn(`Invalid number format for ${key}: ${currentVal}. Using default.`);\n        currentVal = defaultVars[key];\n        loadedVars[key] = currentVal;\n    } else {\n         currentVal = numValue;\n         // Add clamping if needed\n         // Example: if (key.startsWith('p') && currentVal < 0) currentVal = 0;\n         loadedVars[key] = currentVal;\n    }\n\n    if (global.get(key) !== currentVal) {\n        global.set(key, currentVal);\n        globalsChanged = true;\n    }\n}\n\nglobal.set('savedStateAll', { ...loadedVars });\nglobal.set('uiStateAll', { ...loadedVars });\n\nif (globalsChanged) {\n    node.log(source + \" Глобальные переменные (1-5) установлены/обновлены: \" + JSON.stringify(loadedVars));\n} else if (msg.topic === 'init') {\n    node.log(source + \" Глобальные переменные (1-5) уже были установлены.\");\n}\n\nreturn { payload: true };",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
@@ -12654,7 +12654,7 @@
     "once": true,
     "onceDelay": "0.1",
     "topic": "version",
-    "payload": "2025-10-23_1",
+    "payload": "202510231215",
     "payloadType": "str",
     "x": 160,
     "y": 40,
@@ -12669,7 +12669,7 @@
     "type": "function",
     "z": "e9378293b40785cc",
     "name": "Сохранить версию в контексте",
-    "func": "const version = msg.payload;\nif (typeof version !== \"string\" || !version.length) {\n    return null;\n}\nflow.set(\"version\", version);\nglobal.set(\"currentVersion\", version);\nconst uiStateMeta = global.get(\"uiState_meta\") || {};\nif (uiStateMeta.version !== version) {\n    uiStateMeta.version = version;\n    global.set(\"uiState_meta\", uiStateMeta);\n}\nreturn msg;",
+    "func": "const version = msg.payload;\nif (typeof version !== \"string\" || !version.length) {\n    return null;\n}\nconst versionNumber = Number(version);\nif (Number.isFinite(versionNumber)) {\n    if (global.get(\"VER\") !== versionNumber) {\n        global.set(\"VER\", versionNumber);\n    }\n} else {\n    node.warn(`Невозможно преобразовать версию \"${version}\" в число. Значение VER не обновлено.`);\n}\nif (flow.get(\"version\") !== version) {\n    flow.set(\"version\", version);\n}\nif (global.get(\"currentVersion\") !== version) {\n    global.set(\"currentVersion\", version);\n}\nconst uiStateMeta = global.get(\"uiState_meta\") || {};\nlet metaChanged = false;\nif (uiStateMeta.version !== version) {\n    uiStateMeta.version = version;\n    metaChanged = true;\n}\nif (Number.isFinite(versionNumber) && uiStateMeta.versionNumber !== versionNumber) {\n    uiStateMeta.versionNumber = versionNumber;\n    metaChanged = true;\n}\nif (metaChanged) {\n    global.set(\"uiState_meta\", uiStateMeta);\n}\nmsg.versionNumber = Number.isFinite(versionNumber) ? versionNumber : null;\nreturn msg;",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
@@ -12679,7 +12679,8 @@
     "y": 40,
     "wires": [
       [
-        "3769b7bf587b57b8"
+        "3769b7bf587b57b8",
+        "74b9d3db5e0c0f02"
       ]
     ]
   },
@@ -12691,9 +12692,9 @@
     "order": 3,
     "width": 6,
     "height": 1,
-    "name": "Version",
-    "label": "Version",
-    "format": "{{msg.payload}}",
+    "name": "Версия",
+    "label": "",
+    "format": "Текущая версия: {{msg.payload}}",
     "layout": "row-left",
     "className": "",
     "style": "",
@@ -12703,5 +12704,56 @@
     "wires": [],
     "x": 700,
     "y": 40
+  },
+  {
+    "id": "e9abdc54dcb621b3",
+    "type": "ui_group",
+    "name": "История изменений",
+    "tab": "9dde8127.3f5df",
+    "order": 1,
+    "disp": true,
+    "width": "12",
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "74b9d3db5e0c0f02",
+    "type": "function",
+    "z": "e9378293b40785cc",
+    "name": "Сформировать историю изменений",
+    "func": "const currentVersion = msg.payload;\nconst history = [\\n    {\\n        \\\"version\\\": \\\"202510231215\\\",\\n        \\\"date\\\": \\\"2025-10-23\\\",\\n        \\\"changes\\\": [\\n            \\\"Переведён формат версии и имени файла к YYYYMMDDHHMM с синхронизацией flow.version и global.VER.\\\",\\n            \\\"Восстановлена вкладка \\\\\\\"История версий\\\\\\\" на Dashboard и актуализирована история изменений.\\\"\\n        ]\\n    },\\n    {\\n        \\\"version\\\": \\\"231020251107\\\",\\n        \\\"date\\\": \\\"2025-10-23\\\",\\n        \\\"changes\\\": [\\n            \\\"Зафиксирован формат имени файла и версии DDMMYYYYHHmm (пример: 231020251107).\\\",\\n            \\\"Главная панель Dashboard отображает строку \\\\\\\"Текущая версия\\\\\\\" и синхронизирована с глобальной переменной VER.\\\"\\n        ]\\n    },\\n    {\\n        \\\"version\\\": \\\"231020251001\\\",\\n        \\\"date\\\": \\\"2025-10-23\\\",\\n        \\\"changes\\\": [\\n            \\\"Обновлён формат версии на DDMMYYYYHHmm и синхронизировано имя файла проекта.\\\",\\n            \\\"Добавлена глобальная переменная VER и экспорт версии в Modbus для отображения на панели оператора.\\\"\\n        ]\\n    },\\n    {\\n        \\\"version\\\": \\\"2025-10-23_1\\\",\\n        \\\"date\\\": \\\"2025-10-23\\\",\\n        \\\"changes\\\": [\\n            \\\"Добавлен дашборд \\\\\\\"История версий\\\\\\\" с отображением актуальной версии и списка изменений.\\\",\\n            \\\"Обновлён механизм сохранения версии в контекст (flow.version и global.currentVersion) с форматом YYYY-MM-DD_build.\\\"\\n        ]\\n    },\\n    {\\n        \\\"version\\\": \\\"2025-10-22_1\\\",\\n        \\\"date\\\": \\\"2025-10-22\\\",\\n        \\\"changes\\\": [\\n            \\\"Базовая конфигурация проекта.\\\"\\n        ]\\n    }\\n];\nmsg.history = history;\nmsg.currentVersion = currentVersion;\nconst parsedNumber = Number(currentVersion);\nif (!Number.isFinite(msg.versionNumber)) {\n    msg.versionNumber = Number.isFinite(parsedNumber) ? parsedNumber : null;\n}\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 620,
+    "y": 100,
+    "wires": [
+      [
+        "c1f5f2f34e24a819"
+      ]
+    ]
+  },
+  {
+    "id": "c1f5f2f34e24a819",
+    "type": "ui_template",
+    "z": "e9378293b40785cc",
+    "group": "e9abdc54dcb621b3",
+    "name": "История версий",
+    "order": 1,
+    "width": "12",
+    "height": "0",
+    "format": "<div class=\"version-history\">\n  <style>\n    .version-history h3 {\n      margin: 0 0 12px;\n    }\n    .version-history p {\n      margin: 0 0 16px;\n    }\n    .version-history .version-entry {\n      margin-bottom: 18px;\n      padding-bottom: 12px;\n      border-bottom: 1px solid #ccc;\n    }\n    .version-history .version-entry:last-child {\n      border-bottom: none;\n    }\n    .version-history .version-entry h4 {\n      margin: 0 0 8px;\n    }\n    .version-history .version-entry ul {\n      margin: 0 0 0 20px;\n      padding: 0;\n    }\n  </style>\n  <h3>История версий</h3>\n  <p><strong>Текущая версия:</strong> {{msg.currentVersion}}.</p>\n  <div class=\"version-entry\" ng-repeat=\"entry in msg.history\">\n    <h4>{{entry.version}}<span ng-if=\"entry.date\"> ({{entry.date}})</span></h4>\n    <ul>\n      <li ng-repeat=\"item in entry.changes track by $index\">{{item}}</li>\n    </ul>\n  </div>\n</div>",
+    "storeOutMessages": true,
+    "fwdInMessages": true,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 900,
+    "y": 100,
+    "wires": [
+      []
+    ]
   }
 ]
