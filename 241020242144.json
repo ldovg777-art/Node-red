@@ -224,7 +224,7 @@
         "type": "ui_tab",
         "name": "ADAM-6717",
         "icon": "dashboard",
-        "order": 2,
+        "order": 20,
         "disabled": false,
         "hidden": false
     },
@@ -397,7 +397,7 @@
         "type": "ui_tab",
         "name": "Итерация",
         "icon": "show_chart",
-        "order": 2
+        "order": 30
     },
     {
         "id": "iteration_ui_group",
@@ -434,7 +434,7 @@
         "type": "ui_tab",
         "name": "Результаты по Шагам",
         "icon": "assignment",
-        "order": 4,
+        "order": 70,
         "disabled": false,
         "hidden": false
     },
@@ -560,7 +560,7 @@
         "type": "ui_tab",
         "name": "Аналоговые Выходы LC",
         "icon": "settings_input_component",
-        "order": 10
+        "order": 90
     },
     {
         "id": "f8cbd350fb5a27b0",
@@ -838,7 +838,7 @@
         "z": "12f8c9ce06674206",
         "name": "Переменные Расчета",
         "icon": "settings_input_component",
-        "order": 3,
+        "order": 40,
         "disabled": false,
         "hidden": false
     },
@@ -884,7 +884,7 @@
         "z": "6035afc350b45a52",
         "name": "Переменные 1 2 3 4 5",
         "icon": "dashboard",
-        "order": 1,
+        "order": 10,
         "disabled": false,
         "hidden": false
     },
@@ -966,7 +966,7 @@
         "z": "0adabbe16538e192",
         "name": "Переменные Расчета PH",
         "icon": "bar-chart",
-        "order": 2,
+        "order": 50,
         "disabled": false,
         "hidden": false
     },
@@ -1036,7 +1036,7 @@
         "z": "59dd9bd5d7fbfa1b",
         "name": "Redox Потенциал",
         "icon": "flash_on",
-        "order": 3,
+        "order": 60,
         "disabled": false,
         "hidden": false
     },
@@ -1082,7 +1082,7 @@
         "z": "aba43ca783b076c8",
         "name": "Redox Потенциал 2",
         "icon": "flash_on",
-        "order": 13
+        "order": 80
     },
     {
         "id": "24e8a091d7c97818",
@@ -1186,7 +1186,7 @@
         "z": "d769e22348317e1e",
         "name": "Настройки ПИД",
         "icon": "settings_applications",
-        "order": 20
+        "order": 100
     },
     {
         "id": "2852bc2315c1b1d0",
@@ -1352,7 +1352,7 @@
         "type": "function",
         "z": "ba6153df2a5704ba",
         "name": "Init/Read State & Globals (All Vars)",
-        "func": "const pad2 = (value) => String(value).padStart(2, '0');\nconst formatVersion = (date) => {\n    const current = date instanceof Date ? date : new Date(date);\n    return `${pad2(current.getDate())}${pad2(current.getMonth() + 1)}${current.getFullYear()}${pad2(current.getHours())}${pad2(current.getMinutes())}`;\n};\nlet projectVersion;\nconst storedFlowVersion = flow.get(\"version\");\nconst storedGlobalVersion = global.get(\"currentVersion\");\nconst storedFlowFileName = flow.get(\"flowFileName\");\nconst storedGlobalFileName = global.get(\"flowFileName\");\nconst deriveVersionFromFileName = (fileName) => {\n    if (typeof fileName === 'string' && fileName.endsWith('.json')) {\n        const candidate = fileName.slice(0, -5);\n        if (/^\\d{12}$/.test(candidate)) {\n            return candidate;\n        }\n    }\n    return undefined;\n};\nconst derivedFromFlow = deriveVersionFromFileName(storedFlowFileName);\nconst derivedFromGlobal = deriveVersionFromFileName(storedGlobalFileName);\nif (typeof storedFlowVersion === 'string' && storedFlowVersion.length) {\n    projectVersion = storedFlowVersion;\n} else if (typeof storedGlobalVersion === 'string' && storedGlobalVersion.length) {\n    projectVersion = storedGlobalVersion;\n} else if (derivedFromFlow) {\n    projectVersion = derivedFromFlow;\n} else if (derivedFromGlobal) {\n    projectVersion = derivedFromGlobal;\n} else {\n    projectVersion = formatVersion(new Date());\n}\nif (storedFlowVersion !== projectVersion) {\n    flow.set(\"version\", projectVersion);\n}\nif (storedGlobalVersion !== projectVersion) {\n    global.set(\"currentVersion\", projectVersion);\n}\nconst versionNumber = Number(projectVersion);\nconst flowFileName = `${projectVersion}.json`;\nif (global.get(\"flowFileName\") !== flowFileName) {\n    global.set(\"flowFileName\", flowFileName);\n}\nif (flow.get(\"flowFileName\") !== flowFileName) {\n    flow.set(\"flowFileName\", flowFileName);\n}\nif (Number.isFinite(versionNumber) && global.get(\"VER\") !== versionNumber) {\n    global.set(\"VER\", versionNumber);\n}\nconst uiStateMetaInit = global.get(\"uiState_meta\") || {};\nlet metaUpdated = false;\nif (uiStateMetaInit.version !== projectVersion) {\n    uiStateMetaInit.version = projectVersion;\n    metaUpdated = true;\n}\nif (Number.isFinite(versionNumber) && uiStateMetaInit.versionNumber !== versionNumber) {\n    uiStateMetaInit.versionNumber = versionNumber;\n    metaUpdated = true;\n}\nif (uiStateMetaInit.fileName !== flowFileName) {\n    uiStateMetaInit.fileName = flowFileName;\n    metaUpdated = true;\n}\nif (metaUpdated) {\n    global.set(\"uiState_meta\", uiStateMetaInit);\n}\nconst defaultVars = {n1:-100,k1:100,h1:10,p1:200,pk1:1000,n2:-200,k2:200,h2:20,p2:300,pk2:1100,n3:-300,k3:300,h3:30,p3:400,pk3:1200,n4:-400,k4:400,h4:40,p4:500,pk4:1300,n5:-500,k5:500,h5:50,p5:600,pk5:1400};\nlet loadedVars = {};\nlet source = msg.topic === 'init' ? '[INIT_ALL]' : '[READ_ALL_BTN]';\nconst requiredKeys = Object.keys(defaultVars);\nconst isValidPayload = msg.payload && typeof msg.payload === 'object' && !Array.isArray(msg.payload) && requiredKeys.every(key => msg.payload.hasOwnProperty(key));\nif (isValidPayload) {\n    loadedVars = msg.payload;\n    node.warn(source + \" Переменные (1-5) загружены из файла.\");\n} else {\n    loadedVars = {...defaultVars};\n    if (msg.error) {\n         node.warn(source + \" Ошибка чтения файла переменных (1-5): \" + msg.error.message + \". Используются значения по умолчанию.\");\n    } else if (msg.topic !== 'init') {\n         node.warn(source + \" Файл переменных (1-5) не найден/поврежден/неполный. Используются значения по умолчанию.\");\n    } else {\n        node.log(source + \" Файл переменных (1-5) не найден. Используются значения по умолчанию.\");\n    }\n}\nlet globalsChanged = false;\nfor (const key in defaultVars) {\n    let currentVal = loadedVars.hasOwnProperty(key) ? loadedVars[key] : defaultVars[key];\n    const numValue = Number(currentVal);\n    if (isNaN(numValue)) {\n        node.warn(`Invalid number format for ${key}: ${currentVal}. Using default.`);\n        currentVal = defaultVars[key];\n        loadedVars[key] = currentVal;\n    } else {\n         currentVal = numValue;\n         loadedVars[key] = currentVal;\n    }\n    if (global.get(key) !== currentVal) {\n        global.set(key, currentVal);\n        globalsChanged = true;\n    }\n}\nglobal.set('savedStateAll', {...loadedVars});\nglobal.set('uiStateAll', {...loadedVars});\nif (globalsChanged) {\n    node.log(source + \" Глобальные переменные (1-5) установлены/обновлены: \" + JSON.stringify(loadedVars));\n} else if (msg.topic === 'init') {\n    node.log(source + \" Глобальные переменные (1-5) уже были установлены.\");\n}\nreturn {payload:true,version:projectVersion,filename:flowFileName,versionNumber:Number.isFinite(versionNumber)?versionNumber:null};",
+        "func": "\nconst VERSION_PATTERN = /^\\d{12}$/;\nconst READABLE_PATTERN = /^\\d{4}-\\d{2}-\\d{2}_\\d{4}$/;\nconst toReadableVersion = (value) => {\n    if (typeof value === 'string' && VERSION_PATTERN.test(value)) {\n        const day = value.slice(0, 2);\n        const month = value.slice(2, 4);\n        const year = value.slice(4, 8);\n        const build = value.slice(8);\n        return `${year}-${month}-${day}_${build}`;\n    }\n    if (typeof value === 'string' && READABLE_PATTERN.test(value)) {\n        return value;\n    }\n    return '1970-01-01_0000';\n};\nconst normalizeVersion = (value) => {\n    if (typeof value !== 'string' || !value.length) {\n        return undefined;\n    }\n    if (VERSION_PATTERN.test(value)) {\n        return value;\n    }\n    if (READABLE_PATTERN.test(value)) {\n        const [datePart, buildPart] = value.split('_');\n        const [year, month, day] = datePart.split('-');\n        return `${day}${month}${year}${buildPart}`;\n    }\n    return undefined;\n};\nconst pad2 = (value) => String(value).padStart(2, '0');\nconst formatVersion = (date) => {\n    const current = date instanceof Date ? date : new Date(date);\n    return `${pad2(current.getDate())}${pad2(current.getMonth() + 1)}${current.getFullYear()}${pad2(current.getHours())}${pad2(current.getMinutes())}`;\n};\nconst deriveVersionFromFileName = (fileName) => {\n    if (typeof fileName === 'string' && fileName.endsWith('.json')) {\n        const candidate = fileName.slice(0, -5);\n        return normalizeVersion(candidate);\n    }\n    return undefined;\n};\nlet projectVersion = normalizeVersion(flow.get('versionRaw'))\n    || normalizeVersion(flow.get('version'))\n    || normalizeVersion(global.get('currentVersion'))\n    || deriveVersionFromFileName(flow.get('flowFileName'))\n    || deriveVersionFromFileName(global.get('flowFileName'));\nif (!projectVersion) {\n    projectVersion = formatVersion(new Date());\n}\nconst storedGlobalVersion = global.get('currentVersion');\nif (storedGlobalVersion !== projectVersion) {\n    global.set('currentVersion', projectVersion);\n}\nconst versionNumber = Number(projectVersion);\nconst flowFileName = `${projectVersion}.json`;\nif (global.get('flowFileName') !== flowFileName) {\n    global.set('flowFileName', flowFileName);\n}\nif (flow.get('flowFileName') !== flowFileName) {\n    flow.set('flowFileName', flowFileName);\n}\nif (Number.isFinite(versionNumber) && global.get('VER') !== versionNumber) {\n    global.set('VER', versionNumber);\n}\nconst readableVersion = toReadableVersion(projectVersion);\nif (flow.get('version') !== readableVersion) {\n    flow.set('version', readableVersion);\n}\nif (flow.get('versionRaw') !== projectVersion) {\n    flow.set('versionRaw', projectVersion);\n}\nconst uiStateMetaInit = global.get('uiState_meta') || {};\nlet metaUpdated = false;\nif (uiStateMetaInit.version !== projectVersion) {\n    uiStateMetaInit.version = projectVersion;\n    metaUpdated = true;\n}\nif (Number.isFinite(versionNumber) && uiStateMetaInit.versionNumber !== versionNumber) {\n    uiStateMetaInit.versionNumber = versionNumber;\n    metaUpdated = true;\n}\nif (uiStateMetaInit.fileName !== flowFileName) {\n    uiStateMetaInit.fileName = flowFileName;\n    metaUpdated = true;\n}\nif (uiStateMetaInit.readableVersion !== readableVersion) {\n    uiStateMetaInit.readableVersion = readableVersion;\n    metaUpdated = true;\n}\nif (metaUpdated) {\n    global.set('uiState_meta', uiStateMetaInit);\n}\nconst defaultVars = {n1:-100,k1:100,h1:10,p1:200,pk1:1000,n2:-200,k2:200,h2:20,p2:300,pk2:1100,n3:-300,k3:300,h3:30,p3:400,pk3:1200,n4:-400,k4:400,h4:40,p4:500,pk4:1300,n5:-500,k5:500,h5:50,p5:600,pk5:1400};\nlet loadedVars = {};\nlet source = msg.topic === 'init' ? '[INIT_ALL]' : '[READ_ALL_BTN]';\nconst requiredKeys = Object.keys(defaultVars);\nconst isValidPayload = msg.payload && typeof msg.payload === 'object' && !Array.isArray(msg.payload) && requiredKeys.every(key => msg.payload.hasOwnProperty(key));\nif (isValidPayload) {\n    loadedVars = msg.payload;\n    node.warn(source + \" Переменные (1-5) загружены из файла.\");\n} else {\n    loadedVars = {...defaultVars};\n    if (msg.error) {\n         node.warn(source + \" Ошибка чтения файла переменных (1-5): \" + msg.error.message + \". Используются значения по умолчанию.\");\n    } else if (msg.topic !== 'init') {\n         node.warn(source + \" Файл переменных (1-5) не найден/поврежден/неполный. Используются значения по умолчанию.\");\n    } else {\n        node.log(source + \" Файл переменных (1-5) не найден. Используются значения по умолчанию.\");\n    }\n}\nlet globalsChanged = false;\nfor (const key in defaultVars) {\n    let currentVal = loadedVars.hasOwnProperty(key) ? loadedVars[key] : defaultVars[key];\n    const numValue = Number(currentVal);\n    if (isNaN(numValue)) {\n        node.warn(`Invalid number format for ${key}: ${currentVal}. Using default.`);\n        currentVal = defaultVars[key];\n        loadedVars[key] = currentVal;\n    } else {\n         currentVal = numValue;\n         loadedVars[key] = currentVal;\n    }\n    if (global.get(key) !== currentVal) {\n        global.set(key, currentVal);\n        globalsChanged = true;\n    }\n}\nglobal.set('savedStateAll', {...loadedVars});\nglobal.set('uiStateAll', {...loadedVars});\nif (globalsChanged) {\n    node.log(source + \" Глобальные переменные (1-5) установлены/обновлены: \" + JSON.stringify(loadedVars));\n} else if (msg.topic === 'init') {\n    node.log(source + \" Глобальные переменные (1-5) уже были установлены.\");\n}\nreturn {payload:true,version:projectVersion,filename:flowFileName,versionNumber:Number.isFinite(versionNumber)?versionNumber:null,readableVersion};\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -12654,7 +12654,7 @@
         "once": true,
         "onceDelay": "0.1",
         "topic": "version",
-        "payload": "241020242102",
+        "payload": "241020242144",
         "payloadType": "str",
         "x": 160,
         "y": 40,
@@ -12669,7 +12669,7 @@
         "type": "function",
         "z": "e9378293b40785cc",
         "name": "Сформировать строку версии",
-        "func": "const DEFAULT_VERSION = '241020242102';\nconst toVersionString = (value) => {\n    if (typeof value === 'string') {\n        const trimmed = value.trim();\n        if (/^\\d{12}$/.test(trimmed)) {\n            return trimmed;\n        }\n    } else if (typeof value === 'number' && Number.isFinite(value)) {\n        const asString = Math.trunc(value).toString();\n        if (/^\\d{12}$/.test(asString)) {\n            return asString;\n        }\n    }\n    return DEFAULT_VERSION;\n};\nmsg.payload = toVersionString(msg.payload);\nreturn msg;",
+        "func": "const DEFAULT_VERSION = '241020242144';\nconst toVersionString = (value) => {\n    if (typeof value === 'string') {\n        const trimmed = value.trim();\n        if (/^\\d{12}$/.test(trimmed)) {\n            return trimmed;\n        }\n    } else if (typeof value === 'number' && Number.isFinite(value)) {\n        const asString = Math.trunc(value).toString();\n        if (/^\\d{12}$/.test(asString)) {\n            return asString;\n        }\n    }\n    return DEFAULT_VERSION;\n};\nmsg.payload = toVersionString(msg.payload);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -12688,7 +12688,7 @@
         "type": "function",
         "z": "e9378293b40785cc",
         "name": "Сохранить версию в контексте",
-        "func": "const pad2 = (value) => String(value).padStart(2, '0');\nconst formatVersion = (date) => {\n    const current = date instanceof Date ? date : new Date(date);\n    return `${pad2(current.getDate())}${pad2(current.getMonth() + 1)}${current.getFullYear()}${pad2(current.getHours())}${pad2(current.getMinutes())}`;\n};\nconst deriveVersionFromFileName = (fileName) => {\n    if (typeof fileName === 'string' && fileName.endsWith('.json')) {\n        const candidate = fileName.slice(0, -5);\n        if (/^\\d{12}$/.test(candidate)) {\n            return candidate;\n        }\n    }\n    return undefined;\n};\nlet version = msg.payload;\nif (typeof version !== 'string' || !version.length) {\n    const storedFlowVersion = flow.get(\"version\");\n    const storedGlobalVersion = global.get(\"currentVersion\");\n    const storedFlowFileName = flow.get(\"flowFileName\");\n    const storedGlobalFileName = global.get(\"flowFileName\");\n    version = (typeof storedFlowVersion === 'string' && storedFlowVersion.length) ? storedFlowVersion\n        : (typeof storedGlobalVersion === 'string' && storedGlobalVersion.length) ? storedGlobalVersion\n        : deriveVersionFromFileName(storedFlowFileName)\n        || deriveVersionFromFileName(storedGlobalFileName)\n        || formatVersion(new Date());\n    msg.payload = version;\n}\nconst versionNumber = Number(version);\nconst flowFileName = `${version}.json`;\nif (Number.isFinite(versionNumber)) {\n    if (global.get(\"VER\") !== versionNumber) {\n        global.set(\"VER\", versionNumber);\n    }\n} else {\n    node.warn(`Невозможно преобразовать версию \"${version}\" в число. Значение VER не обновлено.`);\n}\nif (flow.get(\"version\") !== version) {\n    flow.set(\"version\", version);\n}\nif (flow.get(\"flowFileName\") !== flowFileName) {\n    flow.set(\"flowFileName\", flowFileName);\n}\nif (global.get(\"currentVersion\") !== version) {\n    global.set(\"currentVersion\", version);\n}\nif (global.get(\"flowFileName\") !== flowFileName) {\n    global.set(\"flowFileName\", flowFileName);\n}\nconst uiStateMeta = global.get(\"uiState_meta\") || {};\nlet metaChanged = false;\nif (uiStateMeta.version !== version) {\n    uiStateMeta.version = version;\n    metaChanged = true;\n}\nif (Number.isFinite(versionNumber) && uiStateMeta.versionNumber !== versionNumber) {\n    uiStateMeta.versionNumber = versionNumber;\n    metaChanged = true;\n}\nif (uiStateMeta.fileName !== flowFileName) {\n    uiStateMeta.fileName = flowFileName;\n    metaChanged = true;\n}\nif (metaChanged) {\n    global.set(\"uiState_meta\", uiStateMeta);\n}\nmsg.versionNumber = Number.isFinite(versionNumber) ? versionNumber : null;\nmsg.filename = flowFileName;\nmsg.projectVersion = version;\nreturn msg;",
+        "func": "\nconst VERSION_PATTERN = /^\\d{12}$/;\nconst READABLE_PATTERN = /^\\d{4}-\\d{2}-\\d{2}_\\d{4}$/;\nconst DEFAULT_VERSION = '241020242144';\nconst toVersionString = (value) => {\n    if (typeof value === 'string') {\n        const trimmed = value.trim();\n        if (VERSION_PATTERN.test(trimmed)) {\n            return trimmed;\n        }\n        if (READABLE_PATTERN.test(trimmed)) {\n            const [datePart, buildPart] = trimmed.split('_');\n            const [year, month, day] = datePart.split('-');\n            return `${day}${month}${year}${buildPart}`;\n        }\n    } else if (typeof value === 'number' && Number.isFinite(value)) {\n        const asString = Math.trunc(value).toString();\n        if (VERSION_PATTERN.test(asString)) {\n            return asString;\n        }\n    }\n    return DEFAULT_VERSION;\n};\nconst toReadableVersion = (value) => {\n    if (VERSION_PATTERN.test(value)) {\n        const day = value.slice(0, 2);\n        const month = value.slice(2, 4);\n        const year = value.slice(4, 8);\n        const build = value.slice(8);\n        return `${year}-${month}-${day}_${build}`;\n    }\n    if (READABLE_PATTERN.test(value)) {\n        return value;\n    }\n    return '1970-01-01_0000';\n};\nconst deriveVersionFromFileName = (fileName) => {\n    if (typeof fileName === 'string' && fileName.endsWith('.json')) {\n        const candidate = fileName.slice(0, -5);\n        if (VERSION_PATTERN.test(candidate)) {\n            return candidate;\n        }\n        if (READABLE_PATTERN.test(candidate)) {\n            const [datePart, buildPart] = candidate.split('_');\n            const [year, month, day] = datePart.split('-');\n            return `${day}${month}${year}${buildPart}`;\n        }\n    }\n    return undefined;\n};\nconst normalizeStoredVersion = (value) => {\n    if (typeof value !== 'string' || !value.length) {\n        return undefined;\n    }\n    if (VERSION_PATTERN.test(value)) {\n        return value;\n    }\n    if (READABLE_PATTERN.test(value)) {\n        const [datePart, buildPart] = value.split('_');\n        const [year, month, day] = datePart.split('-');\n        return `${day}${month}${year}${buildPart}`;\n    }\n    return undefined;\n};\nlet version = toVersionString(msg.payload);\nif (!VERSION_PATTERN.test(version)) {\n    const storedFlowVersionRaw = normalizeStoredVersion(flow.get('versionRaw'));\n    const storedFlowVersionReadable = normalizeStoredVersion(flow.get('version'));\n    const storedGlobalVersion = normalizeStoredVersion(global.get('currentVersion'));\n    const storedFlowFileName = flow.get('flowFileName');\n    const storedGlobalFileName = global.get('flowFileName');\n    version = storedFlowVersionRaw\n        || storedFlowVersionReadable\n        || storedGlobalVersion\n        || deriveVersionFromFileName(storedFlowFileName)\n        || deriveVersionFromFileName(storedGlobalFileName)\n        || toVersionString();\n    msg.payload = version;\n}\nconst versionNumber = Number(version);\nconst flowFileName = `${version}.json`;\nconst readableVersion = toReadableVersion(version);\nif (Number.isFinite(versionNumber)) {\n    if (global.get('VER') !== versionNumber) {\n        global.set('VER', versionNumber);\n    }\n} else {\n    node.warn(`Невозможно преобразовать версию \"${version}\" в число. Значение VER не обновлено.`);\n}\nif (flow.get('versionRaw') !== version) {\n    flow.set('versionRaw', version);\n}\nif (flow.get('version') !== readableVersion) {\n    flow.set('version', readableVersion);\n}\nif (flow.get('flowFileName') !== flowFileName) {\n    flow.set('flowFileName', flowFileName);\n}\nif (global.get('currentVersion') !== version) {\n    global.set('currentVersion', version);\n}\nif (global.get('flowFileName') !== flowFileName) {\n    global.set('flowFileName', flowFileName);\n}\nconst uiStateMeta = global.get('uiState_meta') || {};\nlet metaChanged = false;\nif (uiStateMeta.version !== version) {\n    uiStateMeta.version = version;\n    metaChanged = true;\n}\nif (Number.isFinite(versionNumber) && uiStateMeta.versionNumber !== versionNumber) {\n    uiStateMeta.versionNumber = versionNumber;\n    metaChanged = true;\n}\nif (uiStateMeta.fileName !== flowFileName) {\n    uiStateMeta.fileName = flowFileName;\n    metaChanged = true;\n}\nif (uiStateMeta.readableVersion !== readableVersion) {\n    uiStateMeta.readableVersion = readableVersion;\n    metaChanged = true;\n}\nif (metaChanged) {\n    global.set('uiState_meta', uiStateMeta);\n}\nmsg.versionNumber = Number.isFinite(versionNumber) ? versionNumber : null;\nmsg.filename = flowFileName;\nmsg.projectVersion = version;\nmsg.readableVersion = readableVersion;\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -12729,7 +12729,7 @@
         "type": "ui_tab",
         "name": "История версий",
         "icon": "assignment_turned_in",
-        "order": 100,
+        "order": 110,
         "disabled": false,
         "hidden": false
     },
@@ -12749,7 +12749,7 @@
         "type": "function",
         "z": "e9378293b40785cc",
         "name": "Сформировать историю изменений",
-        "func": "const currentVersion=msg.payload;\nconst versionPattern=/^(\\d{2})(\\d{2})(\\d{4})(\\d{2})(\\d{2})$/;\nlet parsedDate='';\nlet parsedTime='';\nif(typeof currentVersion==='string'){\n    const match=currentVersion.match(versionPattern);\n    if(match){\n        const [,day,month,year,hour,minute]=match;\n        parsedDate=`${year}-${month}-${day}`;\n        parsedTime=`${hour}:${minute}`;\n    }\n}\nconst formattedDate=parsedTime?`${parsedDate} ${parsedTime}`:parsedDate||'2025-10-23';\nconst history=[\n    {\n        version:currentVersion,\n        date:formattedDate,\n        changes:[\n            'Перемещена вкладка \"Home\" в начало меню Dashboard.',\n            'Обновлены имя файла проекта, отображаемая версия и глобальная переменная VER (241020242102).'\n        ]\n    },\n    {\n        version:'231020251107',\n        date:'2025-10-23',\n        changes:[\n            'Зафиксирован формат имени файла и версии DDMMYYYYHHmm (пример: 231020251107).',\n            'Главная панель Dashboard отображает строку \"Текущая версия: 231020251107.\" и синхронизирована с глобальной переменной VER.'\n        ]\n    },\n    {\n        version:'231020251001',\n        date:'2025-10-23',\n        changes:[\n            'Обновлён формат версии на DDMMYYYYHHmm и синхронизировано имя файла проекта.',\n            'Добавлена глобальная переменная VER и экспорт версии в Modbus для отображения на панели оператора.'\n        ]\n    },\n    {\n        version:'2025-10-23_1',\n        date:'2025-10-23',\n        changes:[\n            'Добавлен дашборд \"История версий\" с отображением актуальной версии и списка изменений.',\n            'Обновлён механизм сохранения версии в контекст (flow.version и global.currentVersion) с форматом YYYY-MM-DD_build.'\n        ]\n    },\n    {\n        version:'2025-10-22_1',\n        date:'2025-10-22',\n        changes:[\n            'Базовая конфигурация проекта.'\n        ]\n    }\n];\nmsg.history=history;\nmsg.currentVersion=currentVersion;\nconst parsedNumber=Number(currentVersion);\nif(!Number.isFinite(msg.versionNumber)){\n    msg.versionNumber=Number.isFinite(parsedNumber)?parsedNumber:null;\n}\nif(!msg.filename&&typeof currentVersion==='string'){\n    msg.filename=`${currentVersion}.json`;\n}\nreturn msg;",
+        "func": "\nconst VERSION_PATTERN=/^(\\d{2})(\\d{2})(\\d{4})(\\d{2})(\\d{2})$/;\nconst currentVersion=msg.payload;\nlet parsedDate='';\nlet parsedTime='';\nif(typeof currentVersion==='string'){\n    const match=currentVersion.match(VERSION_PATTERN);\n    if(match){\n        const [,day,month,year,hour,minute]=match;\n        parsedDate=`${year}-${month}-${day}`;\n        parsedTime=`${hour}:${minute}`;\n    }\n}\nconst formattedDate=parsedTime?`${parsedDate} ${parsedTime}`:parsedDate||'2024-10-24';\nconst history=[\n    {\n        version:currentVersion,\n        date:formattedDate,\n        changes:[\n            'Исправлен порядок вкладок Dashboard: «Home» теперь отображается первой в меню.',\n            'flow.version теперь сохраняется в формате YYYY-MM-DD_HHmm и синхронизирован с текущей версией.',\n            'Обновлены имя файла проекта, отображаемая версия и глобальная переменная VER (241020242144).'\n        ]\n    },\n    {\n        version:'231020251107',\n        date:'2025-10-23',\n        changes:[\n            'Зафиксирован формат имени файла и версии DDMMYYYYHHmm (пример: 231020251107).',\n            'Главная панель Dashboard отображает строку \"Текущая версия: 231020251107.\" и синхронизирована с глобальной переменной VER.'\n        ]\n    },\n    {\n        version:'231020251001',\n        date:'2025-10-23',\n        changes:[\n            'Обновлён формат версии на DDMMYYYYHHmm и синхронизировано имя файла проекта.',\n            'Добавлена глобальная переменная VER и экспорт версии в Modbus для отображения на панели оператора.'\n        ]\n    },\n    {\n        version:'2025-10-23_1',\n        date:'2025-10-23',\n        changes:[\n            'Добавлен дашборд \"История версий\" с отображением актуальной версии и списка изменений.',\n            'Обновлён механизм сохранения версии в контекст (flow.version и global.currentVersion) с форматом YYYY-MM-DD_build.'\n        ]\n    },\n    {\n        version:'2025-10-22_1',\n        date:'2025-10-22',\n        changes:[\n            'Базовая конфигурация проекта.'\n        ]\n    }\n];\nmsg.history=history;\nmsg.currentVersion=currentVersion;\nconst parsedNumber=Number(currentVersion);\nif(!Number.isFinite(msg.versionNumber)){\n    msg.versionNumber=Number.isFinite(parsedNumber)?parsedNumber:null;\n}\nif(!msg.filename&&typeof currentVersion==='string'){\n    msg.filename=`${currentVersion}.json`;\n}\nif(!msg.readableVersion){\n    if(VERSION_PATTERN.test(currentVersion)){\n        const [,day,month,year,hour,minute]=currentVersion.match(VERSION_PATTERN);\n        msg.readableVersion=`${year}-${month}-${day}_${hour}${minute}`;\n    } else {\n        msg.readableVersion=currentVersion;\n    }\n}\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
