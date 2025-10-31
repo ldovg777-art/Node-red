@@ -3390,50 +3390,13 @@
                 "e11d518fa54c3c84"
             ],
             [
-                "2bb113fc6e830695",
-                "dad140c946f5372d"
+                "2bb113fc6e830695"
             ],
             [
-                "2096822a1c1e07e8",
                 "7c4897294eb0273d",
-                "d655c580310a7aac",
-                "11683a5b6ca25dbe"
+                "d655c580310a7aac"
             ]
         ]
-    },
-    {
-        "id": "dad140c946f5372d",
-        "type": "debug",
-        "z": "0aab3c6cefb9136c",
-        "name": "Текущее значение x",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": true,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "payload",
-        "statusType": "auto",
-        "x": 840,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "2096822a1c1e07e8",
-        "type": "debug",
-        "z": "0aab3c6cefb9136c",
-        "name": "Номер шага перед паузой",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": true,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "payload",
-        "statusType": "auto",
-        "x": 640,
-        "y": 400,
-        "wires": []
     },
     {
         "id": "2bb113fc6e830695",
@@ -3534,22 +3497,6 @@
         "wires": []
     },
     {
-        "id": "11683a5b6ca25dbe",
-        "type": "debug",
-        "z": "0aab3c6cefb9136c",
-        "name": "debug 4",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 660,
-        "y": 280,
-        "wires": []
-    },
-    {
         "id": "15c4871884471ec6",
         "type": "link in",
         "z": "0aab3c6cefb9136c",
@@ -3625,7 +3572,6 @@
         "y": 140,
         "wires": [
             [
-                "851ccf1580021e76",
                 "69374ce71e9a4ab6",
                 "b42a1410f56d726a"
             ]
@@ -3689,40 +3635,6 @@
         ]
     },
     {
-        "id": "317853796e7212b4",
-        "type": "debug",
-        "z": "e9378293b40785cc",
-        "name": "Debug AO Value (x)",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 640,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "851ccf1580021e76",
-        "type": "debug",
-        "z": "e9378293b40785cc",
-        "name": "debug Scaled AO",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1090,
-        "y": 80,
-        "wires": []
-    },
-    {
         "id": "78cb40103b2226b5",
         "type": "rbe",
         "z": "e9378293b40785cc",
@@ -3738,7 +3650,6 @@
         "wires": [
             [
                 "60e9258db2bc6fe1",
-                "317853796e7212b4",
                 "e531123449713d2b"
             ]
         ]
@@ -3968,7 +3879,6 @@
         "y": 320,
         "wires": [
             [
-                "2d7e51f6d2cb3ec9",
                 "5d7b4191ce07fe45",
                 "17165b0e28fb330b"
             ]
@@ -4208,23 +4118,6 @@
         ]
     },
     {
-        "id": "2d7e51f6d2cb3ec9",
-        "type": "debug",
-        "z": "e9378293b40785cc",
-        "name": "debug AI_0 Scaled",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1300,
-        "y": 280,
-        "wires": []
-    },
-    {
         "id": "eac38ea743545412",
         "type": "change",
         "z": "e9378293b40785cc",
@@ -4346,8 +4239,7 @@
         "y": 700,
         "wires": [
             [
-                "f8d9831a3d503625",
-                "eb9cb0bb6025c065"
+                "f8d9831a3d503625"
             ]
         ]
     },
@@ -4433,8 +4325,7 @@
         "y": 700,
         "wires": [
             [
-                "bf4469b125f403c8",
-                "6629e578b97c3548"
+                "bf4469b125f403c8"
             ]
         ]
     },
@@ -4454,23 +4345,6 @@
         "wires": [
             []
         ]
-    },
-    {
-        "id": "6629e578b97c3548",
-        "type": "debug",
-        "z": "e9378293b40785cc",
-        "name": "debug CSV Output",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 830,
-        "y": 760,
-        "wires": []
     },
     {
         "id": "4ead613bc56efeed",
@@ -5189,8 +5063,7 @@
         "y": 860,
         "wires": [
             [
-                "e71cf597dd45bcf4",
-                "c15319d7dc564acf"
+                "e71cf597dd45bcf4"
             ]
         ]
     },
@@ -5331,40 +5204,6 @@
         ]
     },
     {
-        "id": "eb9cb0bb6025c065",
-        "type": "debug",
-        "z": "e9378293b40785cc",
-        "name": "debug Завершение Шага",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 140,
-        "y": 640,
-        "wires": []
-    },
-    {
-        "id": "c15319d7dc564acf",
-        "type": "debug",
-        "z": "e9378293b40785cc",
-        "name": "debug Начало Шага",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 130,
-        "y": 920,
-        "wires": []
-    },
-    {
         "id": "17165b0e28fb330b",
         "type": "rbe",
         "z": "e9378293b40785cc",
@@ -5399,7 +5238,7 @@
         "once": true,
         "onceDelay": "0.1",
         "topic": "version",
-        "payload": "301020250832",
+        "payload": "311020251404",
         "payloadType": "str",
         "x": 160,
         "y": 40,
@@ -5414,7 +5253,7 @@
         "type": "function",
         "z": "e9378293b40785cc",
         "name": "Сформировать строку версии",
-        "func": "const VERSION_PATTERN = /^\\d{12}$/;\nconst READABLE_PATTERN = /^\\d{4}-\\d{2}-\\d{2}_\\d{4}$/;\nconst FILE_NAME_PATTERN = /^flows_[A-Za-z0-9_-]+_ver_(\\d{4}-\\d{2}-\\d{2})_(\\d{4})$/;\nconst DEFAULT_VERSION = '301020250832';\n\nconst toVersionString = (value) => {\n    if (typeof value === 'string') {\n        const trimmed = value.trim();\n        if (VERSION_PATTERN.test(trimmed)) {\n            return trimmed;\n        }\n        if (READABLE_PATTERN.test(trimmed)) {\n            const [datePart, buildPart] = trimmed.split('_');\n            const [year, month, day] = datePart.split('-');\n            return `${day}${month}${year}${buildPart}`;\n        }\n        const fileMatch = trimmed.match(FILE_NAME_PATTERN);\n        if (fileMatch) {\n            const [, datePart, buildPart] = fileMatch;\n            const [year, month, day] = datePart.split('-');\n            return `${day}${month}${year}${buildPart}`;\n        }\n    } else if (typeof value === 'number' && Number.isFinite(value)) {\n        const asString = Math.trunc(value).toString();\n        if (VERSION_PATTERN.test(asString)) {\n            return asString;\n        }\n    }\n    return DEFAULT_VERSION;\n};\n\nmsg.payload = toVersionString(msg.payload);\nreturn msg;",
+        "func": "const VERSION_PATTERN = /^\\d{12}$/;\nconst READABLE_PATTERN = /^\\d{4}-\\d{2}-\\d{2}_\\d{4}$/;\nconst FILE_NAME_PATTERN_READABLE = /^flows_[A-Za-z0-9_-]+_ver_(\\d{4}-\\d{2}-\\d{2})_(\\d{4})$/;\nconst FILE_NAME_PATTERN_COMPACT = /^flows_[A-Za-z0-9_-]+_ver_(\\d{12})$/;\nconst DEFAULT_VERSION = '311020251404';\n\nconst fromReadable = (value) => {\n    const [datePart, buildPart] = value.split('_');\n    const [year, month, day] = datePart.split('-');\n    return `${day}${month}${year}${buildPart}`;\n};\n\nconst fromFileName = (value) => {\n    if (typeof value !== 'string' || !value.length) {\n        return null;\n    }\n    const trimmed = value.endsWith('.json') ? value.slice(0, -5) : value;\n    const readableMatch = trimmed.match(FILE_NAME_PATTERN_READABLE);\n    if (readableMatch) {\n        const [, datePart, buildPart] = readableMatch;\n        const [year, month, day] = datePart.split('-');\n        return `${day}${month}${year}${buildPart}`;\n    }\n    const compactMatch = trimmed.match(FILE_NAME_PATTERN_COMPACT);\n    if (compactMatch) {\n        return compactMatch[1];\n    }\n    return null;\n};\n\nconst toVersionString = (value) => {\n    if (typeof value === 'string') {\n        const trimmed = value.trim();\n        if (!trimmed.length) {\n            return DEFAULT_VERSION;\n        }\n        if (VERSION_PATTERN.test(trimmed)) {\n            return trimmed;\n        }\n        if (READABLE_PATTERN.test(trimmed)) {\n            return fromReadable(trimmed);\n        }\n        const fileNameVersion = fromFileName(trimmed);\n        if (fileNameVersion) {\n            return fileNameVersion;\n        }\n    } else if (typeof value === 'number' && Number.isFinite(value)) {\n        const asString = Math.trunc(value).toString();\n        if (VERSION_PATTERN.test(asString)) {\n            return asString;\n        }\n    }\n    return DEFAULT_VERSION;\n};\n\nmsg.payload = toVersionString(msg.payload);\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5433,7 +5272,7 @@
         "type": "function",
         "z": "e9378293b40785cc",
         "name": "Сохранить версию в контексте",
-        "func": "const VERSION_PATTERN = /^\\d{12}$/;\nconst READABLE_PATTERN = /^\\d{4}-\\d{2}-\\d{2}_\\d{4}$/;\nconst FILE_NAME_PATTERN = /^flows_[A-Za-z0-9_-]+_ver_(\\d{4}-\\d{2}-\\d{2})_(\\d{4})$/;\nconst DEFAULT_VERSION = '301020250832';\nconst PROJECT_SLUG = 'AO6224_AI6717';\n\nconst toVersionString = (value) => {\n    if (typeof value === 'string') {\n        const trimmed = value.trim();\n        if (VERSION_PATTERN.test(trimmed)) {\n            return trimmed;\n        }\n        if (READABLE_PATTERN.test(trimmed)) {\n            const [datePart, buildPart] = trimmed.split('_');\n            const [year, month, day] = datePart.split('-');\n            return `${day}${month}${year}${buildPart}`;\n        }\n        const fileMatch = trimmed.match(FILE_NAME_PATTERN);\n        if (fileMatch) {\n            const [, datePart, buildPart] = fileMatch;\n            const [year, month, day] = datePart.split('-');\n            return `${day}${month}${year}${buildPart}`;\n        }\n    } else if (typeof value === 'number' && Number.isFinite(value)) {\n        const asString = Math.trunc(value).toString();\n        if (VERSION_PATTERN.test(asString)) {\n            return asString;\n        }\n    }\n    return DEFAULT_VERSION;\n};\n\nconst toReadableVersion = (value) => {\n    if (VERSION_PATTERN.test(value)) {\n        const day = value.slice(0, 2);\n        const month = value.slice(2, 4);\n        const year = value.slice(4, 8);\n        const build = value.slice(8);\n        return `${year}-${month}-${day}_${build}`;\n    }\n    if (READABLE_PATTERN.test(value)) {\n        return value;\n    }\n    const fileMatch = typeof value === 'string' ? value.match(FILE_NAME_PATTERN) : null;\n    if (fileMatch) {\n        const [, datePart, buildPart] = fileMatch;\n        return `${datePart}_${buildPart}`;\n    }\n    return '1970-01-01_0000';\n};\n\nconst deriveVersionFromFileName = (fileName) => {\n    if (typeof fileName === 'string' && fileName.endsWith('.json')) {\n        const candidate = fileName.slice(0, -5);\n        if (VERSION_PATTERN.test(candidate)) {\n            return candidate;\n        }\n        if (READABLE_PATTERN.test(candidate)) {\n            const [datePart, buildPart] = candidate.split('_');\n            const [year, month, day] = datePart.split('-');\n            return `${day}${month}${year}${buildPart}`;\n        }\n        const fileMatch = candidate.match(FILE_NAME_PATTERN);\n        if (fileMatch) {\n            const [, datePart, buildPart] = fileMatch;\n            const [year, month, day] = datePart.split('-');\n            return `${day}${month}${year}${buildPart}`;\n        }\n    }\n    return undefined;\n};\n\nconst normalizeStoredVersion = (value) => {\n    if (typeof value !== 'string' || !value.length) {\n        return undefined;\n    }\n    if (VERSION_PATTERN.test(value)) {\n        return value;\n    }\n    if (READABLE_PATTERN.test(value)) {\n        const [datePart, buildPart] = value.split('_');\n        const [year, month, day] = datePart.split('-');\n        return `${day}${month}${year}${buildPart}`;\n    }\n    const fileMatch = value.match(FILE_NAME_PATTERN);\n    if (fileMatch) {\n        const [, datePart, buildPart] = fileMatch;\n        const [year, month, day] = datePart.split('-');\n        return `${day}${month}${year}${buildPart}`;\n    }\n    return undefined;\n};\n\nlet version = toVersionString(msg.payload);\n\nif (!VERSION_PATTERN.test(version)) {\n    const storedFlowVersionRaw = normalizeStoredVersion(flow.get('versionRaw'));\n    const storedFlowVersionReadable = normalizeStoredVersion(flow.get('version'));\n    const storedGlobalVersion = normalizeStoredVersion(global.get('currentVersion'));\n    const storedFlowFileName = flow.get('flowFileName');\n    const storedGlobalFileName = global.get('flowFileName');\n    version = storedFlowVersionRaw\n        || storedFlowVersionReadable\n        || storedGlobalVersion\n        || deriveVersionFromFileName(storedFlowFileName)\n        || deriveVersionFromFileName(storedGlobalFileName)\n        || toVersionString();\n    msg.payload = version;\n}\n\nconst versionNumber = Number(version);\nconst readableVersion = toReadableVersion(version);\nconst flowFileName = `flows_${PROJECT_SLUG}_ver_${readableVersion}.json`;\n\nif (Number.isFinite(versionNumber)) {\n    if (global.get('VER') !== versionNumber) {\n        global.set('VER', versionNumber);\n    }\n} else {\n    node.warn(`Невозможно преобразовать версию \"${version}\" в число. Значение VER не обновлено.`);\n}\n\nif (flow.get('versionRaw') !== version) {\n    flow.set('versionRaw', version);\n}\n\nif (flow.get('version') !== readableVersion) {\n    flow.set('version', readableVersion);\n}\n\nif (flow.get('flowFileName') !== flowFileName) {\n    flow.set('flowFileName', flowFileName);\n}\n\nif (global.get('currentVersion') !== version) {\n    global.set('currentVersion', version);\n}\n\nif (global.get('flowFileName') !== flowFileName) {\n    global.set('flowFileName', flowFileName);\n}\n\nconst uiStateMeta = global.get('uiState_meta') || {};\nlet metaChanged = false;\n\nif (uiStateMeta.version !== version) {\n    uiStateMeta.version = version;\n    metaChanged = true;\n}\n\nif (uiStateMeta.versionNumber !== versionNumber && Number.isFinite(versionNumber)) {\n    uiStateMeta.versionNumber = versionNumber;\n    metaChanged = true;\n}\n\nif (uiStateMeta.fileName !== flowFileName) {\n    uiStateMeta.fileName = flowFileName;\n    metaChanged = true;\n}\n\nif (uiStateMeta.readableVersion !== readableVersion) {\n    uiStateMeta.readableVersion = readableVersion;\n    metaChanged = true;\n}\n\nif (metaChanged) {\n    global.set('uiState_meta', uiStateMeta);\n}\n\nmsg.versionNumber = Number.isFinite(versionNumber) ? versionNumber : null;\nmsg.filename = flowFileName;\nmsg.projectVersion = version;\nmsg.readableVersion = readableVersion;\n\nreturn msg;",
+        "func": "const VERSION_PATTERN = /^\\d{12}$/;\nconst READABLE_PATTERN = /^\\d{4}-\\d{2}-\\d{2}_\\d{4}$/;\nconst FILE_NAME_PATTERN_READABLE = /^flows_[A-Za-z0-9_-]+_ver_(\\d{4}-\\d{2}-\\d{2})_(\\d{4})$/;\nconst FILE_NAME_PATTERN_COMPACT = /^flows_[A-Za-z0-9_-]+_ver_(\\d{12})$/;\nconst DEFAULT_VERSION = '311020251404';\nconst PROJECT_SLUG = 'AO6224_AI6717';\n\nconst fromReadable = (value) => {\n    const [datePart, buildPart] = value.split('_');\n    const [year, month, day] = datePart.split('-');\n    return `${day}${month}${year}${buildPart}`;\n};\n\nconst versionFromFileName = (value) => {\n    if (typeof value !== 'string' || !value.length) {\n        return null;\n    }\n    const candidate = value.endsWith('.json') ? value.slice(0, -5) : value;\n    if (VERSION_PATTERN.test(candidate)) {\n        return candidate;\n    }\n    if (READABLE_PATTERN.test(candidate)) {\n        return fromReadable(candidate);\n    }\n    const readableMatch = candidate.match(FILE_NAME_PATTERN_READABLE);\n    if (readableMatch) {\n        const [, datePart, buildPart] = readableMatch;\n        const [year, month, day] = datePart.split('-');\n        return `${day}${month}${year}${buildPart}`;\n    }\n    const compactMatch = candidate.match(FILE_NAME_PATTERN_COMPACT);\n    if (compactMatch) {\n        return compactMatch[1];\n    }\n    return null;\n};\n\nconst toVersionString = (value) => {\n    if (typeof value === 'string') {\n        const trimmed = value.trim();\n        if (!trimmed.length) {\n            return DEFAULT_VERSION;\n        }\n        if (VERSION_PATTERN.test(trimmed)) {\n            return trimmed;\n        }\n        if (READABLE_PATTERN.test(trimmed)) {\n            return fromReadable(trimmed);\n        }\n        const fromFile = versionFromFileName(trimmed);\n        if (fromFile) {\n            return fromFile;\n        }\n    }\n    if (typeof value === 'number' && Number.isFinite(value)) {\n        const asString = Math.trunc(value).toString();\n        if (VERSION_PATTERN.test(asString)) {\n            return asString;\n        }\n    }\n    return DEFAULT_VERSION;\n};\n\nconst toReadableVersion = (value) => {\n    if (VERSION_PATTERN.test(value)) {\n        const day = value.slice(0, 2);\n        const month = value.slice(2, 4);\n        const year = value.slice(4, 8);\n        const build = value.slice(8);\n        return `${year}-${month}-${day}_${build}`;\n    }\n    if (READABLE_PATTERN.test(value)) {\n        return value;\n    }\n    const fromFile = versionFromFileName(value);\n    if (fromFile) {\n        return toReadableVersion(fromFile);\n    }\n    return '1970-01-01_0000';\n};\n\nconst normalizeStoredVersion = (value) => {\n    if (typeof value === 'number' && Number.isFinite(value)) {\n        return toVersionString(String(Math.trunc(value)));\n    }\n    if (typeof value === 'string' && value.length) {\n        if (VERSION_PATTERN.test(value)) {\n            return value;\n        }\n        if (READABLE_PATTERN.test(value)) {\n            return fromReadable(value);\n        }\n        const fromFile = versionFromFileName(value);\n        if (fromFile) {\n            return fromFile;\n        }\n    }\n    return null;\n};\n\nlet version = toVersionString(msg.payload);\n\nif (!VERSION_PATTERN.test(version)) {\n    const fallback = normalizeStoredVersion(flow.get('versionRaw'))\n        || normalizeStoredVersion(flow.get('version'))\n        || normalizeStoredVersion(global.get('currentVersion'))\n        || versionFromFileName(flow.get('flowFileName'))\n        || versionFromFileName(global.get('flowFileName'))\n        || DEFAULT_VERSION;\n    version = fallback;\n    msg.payload = version;\n}\n\nconst versionNumber = Number(version);\nconst readableVersion = toReadableVersion(version);\nconst flowFileName = `flows_${PROJECT_SLUG}_ver_${version}.json`;\n\nif (Number.isFinite(versionNumber)) {\n    if (global.get('VER') !== versionNumber) {\n        global.set('VER', versionNumber);\n    }\n} else {\n    node.warn(`Невозможно преобразовать версию \"${version}\" в число. Значение VER не обновлено.`);\n}\n\nif (flow.get('versionRaw') !== version) {\n    flow.set('versionRaw', version);\n}\n\nif (flow.get('version') !== readableVersion) {\n    flow.set('version', readableVersion);\n}\n\nif (flow.get('flowFileName') !== flowFileName) {\n    flow.set('flowFileName', flowFileName);\n}\n\nif (global.get('currentVersion') !== version) {\n    global.set('currentVersion', version);\n}\n\nif (global.get('flowFileName') !== flowFileName) {\n    global.set('flowFileName', flowFileName);\n}\n\nconst uiStateMeta = global.get('uiState_meta') || {};\nlet metaChanged = false;\n\nif (uiStateMeta.version !== version) {\n    uiStateMeta.version = version;\n    metaChanged = true;\n}\n\nif (uiStateMeta.versionNumber !== versionNumber && Number.isFinite(versionNumber)) {\n    uiStateMeta.versionNumber = versionNumber;\n    metaChanged = true;\n}\n\nif (uiStateMeta.fileName !== flowFileName) {\n    uiStateMeta.fileName = flowFileName;\n    metaChanged = true;\n}\n\nif (uiStateMeta.readableVersion !== readableVersion) {\n    uiStateMeta.readableVersion = readableVersion;\n    metaChanged = true;\n}\n\nif (metaChanged) {\n    global.set('uiState_meta', uiStateMeta);\n}\n\nmsg.versionNumber = Number.isFinite(versionNumber) ? versionNumber : null;\nmsg.filename = flowFileName;\nmsg.projectVersion = version;\nmsg.readableVersion = readableVersion;\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5474,7 +5313,7 @@
         "type": "function",
         "z": "e9378293b40785cc",
         "name": "Сформировать историю изменений",
-        "func": "const VERSION_PATTERN=/^(\\d{2})(\\d{2})(\\d{4})(\\d{2})(\\d{2})$/;\nconst currentVersion=msg.payload;\nlet parsedDate='';\nlet parsedTime='';\nif(typeof currentVersion==='string'){\n    const match=currentVersion.match(VERSION_PATTERN);\n    if(match){\n        const [,day,month,year,hour,minute]=match;\n        parsedDate=`${year}-${month}-${day}`;\n        parsedTime=`${hour}:${minute}`;\n    }\n}\nconst formattedDate=parsedTime?`${parsedDate} ${parsedTime}`:parsedDate||'2025-10-30';\nconst history=[\n    {\n        version:currentVersion,\n        date:formattedDate,\n        changes:[\n            'Синхронизирована версия проекта с файлом \"flows_AO6224_AI6717_ver_2025-10-30_0832.json\".',\n            'flow.version и global.currentVersion приведены к формату 2025-10-30_0832 и отображаются на главной панели.',\n            'Обновлена карточка «История версий» для актуального описания изменений.'\n        ]\n    },\n    {\n        version:'231020251107',\n        date:'2025-10-23',\n        changes:[\n            'Зафиксирован формат имени файла и версии DDMMYYYYHHmm (пример: 231020251107).',\n            'Главная панель Dashboard отображает строку \"Текущая версия: 231020251107.\" и синхронизирована с глобальной переменной VER.'\n        ]\n    },\n    {\n        version:'231020251001',\n        date:'2025-10-23',\n        changes:[\n            'Обновлён формат версии на DDMMYYYYHHmm и синхронизировано имя файла проекта.',\n            'Добавлена глобальная переменная VER и экспорт версии в Modbus для отображения на панели оператора.'\n        ]\n    },\n    {\n        version:'2025-10-23_1',\n        date:'2025-10-23',\n        changes:[\n            'Добавлен дашборд \"История версий\" с отображением актуальной версии и списка изменений.',\n            'Обновлён механизм сохранения версии в контекст (flow.version и global.currentVersion) с форматом YYYY-MM-DD_build.'\n        ]\n    },\n    {\n        version:'2025-10-22_1',\n        date:'2025-10-22',\n        changes:[\n            'Базовая конфигурация проекта.'\n        ]\n    }\n];\nmsg.history=history;\nmsg.currentVersion=currentVersion;\nconst parsedNumber=Number(currentVersion);\nif(!Number.isFinite(msg.versionNumber)){\n    msg.versionNumber=Number.isFinite(parsedNumber)?parsedNumber:null;\n}\nlet readableVersion=msg.readableVersion;\nif(!readableVersion){\n    if(VERSION_PATTERN.test(currentVersion)){\n        const [,day,month,year,hour,minute]=currentVersion.match(VERSION_PATTERN);\n        readableVersion=`${year}-${month}-${day}_${hour}${minute}`;\n    } else if(typeof currentVersion==='string'){\n        readableVersion=currentVersion;\n    }\n    if(readableVersion){\n        msg.readableVersion=readableVersion;\n    }\n}\nif(!msg.filename&&typeof readableVersion==='string'){\n    msg.filename=`flows_AO6224_AI6717_ver_${readableVersion}.json`;\n}\nreturn msg;",
+        "func": "const VERSION_PATTERN = /^(\\d{2})(\\d{2})(\\d{4})(\\d{2})(\\d{2})$/;\nconst currentVersion = msg.payload;\nlet parsedDate = '';\nlet parsedTime = '';\n\nif (typeof currentVersion === 'string') {\n    const match = currentVersion.match(VERSION_PATTERN);\n    if (match) {\n        const [, day, month, year, hour, minute] = match;\n        parsedDate = `${year}-${month}-${day}`;\n        parsedTime = `${hour}:${minute}`;\n    }\n}\n\nconst formattedDate = parsedTime ? `${parsedDate} ${parsedTime}` : parsedDate || '2025-10-31';\n\nconst history = [\n    {\n        version: currentVersion,\n        date: formattedDate,\n        changes: [\n            'Скорректирована версия проекта и имя файла экспорта на 311020251404.',\n            'Обновлены функции нормализации версии для поддержки формата без разделителей и новых имён файлов.',\n            'Удалён неиспользуемый линк-выход «PID Valve Command for Monitoring» (b02e7b220ab9a55e) из потока PID Control Logic.',\n            'Удалены отключённые debug-узлы из потоков «функция итерации», «АО6224_AI6717_v2» и «PID Control Logic» для снижения визуального шума.'\n        ]\n    },\n    {\n        version: '231020251107',\n        date: '2025-10-23',\n        changes: [\n            'Зафиксирован формат имени файла и версии DDMMYYYYHHmm (пример: 231020251107).',\n            'Главная панель Dashboard отображает строку \"Текущая версия: 231020251107.\" и синхронизирована с глобальной переменной VER.'\n        ]\n    },\n    {\n        version: '231020251001',\n        date: '2025-10-23',\n        changes: [\n            'Обновлён формат версии на DDMMYYYYHHmm и синхронизировано имя файла проекта.',\n            'Добавлена глобальная переменная VER и экспорт версии в Modbus для отображения на панели оператора.'\n        ]\n    },\n    {\n        version: '2025-10-23_1',\n        date: '2025-10-23',\n        changes: [\n            'Добавлен дашборд \"История версий\" с отображением актуальной версии и списка изменений.',\n            'Обновлён механизм сохранения версии в контекст (flow.version и global.currentVersion) с форматом YYYY-MM-DD_build.'\n        ]\n    },\n    {\n        version: '2025-10-22_1',\n        date: '2025-10-22',\n        changes: [\n            'Базовая конфигурация проекта.'\n        ]\n    }\n];\n\nmsg.history = history;\nmsg.currentVersion = currentVersion;\nconst parsedNumber = Number(currentVersion);\nif (!Number.isFinite(msg.versionNumber)) {\n    msg.versionNumber = Number.isFinite(parsedNumber) ? parsedNumber : null;\n}\nlet readableVersion = msg.readableVersion;\nif (!readableVersion) {\n    if (VERSION_PATTERN.test(currentVersion)) {\n        const [, day, month, year, hour, minute] = currentVersion.match(VERSION_PATTERN);\n        readableVersion = `${year}-${month}-${day}_${hour}${minute}`;\n    } else if (typeof currentVersion === 'string') {\n        readableVersion = currentVersion;\n    }\n    if (readableVersion) {\n        msg.readableVersion = readableVersion;\n    }\n}\nif (!msg.filename && typeof currentVersion === 'string') {\n    msg.filename = `flows_AO6224_AI6717_ver_${currentVersion}.json`;\n}\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -11364,8 +11203,7 @@
         "y": 280,
         "wires": [
             [
-                "56af6930f7ce405a",
-                "b02e7b220ab9a55e"
+                "56af6930f7ce405a"
             ],
             [
                 "54037bd396205d3e"
@@ -11403,34 +11241,6 @@
         ],
         "x": 1075,
         "y": 260,
-        "wires": []
-    },
-    {
-        "id": "be174052251bcf62",
-        "type": "debug",
-        "z": "fab7173f60094a7c",
-        "name": "Debug: Prepared PID Input Msg",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 450,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "b02e7b220ab9a55e",
-        "type": "link out",
-        "z": "fab7173f60094a7c",
-        "name": "Link Out: PID Valve Command for Monitoring",
-        "mode": "link",
-        "links": [],
-        "x": 1075,
-        "y": 200,
         "wires": []
     },
     {
