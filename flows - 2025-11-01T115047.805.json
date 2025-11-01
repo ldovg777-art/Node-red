@@ -5789,27 +5789,27 @@
             },
             {
                 "label": "Переменные Расчета",
-                "value": "b52ad0f12cf76b90",
+                "value": "1ca429ef1c54e053",
                 "type": "str"
             },
             {
                 "label": "Переменные 1 2 3 4 5",
-                "value": "83b781694d048a60",
+                "value": "a1eb237deeed4f68",
                 "type": "str"
             },
             {
                 "label": "Переменные Расчета PH",
-                "value": "01aa0c0329411915",
+                "value": "448d421088f328d4",
                 "type": "str"
             },
             {
                 "label": "Redox Потенциал",
-                "value": "cbf35f7b08366f68",
+                "value": "314b7de6c01e1f5b",
                 "type": "str"
             },
             {
                 "label": "Redox Потенциал 2",
-                "value": "471be57479d45576",
+                "value": "a0b71270a6b25db2",
                 "type": "str"
             },
             {
@@ -5819,7 +5819,7 @@
             },
             {
                 "label": "Настройки ПИД",
-                "value": "b53dacbc259cef59",
+                "value": "a00ae3d085ad4c70",
                 "type": "str"
             },
             {
