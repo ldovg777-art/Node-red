@@ -6,7 +6,9 @@
 
 import json
 import uuid
-import copy
+import sys
+import os
+from datetime import datetime
 
 def gen_id():
     """Генерирует уникальный ID для узла Node-RED"""
@@ -103,6 +105,7 @@ const s = global.set.bind(global);
 
 const chartId = msg.payload; // ID графика
 const stateVar = '{state_var_name}';
+const buttonId = '{button_id}';
 
 // Получаем текущее состояние (по умолчанию false - скрыт)
 let isVisible = g(stateVar);
@@ -122,12 +125,15 @@ const controlMsg = {{
     }}
 }};
 
-// Обновляем текст кнопки
+// Обновляем текст кнопки через ui_control
 const buttonMsg = {{
-    payload: isVisible ? "Скрыть график" : "Показать график"
+    id: buttonId,
+    ui_control: {{
+        label: isVisible ? "Скрыть график" : "Показать график"
+    }}
 }};
 
-return [[controlMsg], [buttonMsg]];"""
+return [[controlMsg, buttonMsg]];"""
         
         function_node = {
             "id": function_id,
@@ -135,14 +141,14 @@ return [[controlMsg], [buttonMsg]];"""
             "z": z_tab,
             "name": f"Переключить: {chart_name}",
             "func": function_code,
-            "outputs": 2,
+            "outputs": 1,
             "noerr": 0,
             "initialize": "",
             "finalize": "",
             "libs": [],
             "x": x_pos - 50,
             "y": y_pos,
-            "wires": [[control_id], [button_id]]
+            "wires": [[control_id]]
         }
         
         # 3. UI Control - управление видимостью графика
@@ -231,32 +237,33 @@ return [controlMsgs];"""
     
     new_nodes.extend([init_function, init_inject])
     
-    # Добавляем ui_control узлы для каждого графика в init_function
-    control_nodes_for_init = []
-    for chart_id in chart_state_vars.keys():
-        control_node_init_id = gen_id()
-        control_node_init = {
-            "id": control_node_init_id,
-            "type": "ui_control",
-            "z": charts[0]['z'] if charts else "",
-            "name": f"Контроль инициализации",
-            "events": "all",
-            "x": 400,
-            "y": 200,
-            "wires": [[]]
-        }
-        control_nodes_for_init.append(control_node_init)
-        new_nodes.append(control_node_init)
+    # Добавляем один ui_control узел для инициализации (один узел может обработать массив сообщений)
+    control_node_init_id = gen_id()
+    control_node_init = {
+        "id": control_node_init_id,
+        "type": "ui_control",
+        "z": charts[0]['z'] if charts else "",
+        "name": "Контроль инициализации графиков",
+        "events": "all",
+        "x": 400,
+        "y": 200,
+        "wires": [[]]
+    }
+    new_nodes.append(control_node_init)
     
-    # Подключаем init_function к ui_control узлам
-    if control_nodes_for_init:
-        init_function['wires'] = [[n['id'] for n in control_nodes_for_init]]
+    # Подключаем init_function к ui_control узлу
+    init_function['wires'] = [[control_node_init_id]]
     
     return new_nodes, chart_state_vars
 
 # Основная функция
 def main():
-    filename = 'flows_AO6224_AI6717_ver_311020251659.json'
+    # Получаем имя файла из аргументов командной строки или используем значение по умолчанию
+    if len(sys.argv) > 1:
+        filename = sys.argv[1]
+    else:
+        filename = 'flows_AO6224_AI6717_ver_311020251659.json'
+    
     backup_filename = filename.replace('.json', '_backup.json')
     
     print(f'Загрузка {filename}...')
@@ -281,7 +288,14 @@ def main():
     print(f'Всего узлов в файле: {len(data)}')
     
     # Сохраняем модифицированный файл
-    output_filename = filename.replace('.json', '_with_chart_controls.json')
+    if len(sys.argv) > 2:
+        output_filename = sys.argv[2]
+    else:
+        # Генерируем имя файла с текущей датой и временем
+        now = datetime.now()
+        timestamp = now.strftime('%d%m%Y%H%M')
+        output_filename = f'flows_AO6224_AI6717_ver_{timestamp}_with_chart_controls.json'
+    
     print(f'\nСохранение в {output_filename}...')
     with open(output_filename, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
@@ -291,6 +305,8 @@ def main():
     print(f'  - Оригинал: {filename}')
     print(f'  - Резервная копия: {backup_filename}')
     print(f'  - С изменениями: {output_filename}')
+    print(f'\nИспользование:')
+    print(f'  python3 {os.path.basename(__file__)} [input_file.json] [output_file.json]')
 
 if __name__ == '__main__':
     main()
