@@ -29,9 +29,26 @@ def main():
         timestamp = now.strftime('%d%m%Y%H%M')
         output_filename = f'flows_AO6224_AI6717_ver_{timestamp}_FINAL.json'
     
+    # Проверка существования файла
+    if not os.path.exists(filename):
+        print(f'Ошибка: файл {filename} не найден')
+        sys.exit(1)
+    
     print(f'Загрузка {filename}...')
-    with open(filename, 'r', encoding='utf-8') as f:
-        data = json.load(f)
+    try:
+        with open(filename, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except json.JSONDecodeError as e:
+        print(f'Ошибка: невалидный JSON в файле {filename}: {e}')
+        sys.exit(1)
+    except IOError as e:
+        print(f'Ошибка при чтении файла {filename}: {e}')
+        sys.exit(1)
+    
+    # Валидация структуры данных
+    if not isinstance(data, list):
+        print(f'Ошибка: ожидается список узлов, получен {type(data).__name__}')
+        sys.exit(1)
     
     print(f'Загружено узлов: {len(data)}')
     
@@ -51,6 +68,11 @@ def main():
             })
     
     print(f'Найдено графиков: {len(charts)}')
+    
+    # Проверка на наличие графиков
+    if not charts:
+        print('Предупреждение: графики не найдены. Выход без изменений.')
+        return
     
     # 1. Добавляем ui_template с CSS (стандартный узел node-red-dashboard)
     ui_base_idx = None
@@ -98,7 +120,6 @@ def main():
         button_id = gen_id()
         function_id = gen_id()
         control_id = gen_id()
-        change_button_id = gen_id()
         state_var = f'chart_visible_{chart_id[:8]}'
         chart_states[chart_id] = state_var
         
@@ -278,8 +299,12 @@ return [controlMsgs];"""
     
     # Сохраняем
     print(f'\nСохранение в {output_filename}...')
-    with open(output_filename, 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
+    try:
+        with open(output_filename, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+    except IOError as e:
+        print(f'Ошибка при записи файла {output_filename}: {e}')
+        sys.exit(1)
     
     print('✓ Готово!')
     print(f'\nИспользованы только стандартные узлы Node-RED:')

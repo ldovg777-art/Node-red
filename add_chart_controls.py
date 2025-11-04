@@ -34,6 +34,11 @@ def add_chart_controls(data):
     
     print(f'Найдено графиков: {len(charts)}')
     
+    # Проверка на наличие графиков
+    if not charts:
+        print('Предупреждение: графики не найдены. Выход без изменений.')
+        return [], {}
+    
     # Создаем CSS template узел (один на весь проект)
     css_template_id = gen_id()
     css_template = {
@@ -266,16 +271,37 @@ def main():
     
     backup_filename = filename.replace('.json', '_backup.json')
     
+    # Проверка существования файла
+    if not os.path.exists(filename):
+        print(f'Ошибка: файл {filename} не найден')
+        sys.exit(1)
+    
     print(f'Загрузка {filename}...')
-    with open(filename, 'r', encoding='utf-8') as f:
-        data = json.load(f)
+    try:
+        with open(filename, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except json.JSONDecodeError as e:
+        print(f'Ошибка: невалидный JSON в файле {filename}: {e}')
+        sys.exit(1)
+    except IOError as e:
+        print(f'Ошибка при чтении файла {filename}: {e}')
+        sys.exit(1)
+    
+    # Валидация структуры данных
+    if not isinstance(data, list):
+        print(f'Ошибка: ожидается список узлов, получен {type(data).__name__}')
+        sys.exit(1)
     
     print(f'Загружено узлов: {len(data)}')
     
     # Создаем резервную копию
     print(f'Создание резервной копии: {backup_filename}...')
-    with open(backup_filename, 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
+    try:
+        with open(backup_filename, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+    except IOError as e:
+        print(f'Ошибка при создании резервной копии {backup_filename}: {e}')
+        sys.exit(1)
     
     # Добавляем узлы управления
     print('\nДобавление узлов управления графиками...')
@@ -297,8 +323,12 @@ def main():
         output_filename = f'flows_AO6224_AI6717_ver_{timestamp}_with_chart_controls.json'
     
     print(f'\nСохранение в {output_filename}...')
-    with open(output_filename, 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
+    try:
+        with open(output_filename, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+    except IOError as e:
+        print(f'Ошибка при записи файла {output_filename}: {e}')
+        sys.exit(1)
     
     print('\n✓ Готово!')
     print(f'\nФайлы:')
