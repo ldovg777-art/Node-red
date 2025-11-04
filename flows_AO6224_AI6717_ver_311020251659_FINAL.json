@@ -310,7 +310,7 @@
         }
     },
     {
-        "id": "ad1891e5281441fe961a8c69d6ec5624",
+        "id": "651d98407b5c49608a768752418b3347",
         "type": "ui_template",
         "z": "0aab3c6cefb9136c",
         "group": "",
@@ -12924,7 +12924,7 @@
         ]
     },
     {
-        "id": "c484fb496fbe42a1be70ecd765297d17",
+        "id": "9cbe42c2d8a74363a04ac3a731eb2194",
         "type": "ui_button",
         "z": "0aab3c6cefb9136c",
         "name": "Показать/Скрыть: График итерации X",
@@ -12933,7 +12933,7 @@
         "width": "3",
         "height": "1",
         "label": "Показать график",
-        "tooltip": "Показать/скрыть График итерации X",
+        "tooltip": "",
         "color": "",
         "bgColor": "",
         "className": "",
@@ -12945,16 +12945,16 @@
         "y": 180,
         "wires": [
             [
-                "deae7b67cc14077bb10709092e9d3cb"
+                "e8cdd86cb15417e996a492fb45ad350"
             ]
         ]
     },
     {
-        "id": "deae7b67cc14077bb10709092e9d3cb",
+        "id": "e8cdd86cb15417e996a492fb45ad350",
         "type": "function",
         "z": "0aab3c6cefb9136c",
         "name": "Переключить: График итерации X",
-        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_2bb113fc';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Сообщение для ui_control (изменение className)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonMsg]];",
+        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_2bb113fc';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Формируем сообщение для ui_control (стандартный формат Node-RED Dashboard)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonUpdateMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonUpdateMsg]];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -12964,15 +12964,15 @@
         "y": 180,
         "wires": [
             [
-                "149525be3f44165a3b5ab7e90596b50"
+                "88e8718e3949f5838933ae0c09d27"
             ],
             [
-                "c484fb496fbe42a1be70ecd765297d17"
+                "836d8efc57d24fd0b3343335e683a9e"
             ]
         ]
     },
     {
-        "id": "149525be3f44165a3b5ab7e90596b50",
+        "id": "88e8718e3949f5838933ae0c09d27",
         "type": "ui_control",
         "z": "0aab3c6cefb9136c",
         "name": "Контроль: График итерации X",
@@ -12984,7 +12984,34 @@
         ]
     },
     {
-        "id": "8092e39fea74111b92d6f77edfb5e5",
+        "id": "836d8efc57d24fd0b3343335e683a9e",
+        "type": "change",
+        "z": "0aab3c6cefb9136c",
+        "name": "Обновить текст: График итерации X",
+        "rules": [
+            {
+                "t": "set",
+                "p": "label",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 230,
+        "wires": [
+            [
+                "9cbe42c2d8a74363a04ac3a731eb2194"
+            ]
+        ]
+    },
+    {
+        "id": "96a2a772f49492e925435a8406c861e",
         "type": "ui_button",
         "z": "e9378293b40785cc",
         "name": "Показать/Скрыть: График 2",
@@ -12993,7 +13020,7 @@
         "width": "3",
         "height": "1",
         "label": "Показать график",
-        "tooltip": "Показать/скрыть График 2",
+        "tooltip": "",
         "color": "",
         "bgColor": "",
         "className": "",
@@ -13005,16 +13032,16 @@
         "y": 220,
         "wires": [
             [
-                "cd3fe8fbb516441c8e10b35f994dd2f"
+                "875a72efb2464c5391c45645c0409fa"
             ]
         ]
     },
     {
-        "id": "cd3fe8fbb516441c8e10b35f994dd2f",
+        "id": "875a72efb2464c5391c45645c0409fa",
         "type": "function",
         "z": "e9378293b40785cc",
         "name": "Переключить: График 2",
-        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_e5311234';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Сообщение для ui_control (изменение className)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonMsg]];",
+        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_e5311234';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Формируем сообщение для ui_control (стандартный формат Node-RED Dashboard)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonUpdateMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonUpdateMsg]];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -13024,15 +13051,15 @@
         "y": 220,
         "wires": [
             [
-                "1a90c43a349f4766bc44531a2f5b7d73"
+                "2d5df6e01cdc424aa2f046a021dcce5b"
             ],
             [
-                "8092e39fea74111b92d6f77edfb5e5"
+                "acfdd480e0994b71bdeb37b23316eb71"
             ]
         ]
     },
     {
-        "id": "1a90c43a349f4766bc44531a2f5b7d73",
+        "id": "2d5df6e01cdc424aa2f046a021dcce5b",
         "type": "ui_control",
         "z": "e9378293b40785cc",
         "name": "Контроль: График 2",
@@ -13044,7 +13071,34 @@
         ]
     },
     {
-        "id": "e2a875101960462594617adc9d3cb663",
+        "id": "acfdd480e0994b71bdeb37b23316eb71",
+        "type": "change",
+        "z": "e9378293b40785cc",
+        "name": "Обновить текст: График 2",
+        "rules": [
+            {
+                "t": "set",
+                "p": "label",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1360,
+        "y": 270,
+        "wires": [
+            [
+                "96a2a772f49492e925435a8406c861e"
+            ]
+        ]
+    },
+    {
+        "id": "f6fcac48872486fb7d4524132c24a3c",
         "type": "ui_button",
         "z": "0adabbe16538e192",
         "name": "Показать/Скрыть: График PH и Концентраций",
@@ -13053,7 +13107,7 @@
         "width": "3",
         "height": "1",
         "label": "Показать график",
-        "tooltip": "Показать/скрыть График PH и Концентраций",
+        "tooltip": "",
         "color": "",
         "bgColor": "",
         "className": "",
@@ -13065,16 +13119,16 @@
         "y": 600,
         "wires": [
             [
-                "3c50d4e8f7d740b1816a8c6441a92f"
+                "a1971e87989a4c21967c834c27324cf8"
             ]
         ]
     },
     {
-        "id": "3c50d4e8f7d740b1816a8c6441a92f",
+        "id": "a1971e87989a4c21967c834c27324cf8",
         "type": "function",
         "z": "0adabbe16538e192",
         "name": "Переключить: График PH и Концентраций",
-        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_4c4a6fb2';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Сообщение для ui_control (изменение className)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonMsg]];",
+        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_4c4a6fb2';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Формируем сообщение для ui_control (стандартный формат Node-RED Dashboard)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonUpdateMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonUpdateMsg]];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -13084,15 +13138,15 @@
         "y": 600,
         "wires": [
             [
-                "9e8954844f9a4f9f841d192e7ae5d522"
+                "b86d12c566dd4f4080e1b1198fdc344"
             ],
             [
-                "e2a875101960462594617adc9d3cb663"
+                "54938295625f4873b9d13b9e4d272b7"
             ]
         ]
     },
     {
-        "id": "9e8954844f9a4f9f841d192e7ae5d522",
+        "id": "b86d12c566dd4f4080e1b1198fdc344",
         "type": "ui_control",
         "z": "0adabbe16538e192",
         "name": "Контроль: График PH и Концентраций",
@@ -13104,7 +13158,34 @@
         ]
     },
     {
-        "id": "6b415db1676e4293a52fbe6b5fb84170",
+        "id": "54938295625f4873b9d13b9e4d272b7",
+        "type": "change",
+        "z": "0adabbe16538e192",
+        "name": "Обновить текст: График PH и Концентраций",
+        "rules": [
+            {
+                "t": "set",
+                "p": "label",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 650,
+        "wires": [
+            [
+                "f6fcac48872486fb7d4524132c24a3c"
+            ]
+        ]
+    },
+    {
+        "id": "e7814642ce184b70bd38cc7848625ea9",
         "type": "ui_button",
         "z": "0adabbe16538e192",
         "name": "Показать/Скрыть: График PH (0-10)",
@@ -13113,7 +13194,7 @@
         "width": "3",
         "height": "1",
         "label": "Показать график",
-        "tooltip": "Показать/скрыть График PH (0-10)",
+        "tooltip": "",
         "color": "",
         "bgColor": "",
         "className": "",
@@ -13125,16 +13206,16 @@
         "y": 660,
         "wires": [
             [
-                "d0e9c328c454c61bce8f63dc45a4439"
+                "901cba66ee8842f9bc91f33b54185c97"
             ]
         ]
     },
     {
-        "id": "d0e9c328c454c61bce8f63dc45a4439",
+        "id": "901cba66ee8842f9bc91f33b54185c97",
         "type": "function",
         "z": "0adabbe16538e192",
         "name": "Переключить: График PH (0-10)",
-        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_2c064929';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Сообщение для ui_control (изменение className)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonMsg]];",
+        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_2c064929';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Формируем сообщение для ui_control (стандартный формат Node-RED Dashboard)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonUpdateMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonUpdateMsg]];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -13144,15 +13225,15 @@
         "y": 660,
         "wires": [
             [
-                "6e50f4c542c94524a059a0965720ee4f"
+                "f3829d67f35a49e48df0cdfde6ed3c48"
             ],
             [
-                "6b415db1676e4293a52fbe6b5fb84170"
+                "a228fbcdd32a4586b24faf49e92284d3"
             ]
         ]
     },
     {
-        "id": "6e50f4c542c94524a059a0965720ee4f",
+        "id": "f3829d67f35a49e48df0cdfde6ed3c48",
         "type": "ui_control",
         "z": "0adabbe16538e192",
         "name": "Контроль: График PH (0-10)",
@@ -13164,7 +13245,34 @@
         ]
     },
     {
-        "id": "45ac6b72de49fdb18cabe2556891bb",
+        "id": "a228fbcdd32a4586b24faf49e92284d3",
+        "type": "change",
+        "z": "0adabbe16538e192",
+        "name": "Обновить текст: График PH (0-10)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "label",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 710,
+        "wires": [
+            [
+                "e7814642ce184b70bd38cc7848625ea9"
+            ]
+        ]
+    },
+    {
+        "id": "7e74b38a5744e27ba1c68411d4c5756",
         "type": "ui_button",
         "z": "0adabbe16538e192",
         "name": "Показать/Скрыть: График Входов (ai2h1, ai2h2)",
@@ -13173,7 +13281,7 @@
         "width": "3",
         "height": "1",
         "label": "Показать график",
-        "tooltip": "Показать/скрыть График Входов (ai2h1, ai2h2)",
+        "tooltip": "",
         "color": "",
         "bgColor": "",
         "className": "",
@@ -13185,16 +13293,16 @@
         "y": 720,
         "wires": [
             [
-                "ecf6be48d74ca1a5ebb3a3469389cc"
+                "a3a525d1a0884e3495a42c9462d3c2e"
             ]
         ]
     },
     {
-        "id": "ecf6be48d74ca1a5ebb3a3469389cc",
+        "id": "a3a525d1a0884e3495a42c9462d3c2e",
         "type": "function",
         "z": "0adabbe16538e192",
         "name": "Переключить: График Входов (ai2h1, ai2h2)",
-        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_0ff73fe8';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Сообщение для ui_control (изменение className)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonMsg]];",
+        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_0ff73fe8';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Формируем сообщение для ui_control (стандартный формат Node-RED Dashboard)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonUpdateMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonUpdateMsg]];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -13204,15 +13312,15 @@
         "y": 720,
         "wires": [
             [
-                "5c626de2eb37409b823efce99a19eef0"
+                "e39e1bfebc73474484dfb81096eddc57"
             ],
             [
-                "45ac6b72de49fdb18cabe2556891bb"
+                "b86d1da6f2b141b1b8389df722f01934"
             ]
         ]
     },
     {
-        "id": "5c626de2eb37409b823efce99a19eef0",
+        "id": "e39e1bfebc73474484dfb81096eddc57",
         "type": "ui_control",
         "z": "0adabbe16538e192",
         "name": "Контроль: График Входов (ai2h1, ai2h2)",
@@ -13224,7 +13332,34 @@
         ]
     },
     {
-        "id": "183aaa4fce5e4bd394f8c216f088b8ce",
+        "id": "b86d1da6f2b141b1b8389df722f01934",
+        "type": "change",
+        "z": "0adabbe16538e192",
+        "name": "Обновить текст: График Входов (ai2h1, ai2h2)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "label",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 770,
+        "wires": [
+            [
+                "7e74b38a5744e27ba1c68411d4c5756"
+            ]
+        ]
+    },
+    {
+        "id": "8226d38d6fd84edb856db767fff1378a",
         "type": "ui_button",
         "z": "59dd9bd5d7fbfa1b",
         "name": "Показать/Скрыть: График Redox",
@@ -13233,7 +13368,7 @@
         "width": "3",
         "height": "1",
         "label": "Показать график",
-        "tooltip": "Показать/скрыть График Redox",
+        "tooltip": "",
         "color": "",
         "bgColor": "",
         "className": "",
@@ -13245,16 +13380,16 @@
         "y": 480,
         "wires": [
             [
-                "1fa9ba483cd448bf9093c4ceeb2a34b2"
+                "6cd35ce04fa748c7b05a13728521413d"
             ]
         ]
     },
     {
-        "id": "1fa9ba483cd448bf9093c4ceeb2a34b2",
+        "id": "6cd35ce04fa748c7b05a13728521413d",
         "type": "function",
         "z": "59dd9bd5d7fbfa1b",
         "name": "Переключить: График Redox",
-        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_2fa96424';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Сообщение для ui_control (изменение className)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonMsg]];",
+        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_2fa96424';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Формируем сообщение для ui_control (стандартный формат Node-RED Dashboard)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonUpdateMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonUpdateMsg]];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -13264,15 +13399,15 @@
         "y": 480,
         "wires": [
             [
-                "9cfb28f7da44a228ac5c1e150845cc6"
+                "3b4927881b14791a18bedb036a6487a"
             ],
             [
-                "183aaa4fce5e4bd394f8c216f088b8ce"
+                "da409043c07945f7bf847220542829c4"
             ]
         ]
     },
     {
-        "id": "9cfb28f7da44a228ac5c1e150845cc6",
+        "id": "3b4927881b14791a18bedb036a6487a",
         "type": "ui_control",
         "z": "59dd9bd5d7fbfa1b",
         "name": "Контроль: График Redox",
@@ -13284,7 +13419,34 @@
         ]
     },
     {
-        "id": "caa85fafac1340cea9f54fa61452d348",
+        "id": "da409043c07945f7bf847220542829c4",
+        "type": "change",
+        "z": "59dd9bd5d7fbfa1b",
+        "name": "Обновить текст: График Redox",
+        "rules": [
+            {
+                "t": "set",
+                "p": "label",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 530,
+        "wires": [
+            [
+                "8226d38d6fd84edb856db767fff1378a"
+            ]
+        ]
+    },
+    {
+        "id": "97b7a2dec2134969b8a60fdc40bc2",
         "type": "ui_button",
         "z": "aba43ca783b076c8",
         "name": "Показать/Скрыть: График Redox2",
@@ -13293,7 +13455,7 @@
         "width": "3",
         "height": "1",
         "label": "Показать график",
-        "tooltip": "Показать/скрыть График Redox2",
+        "tooltip": "",
         "color": "",
         "bgColor": "",
         "className": "",
@@ -13305,16 +13467,16 @@
         "y": 480,
         "wires": [
             [
-                "bb4f509e74dd40df83e7f2ab9a4b13e2"
+                "953af87c772c4571a2a2076d1564ec"
             ]
         ]
     },
     {
-        "id": "bb4f509e74dd40df83e7f2ab9a4b13e2",
+        "id": "953af87c772c4571a2a2076d1564ec",
         "type": "function",
         "z": "aba43ca783b076c8",
         "name": "Переключить: График Redox2",
-        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_cf399529';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Сообщение для ui_control (изменение className)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonMsg]];",
+        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_cf399529';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Формируем сообщение для ui_control (стандартный формат Node-RED Dashboard)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonUpdateMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonUpdateMsg]];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -13324,15 +13486,15 @@
         "y": 480,
         "wires": [
             [
-                "5fec6c376d04a8885fdfbda6730e4f6"
+                "d520977dab04c9a8db59bd29e503a9"
             ],
             [
-                "caa85fafac1340cea9f54fa61452d348"
+                "11aa6d43b1ca466bd16481f637c32"
             ]
         ]
     },
     {
-        "id": "5fec6c376d04a8885fdfbda6730e4f6",
+        "id": "d520977dab04c9a8db59bd29e503a9",
         "type": "ui_control",
         "z": "aba43ca783b076c8",
         "name": "Контроль: График Redox2",
@@ -13344,7 +13506,34 @@
         ]
     },
     {
-        "id": "954d7eb92ea433d8c7430504495262d",
+        "id": "11aa6d43b1ca466bd16481f637c32",
+        "type": "change",
+        "z": "aba43ca783b076c8",
+        "name": "Обновить текст: График Redox2",
+        "rules": [
+            {
+                "t": "set",
+                "p": "label",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 530,
+        "wires": [
+            [
+                "97b7a2dec2134969b8a60fdc40bc2"
+            ]
+        ]
+    },
+    {
+        "id": "762c94af26cd49d9a9966e9366f1d039",
         "type": "ui_button",
         "z": "22da98f038da3ad9",
         "name": "Показать/Скрыть: График Токов АО LC",
@@ -13353,7 +13542,7 @@
         "width": "3",
         "height": "1",
         "label": "Показать график",
-        "tooltip": "Показать/скрыть График Токов АО LC",
+        "tooltip": "",
         "color": "",
         "bgColor": "",
         "className": "",
@@ -13365,16 +13554,16 @@
         "y": 660,
         "wires": [
             [
-                "e4c294eab9ea41fbb6a558fa077bb73"
+                "4aabfec1e3744f608e7f8cd2fd110e0"
             ]
         ]
     },
     {
-        "id": "e4c294eab9ea41fbb6a558fa077bb73",
+        "id": "4aabfec1e3744f608e7f8cd2fd110e0",
         "type": "function",
         "z": "22da98f038da3ad9",
         "name": "Переключить: График Токов АО LC",
-        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_234714f6';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Сообщение для ui_control (изменение className)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonMsg]];",
+        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_234714f6';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Формируем сообщение для ui_control (стандартный формат Node-RED Dashboard)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonUpdateMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonUpdateMsg]];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -13384,15 +13573,15 @@
         "y": 660,
         "wires": [
             [
-                "321b5f38454cfba87cf047e24abcb"
+                "abd2c83f8594e9bbd4b954d7ea7a8d"
             ],
             [
-                "954d7eb92ea433d8c7430504495262d"
+                "d89c119bba9a4120957e7aec95e8f763"
             ]
         ]
     },
     {
-        "id": "321b5f38454cfba87cf047e24abcb",
+        "id": "abd2c83f8594e9bbd4b954d7ea7a8d",
         "type": "ui_control",
         "z": "22da98f038da3ad9",
         "name": "Контроль: График Токов АО LC",
@@ -13404,7 +13593,34 @@
         ]
     },
     {
-        "id": "1dfab1ec907147e2b6b96191aabec933",
+        "id": "d89c119bba9a4120957e7aec95e8f763",
+        "type": "change",
+        "z": "22da98f038da3ad9",
+        "name": "Обновить текст: График Токов АО LC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "label",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1310,
+        "y": 710,
+        "wires": [
+            [
+                "762c94af26cd49d9a9966e9366f1d039"
+            ]
+        ]
+    },
+    {
+        "id": "eb50bf39829e422ba44444922adf62e0",
         "type": "ui_button",
         "z": "d769e22348317e1e",
         "name": "Показать/Скрыть: PV и Уставка (SP)",
@@ -13413,7 +13629,7 @@
         "width": "3",
         "height": "1",
         "label": "Показать график",
-        "tooltip": "Показать/скрыть PV и Уставка (SP)",
+        "tooltip": "",
         "color": "",
         "bgColor": "",
         "className": "",
@@ -13425,16 +13641,16 @@
         "y": 700,
         "wires": [
             [
-                "5494a729a2784c209d42884b697368"
+                "43e1db09529476c9b3eaf88ff73ab51"
             ]
         ]
     },
     {
-        "id": "5494a729a2784c209d42884b697368",
+        "id": "43e1db09529476c9b3eaf88ff73ab51",
         "type": "function",
         "z": "d769e22348317e1e",
         "name": "Переключить: PV и Уставка (SP)",
-        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_0bf6e476';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Сообщение для ui_control (изменение className)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonMsg]];",
+        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_0bf6e476';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Формируем сообщение для ui_control (стандартный формат Node-RED Dashboard)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonUpdateMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonUpdateMsg]];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -13444,15 +13660,15 @@
         "y": 700,
         "wires": [
             [
-                "6e95f875536e44d2a0238fe7fe4b136"
+                "cd9448645ef6484c936836ec6d1cdbd"
             ],
             [
-                "1dfab1ec907147e2b6b96191aabec933"
+                "3a65622e9e9f433dbba5d243560e34e"
             ]
         ]
     },
     {
-        "id": "6e95f875536e44d2a0238fe7fe4b136",
+        "id": "cd9448645ef6484c936836ec6d1cdbd",
         "type": "ui_control",
         "z": "d769e22348317e1e",
         "name": "Контроль: PV и Уставка (SP)",
@@ -13464,7 +13680,34 @@
         ]
     },
     {
-        "id": "3576612a70f644bdbd9c57894b686a36",
+        "id": "3a65622e9e9f433dbba5d243560e34e",
+        "type": "change",
+        "z": "d769e22348317e1e",
+        "name": "Обновить текст: PV и Уставка (SP)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "label",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1295,
+        "y": 750,
+        "wires": [
+            [
+                "eb50bf39829e422ba44444922adf62e0"
+            ]
+        ]
+    },
+    {
+        "id": "a4f42537ebe049d88ad847717785a491",
         "type": "ui_button",
         "z": "d769e22348317e1e",
         "name": "Показать/Скрыть: Выход ПИД (0-1)",
@@ -13473,7 +13716,7 @@
         "width": "3",
         "height": "1",
         "label": "Показать график",
-        "tooltip": "Показать/скрыть Выход ПИД (0-1)",
+        "tooltip": "",
         "color": "",
         "bgColor": "",
         "className": "",
@@ -13485,16 +13728,16 @@
         "y": 760,
         "wires": [
             [
-                "818884e5e5b84f5cbc12393e312598c"
+                "361c08f32f64031a99ef2aa418927d"
             ]
         ]
     },
     {
-        "id": "818884e5e5b84f5cbc12393e312598c",
+        "id": "361c08f32f64031a99ef2aa418927d",
         "type": "function",
         "z": "d769e22348317e1e",
         "name": "Переключить: Выход ПИД (0-1)",
-        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_13c4d4b1';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Сообщение для ui_control (изменение className)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonMsg]];",
+        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_13c4d4b1';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Формируем сообщение для ui_control (стандартный формат Node-RED Dashboard)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonUpdateMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonUpdateMsg]];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -13504,15 +13747,15 @@
         "y": 760,
         "wires": [
             [
-                "1c8aba45f73c44e486f286d99386963d"
+                "2b469a39d78643cf825cffb26995c21"
             ],
             [
-                "3576612a70f644bdbd9c57894b686a36"
+                "30ef28ab2b1b4d43adf2d1b634371065"
             ]
         ]
     },
     {
-        "id": "1c8aba45f73c44e486f286d99386963d",
+        "id": "2b469a39d78643cf825cffb26995c21",
         "type": "ui_control",
         "z": "d769e22348317e1e",
         "name": "Контроль: Выход ПИД (0-1)",
@@ -13524,7 +13767,34 @@
         ]
     },
     {
-        "id": "28d749b13b845a5b0a6b31b2e9dc072",
+        "id": "30ef28ab2b1b4d43adf2d1b634371065",
+        "type": "change",
+        "z": "d769e22348317e1e",
+        "name": "Обновить текст: Выход ПИД (0-1)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "label",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1295,
+        "y": 810,
+        "wires": [
+            [
+                "a4f42537ebe049d88ad847717785a491"
+            ]
+        ]
+    },
+    {
+        "id": "5956eff474b8413bbfb4586e46394b53",
         "type": "ui_button",
         "z": "d769e22348317e1e",
         "name": "Показать/Скрыть: Сигнал на клапан (4-20 мА)",
@@ -13533,7 +13803,7 @@
         "width": "3",
         "height": "1",
         "label": "Показать график",
-        "tooltip": "Показать/скрыть Сигнал на клапан (4-20 мА)",
+        "tooltip": "",
         "color": "",
         "bgColor": "",
         "className": "",
@@ -13545,16 +13815,16 @@
         "y": 820,
         "wires": [
             [
-                "1f6d8ba79d56438a8a8539c08135dfcd"
+                "f4ac20c04e474eb284f33514937c1e56"
             ]
         ]
     },
     {
-        "id": "1f6d8ba79d56438a8a8539c08135dfcd",
+        "id": "f4ac20c04e474eb284f33514937c1e56",
         "type": "function",
         "z": "d769e22348317e1e",
         "name": "Переключить: Сигнал на клапан (4-20 мА)",
-        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_dbc52246';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Сообщение для ui_control (изменение className)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonMsg]];",
+        "func": "const g = global.get.bind(global);\nconst s = global.set.bind(global);\n\nconst chartId = msg.payload;\nconst stateVar = 'chart_visible_dbc52246';\n\n// Получаем текущее состояние\nlet isVisible = g(stateVar);\nif (isVisible === undefined || isVisible === null) {\n    isVisible = false;\n}\n\n// Переключаем\nisVisible = !isVisible;\ns(stateVar, isVisible);\n\n// Формируем сообщение для ui_control (стандартный формат Node-RED Dashboard)\nconst controlMsg = {\n    id: chartId,\n    ui_control: {\n        className: isVisible ? \"\" : \"chart-hidden\"\n    }\n};\n\n// Обновление текста кнопки\nconst buttonUpdateMsg = {\n    payload: isVisible ? \"Скрыть график\" : \"Показать график\"\n};\n\nreturn [[controlMsg], [buttonUpdateMsg]];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -13564,15 +13834,15 @@
         "y": 820,
         "wires": [
             [
-                "39ae872c2174e4baef027251cc62e6c"
+                "13ddfc40e6844e886d4382936119015"
             ],
             [
-                "28d749b13b845a5b0a6b31b2e9dc072"
+                "54c25468eee94017a6a6743f62c0971d"
             ]
         ]
     },
     {
-        "id": "39ae872c2174e4baef027251cc62e6c",
+        "id": "13ddfc40e6844e886d4382936119015",
         "type": "ui_control",
         "z": "d769e22348317e1e",
         "name": "Контроль: Сигнал на клапан (4-20 мА)",
@@ -13584,7 +13854,34 @@
         ]
     },
     {
-        "id": "d8a773db302d48eb45db8a3281b2f78",
+        "id": "54c25468eee94017a6a6743f62c0971d",
+        "type": "change",
+        "z": "d769e22348317e1e",
+        "name": "Обновить текст: Сигнал на клапан (4-20 мА)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "label",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1295,
+        "y": 870,
+        "wires": [
+            [
+                "5956eff474b8413bbfb4586e46394b53"
+            ]
+        ]
+    },
+    {
+        "id": "7bc2939f98a4422aae24dc559724f399",
         "type": "function",
         "z": "0aab3c6cefb9136c",
         "name": "Инициализация: скрыть все графики",
@@ -13598,12 +13895,12 @@
         "y": 200,
         "wires": [
             [
-                "ff179d57e2c348fda2d96d2d85a277f0"
+                "5863de6777e4d1b89a88de14b9a96db"
             ]
         ]
     },
     {
-        "id": "cf6c34e32e794189a5192c5a5231a736",
+        "id": "695462a06b374916965d23d8da26caa",
         "type": "inject",
         "z": "0aab3c6cefb9136c",
         "name": "При старте: скрыть графики",
@@ -13623,12 +13920,12 @@
         "y": 200,
         "wires": [
             [
-                "d8a773db302d48eb45db8a3281b2f78"
+                "7bc2939f98a4422aae24dc559724f399"
             ]
         ]
     },
     {
-        "id": "ff179d57e2c348fda2d96d2d85a277f0",
+        "id": "5863de6777e4d1b89a88de14b9a96db",
         "type": "ui_control",
         "z": "0aab3c6cefb9136c",
         "name": "Контроль инициализации графиков",
