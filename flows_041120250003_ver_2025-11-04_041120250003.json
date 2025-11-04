@@ -12911,7 +12911,7 @@
         "type": "function",
         "z": "e9378293b40785cc",
         "name": "Открыть выбранную вкладку",
-        "func": "const raw = msg?.payload;\nconst tabName = typeof raw === 'string'\n    ? raw\n    : (raw && typeof raw === 'object' && typeof raw.value === 'string' ? raw.value : null);\nif (!tabName) {\n    return null;\n}\nmsg.payload = tabName;\nreturn msg;",
+        "func": "const raw = msg?.payload;\nconst tabName = typeof raw === 'string'\n    ? raw\n    : (raw && typeof raw === 'object' && typeof raw.value === 'string' ? raw.value : null);\nif (!tabName) {\n    return null;\n}\nmsg.payload = { tab: tabName, open: true };\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
