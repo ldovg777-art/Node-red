@@ -35,11 +35,22 @@ def add_chart_controls(data):
     print(f'Найдено графиков: {len(charts)}')
     
     # Создаем CSS template узел (один на весь проект)
+    # Определяем z (вкладку) для CSS template
+    css_tab_z = ""
+    if charts:
+        css_tab_z = charts[0]['z']
+    else:
+        # Если графиков нет, ищем первую вкладку
+        for item in data:
+            if item.get('type') == 'ui_tab':
+                css_tab_z = item.get('id', '')
+                break
+    
     css_template_id = gen_id()
     css_template = {
         "id": css_template_id,
         "type": "ui_template",
-        "z": charts[0]['z'] if charts else "",
+        "z": css_tab_z,
         "group": "",
         "name": "CSS для скрытия графиков",
         "order": 0,
@@ -201,10 +212,21 @@ const controlMsgs = chartIds.map(chartId => ({
 
 return [controlMsgs];"""
     
+    # Находим первую вкладку для размещения узлов инициализации
+    init_tab_z = ""
+    if charts:
+        init_tab_z = charts[0]['z']
+    else:
+        # Если графиков нет, ищем первую вкладку
+        for item in data:
+            if item.get('type') == 'ui_tab':
+                init_tab_z = item.get('id', '')
+                break
+    
     init_function = {
         "id": init_function_id,
         "type": "function",
-        "z": charts[0]['z'] if charts else "",
+        "z": init_tab_z,
         "name": "Инициализация: скрыть все графики",
         "func": init_code,
         "outputs": 1,
@@ -220,7 +242,7 @@ return [controlMsgs];"""
     init_inject = {
         "id": init_inject_id,
         "type": "inject",
-        "z": charts[0]['z'] if charts else "",
+        "z": init_tab_z,
         "name": "При старте: скрыть графики",
         "props": [{"p": "payload"}],
         "repeat": "",
@@ -239,10 +261,21 @@ return [controlMsgs];"""
     
     # Добавляем один ui_control узел для инициализации (один узел может обработать массив сообщений)
     control_node_init_id = gen_id()
+    # Находим первую вкладку для контрольного узла инициализации
+    control_init_tab_z = ""
+    if charts:
+        control_init_tab_z = charts[0]['z']
+    else:
+        # Если графиков нет, ищем первую вкладку
+        for item in data:
+            if item.get('type') == 'ui_tab':
+                control_init_tab_z = item.get('id', '')
+                break
+    
     control_node_init = {
         "id": control_node_init_id,
         "type": "ui_control",
-        "z": charts[0]['z'] if charts else "",
+        "z": control_init_tab_z,
         "name": "Контроль инициализации графиков",
         "events": "all",
         "x": 400,
