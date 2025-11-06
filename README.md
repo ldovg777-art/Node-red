@@ -71,4 +71,4 @@ The node can be configured to resend a message at a regular interval until it is
 Optionally, the node can be configured to treat messages as if they are separate streams, using a msg property to identify each stream. Default msg.topic.
 
 The status indicates the node is currently active. If multiple streams are used the status indicates the number of streams being held.
-
+На гитхаб формируй сообщения и коментарии на русском языке, чтобы мне было понятно. 
