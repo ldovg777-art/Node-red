@@ -1,0 +1,1418 @@
+[
+    {
+        "id": "e1aefb0d6fb2a4a3",
+        "type": "tab",
+        "label": "Контроллер итерации",
+        "disabled": false,
+        "info": "Версия: 081120251945",
+        "env": [],
+        "sort": 0
+    },
+    {
+        "id": "c1a3dcd1bb6d2abc",
+        "type": "ui_tab",
+        "name": "Контроллер итерации",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "fa9b12c4a61eab67",
+        "type": "ui_group",
+        "name": "Версия",
+        "tab": "c1a3dcd1bb6d2abc",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "3e8b01d31bc4f432",
+        "type": "ui_group",
+        "name": "Изменения",
+        "tab": "c1a3dcd1bb6d2abc",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "6f6d1d13c83d9c31",
+        "type": "ui_group",
+        "name": "Управление",
+        "tab": "c1a3dcd1bb6d2abc",
+        "order": 3,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "1d4f8b34e9b2a123",
+        "type": "ui_group",
+        "name": "Шаг 1",
+        "tab": "c1a3dcd1bb6d2abc",
+        "order": 4,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "a5c2bf128e940f3a",
+        "type": "ui_group",
+        "name": "Шаг 2",
+        "tab": "c1a3dcd1bb6d2abc",
+        "order": 5,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "84df0b3a72d3c9aa",
+        "type": "ui_group",
+        "name": "Шаг 3",
+        "tab": "c1a3dcd1bb6d2abc",
+        "order": 6,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "f7b3c712db9a2e4c",
+        "type": "ui_group",
+        "name": "Шаг 4",
+        "tab": "c1a3dcd1bb6d2abc",
+        "order": 7,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "b3e3ed472ab1cc55",
+        "type": "ui_group",
+        "name": "Шаг 5",
+        "tab": "c1a3dcd1bb6d2abc",
+        "order": 8,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "5d2d0d5ecb20a567",
+        "type": "ui_group",
+        "name": "Значения",
+        "tab": "c1a3dcd1bb6d2abc",
+        "order": 9,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "a1b2c3d4e5f6a7b8",
+        "type": "ui_group",
+        "name": "График",
+        "tab": "c1a3dcd1bb6d2abc",
+        "order": 10,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "c8e9f2a1b3d4e5f6",
+        "type": "ui_group",
+        "name": "История версий",
+        "tab": "c1a3dcd1bb6d2abc",
+        "order": 11,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "bdf464f9c3f2c123",
+        "type": "inject",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Старт проекта",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "init",
+        "payload": "",
+        "payloadType": "str",
+        "x": 180,
+        "y": 120,
+        "wires": [
+            [
+                "8d5ac7eb8764bd1e"
+            ]
+        ]
+    },
+    {
+        "id": "6bb4e19ff77f7e43",
+        "type": "function",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Инициализация проекта",
+        "func": "const versionDisplay = \"081120251945\";\nconst versionNumber = Number(versionDisplay);\nconst versionCode = '081120251945';\nconst configFile = \"/data/controller_iteration_params.json\";\nconst defaultSteps = [\n    { start: -1000, speed: 100, step: 100, end: 1000, pause: 0 },\n    { start: -500, speed: 150, step: 50, end: 500, pause: 100 },\n    { start: -250, speed: 200, step: 25, end: 250, pause: 100 },\n    { start: 0, speed: 250, step: 50, end: 500, pause: 200 },\n    { start: 500, speed: 300, step: 100, end: -500, pause: 0 }\n];\nconst changeLog = [\n    \"061120251343: Начальная версия. Добавлен пятишаговый контроллер итерации с управлением, чтением/записью параметров, панелью мониторинга и HTTP интерфейсом.\",\n    \"061120251400: Исправлено экранирование function-узлов и восстановлено разбиение шагов формы.\",\n    \"061120251523: Исправлены таймеры контроллера итерации, восстановлено чтение/запись параметров и VER теперь число.\",\n    \"061120251606: Формы сохраняют значения без очистки, график ограничен 10 минутами и 500 точками.\",\n    \"061120251656: Пропуск шагов со скоростью 0 не меняет ITERATION_VALUE; обновлена версия 2025-11-06_1656.\",\n    \"061120251854: Исправлены race conditions в таймерах, синхронизация состояния, логика пропуска шагов, finishStep при pause=0, валидация параметров и оптимизация производительности.\",\n    \"061120251923: Исправлена логика паузы при пропуске шага (пауза не выполняется если шаг пропущен), добавлен номер шага на график, история версий перенесена в конец дашборда.\",\n    \"061120252015: Шаг итерации теперь всегда положительный, направление определяется автоматически по начальному и конечному значениям. Добавлен тренд ITERATION_STEP на график итерации.\",\n    \"061120252036: Добавлены русские описания для всех переменных в секции 'Значения' на дашборде.\",\n    \"061120252139: Добавлены три графика итерации с разными масштабами времени: 30 секунд, 5 минут и 1 час. Тренды отключены по умолчанию при загрузке проекта с возможностью выборочного включения через легенду.\",\n    \"061120252244: Оставлен один график на 5 минут с количеством точек 500.\",\n    \"061120252305: Исправлены критические проблемы стабильности: race conditions в таймерах (добавлена защита флагом processing), исправлена логика пропуска шагов (значение ITERATION_VALUE не меняется при skip), убрана компенсация задержек (оставлен простой setTimeout), добавлена обработка ошибок записи файла, улучшена синхронизация состояния контроллера.\",\n    \"081120251732: Обновлены версия проекта и имя файла, синхронизирован flow.version.\",\n    \"081120251908: Исправлены версия/имя файла, добавлены линии без маркеров, миллисекунды на оси времени и кнопка рядом с графиком.\",\n    \"081120251945: Гарантирована выгрузка тренда при пропуске последнего шага; синхронизированы версия и имя файла.\"\n];\nflow.set('version', versionCode);\nflow.set('versionDisplay', versionDisplay);\nflow.set('configFile', configFile);\nflow.set('defaultSteps', defaultSteps);\nflow.set('changeLog', changeLog);\nglobal.set('VER', versionNumber);\nconst loadMsg = {\n    topic: 'loadParameters',\n    filename: configFile,\n    defaults: defaultSteps,\n    source: 'файл'\n};\nconst versionMsg = {\n    payload: `Текущая версия: ${versionDisplay}`\n};\nconst changeMsg = {\n    payload: changeLog\n};\nreturn [loadMsg, versionMsg, changeMsg];\n",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 120,
+        "wires": [
+            [
+                "f4ef779e2a6ce55a"
+            ],
+            [
+                "7ec4d0f28f018ae0"
+            ],
+            [
+                "d8910ecbdabf1e7a"
+            ]
+        ]
+    },
+    {
+        "id": "f4ef779e2a6ce55a",
+        "type": "file in",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Чтение параметров",
+        "filename": "filename",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": true,
+        "encoding": "utf8",
+        "x": 710,
+        "y": 80,
+        "wires": [
+            [
+                "c1aafee4ff7c32b5"
+            ]
+        ]
+    },
+    {
+        "id": "c1aafee4ff7c32b5",
+        "type": "json",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "JSON -> объект",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 950,
+        "y": 80,
+        "wires": [
+            [
+                "5fb593bf2f494b1a"
+            ]
+        ]
+    },
+    {
+        "id": "5fb593bf2f494b1a",
+        "type": "function",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Применить параметры",
+        "func": "const defaults = flow.get('defaultSteps') || [];\nconst source = msg.source || (msg.filename ? 'файл' : 'данные');\nlet incoming = [];\nif (msg.payload && Array.isArray(msg.payload.steps)) {\n    incoming = msg.payload.steps;\n} else if (Array.isArray(msg.payload)) {\n    incoming = msg.payload;\n}\nfunction toNumber(value, fallback) {\n    const n = Number(value);\n    return Number.isFinite(n) ? n : fallback;\n}\nfunction validateStep(step, index) {\n    const speed = toNumber(step.speed, 100);\n    const stepValue = Math.abs(toNumber(step.step, 1));\n    const start = toNumber(step.start, 0);\n    const end = toNumber(step.end, 0);\n    const pause = toNumber(step.pause, 0);\n    if (speed < 0) {\n        node.warn(`Шаг ${index + 1}: скорость не может быть отрицательной, установлено 0`);\n    }\n    if (pause < 0) {\n        node.warn(`Шаг ${index + 1}: пауза не может быть отрицательной, установлено 0`);\n    }\n    if (stepValue <= 0) {\n        node.warn(`Шаг ${index + 1}: шаг должен быть положительным, установлено 1`);\n    }\n    return {\n        start: start,\n        speed: Math.max(0, speed),\n        step: Math.max(1, stepValue),\n        end: end,\n        pause: Math.max(0, pause)\n    };\n}\nconst normalizedSteps = [];\nfor (let i = 0; i < 5; i++) {\n    const def = defaults[i] || { start: 0, speed: 100, step: 1, end: 0, pause: 0 };\n    const item = incoming[i] || def;\n    const normalized = validateStep(item, i);\n    normalizedSteps.push(normalized);\n    const index = i + 1;\n    global.set(`ITER_START_${index}`, normalized.start);\n    global.set(`ITER_SPEED_${index}`, normalized.speed);\n    global.set(`ITER_STEP_${index}`, normalized.step);\n    global.set(`ITER_END_${index}`, normalized.end);\n    global.set(`ITER_PAUSE_${index}`, normalized.pause);\n}\nflow.set('steps', normalizedSteps);\nflow.set('lastLoadSource', source);\nconst initialStep = normalizedSteps[0] || { start: 0 };\nconst initialValue = toNumber(initialStep.start, 0);\nglobal.set('ITERATION_STEP', 1);\nglobal.set('ITERATION_CONTROL', 1);\nglobal.set('ITERATION_VALUE', initialValue);\nconst controllerMsg = {\n    action: 'restart',\n    steps: normalizedSteps\n};\nconst formsMsg = {\n    payload: normalizedSteps\n};\nconst variablesMsg = {\n    topic: 'variables'\n};\nconst statusMsg = {\n    payload: `Параметры загружены (${source})`\n};\nreturn [controllerMsg, formsMsg, variablesMsg, statusMsg];",
+        "outputs": 4,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 80,
+        "wires": [
+            [
+                "e08c2f4a04e1bd7d"
+            ],
+            [
+                "d010a3b933ea5b86"
+            ],
+            [
+                "ea0d15c23b7efc26"
+            ],
+            [
+                "40f5a9e8a3c33cd4"
+            ]
+        ]
+    },
+    {
+        "id": "1a56309f1d9c802a",
+        "type": "catch",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Ошибки работы с файлом",
+        "scope": [
+            "f4ef779e2a6ce55a",
+            "c1aafee4ff7c32b5",
+            "2d466f810e16d908"
+        ],
+        "uncaught": false,
+        "x": 760,
+        "y": 200,
+        "wires": [
+            [
+                "48e95d6c73e6a8db"
+            ]
+        ]
+    },
+    {
+        "id": "48e95d6c73e6a8db",
+        "type": "function",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Обработка ошибки файла",
+        "func": "if (msg.error && msg.error.message) {\n    const errorMsg = msg.error.message;\n    node.warn(`Ошибка работы с файлом: ${errorMsg}`);\n    \n    // Проверяем тип операции\n    if (msg.filename && errorMsg.includes('ENOENT')) {\n        // Ошибка чтения - файл не найден\n        node.warn('Файл параметров не найден, используем значения по умолчанию');\n        const defaults = flow.get('defaultSteps') || [];\n        msg.payload = { steps: defaults };\n        msg.source = 'значения по умолчанию';\n        return [msg, null];\n    } else if (msg.filename) {\n        // Ошибка записи или другая ошибка\n        const statusMsg = {\n            payload: `Ошибка работы с файлом: ${errorMsg}`\n        };\n        return [null, statusMsg];\n    }\n}\n// Неизвестная ошибка\nconst defaults = flow.get('defaultSteps') || [];\nmsg.payload = { steps: defaults };\nmsg.source = 'значения по умолчанию';\nreturn [msg, null];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1040,
+        "y": 200,
+        "wires": [
+            [
+                "5fb593bf2f494b1a"
+            ],
+            [
+                "40f5a9e8a3c33cd4"
+            ]
+        ]
+    },
+    {
+        "id": "d010a3b933ea5b86",
+        "type": "split",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "По шагам",
+        "splt": "1",
+        "spltType": "len",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 1460,
+        "y": 120,
+        "wires": [
+            [
+                "7b58732d1fe0096a"
+            ]
+        ]
+    },
+    {
+        "id": "7b58732d1fe0096a",
+        "type": "function",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Подготовка для форм",
+        "func": "const index = (msg.parts && Number(msg.parts.index)) || 0;\nconst stepNumber = index + 1;\nconst step = msg.payload || {};\nmsg.step = stepNumber;\nmsg.topic = `step${stepNumber}`;\nmsg.payload = {\n    start: step.start,\n    speed: step.speed,\n    step: step.step,\n    end: step.end,\n    pause: step.pause\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1680,
+        "y": 120,
+        "wires": [
+            [
+                "8f928bd15046d730"
+            ]
+        ]
+    },
+    {
+        "id": "8f928bd15046d730",
+        "type": "switch",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "К формам",
+        "property": "step",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "4",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "5",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 5,
+        "x": 1910,
+        "y": 120,
+        "wires": [
+            [
+                "e9bdfc07f8040398"
+            ],
+            [
+                "9403f7bd2d923f71"
+            ],
+            [
+                "8b967a3d16579c35"
+            ],
+            [
+                "a01e0b10cbf2d3a8"
+            ],
+            [
+                "3d1fb9b727b79a0c"
+            ]
+        ]
+    },
+    {
+        "id": "e9bdfc07f8040398",
+        "type": "ui_form",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Шаг 1",
+        "label": "Шаг 1",
+        "group": "1d4f8b34e9b2a123",
+        "order": 1,
+        "width": "12",
+        "height": "0",
+        "options": [
+            {
+                "label": "Начальное значение",
+                "value": "start",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Скорость (мс)",
+                "value": "speed",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Шаг",
+                "value": "step",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Конечное значение",
+                "value": "end",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Пауза после шага (мс)",
+                "value": "pause",
+                "type": "number",
+                "required": true
+            }
+        ],
+        "formValue": {
+            "start": "",
+            "speed": "",
+            "step": "",
+            "end": "",
+            "pause": ""
+        },
+        "payload": "",
+        "submit": "Сохранить",
+        "cancel": "Отмена",
+        "topic": "step1",
+        "className": "",
+        "x": 2160,
+        "y": 40,
+        "wires": [
+            [
+                "64f7806605aa0f1c"
+            ]
+        ]
+    },
+    {
+        "id": "9403f7bd2d923f71",
+        "type": "ui_form",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Шаг 2",
+        "label": "Шаг 2",
+        "group": "a5c2bf128e940f3a",
+        "order": 1,
+        "width": "12",
+        "height": "0",
+        "options": [
+            {
+                "label": "Начальное значение",
+                "value": "start",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Скорость (мс)",
+                "value": "speed",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Шаг",
+                "value": "step",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Конечное значение",
+                "value": "end",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Пауза после шага (мс)",
+                "value": "pause",
+                "type": "number",
+                "required": true
+            }
+        ],
+        "formValue": {
+            "start": "",
+            "speed": "",
+            "step": "",
+            "end": "",
+            "pause": ""
+        },
+        "payload": "",
+        "submit": "Сохранить",
+        "cancel": "Отмена",
+        "topic": "step2",
+        "className": "",
+        "x": 2160,
+        "y": 100,
+        "wires": [
+            [
+                "64f7806605aa0f1c"
+            ]
+        ]
+    },
+    {
+        "id": "8b967a3d16579c35",
+        "type": "ui_form",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Шаг 3",
+        "label": "Шаг 3",
+        "group": "84df0b3a72d3c9aa",
+        "order": 1,
+        "width": "12",
+        "height": "0",
+        "options": [
+            {
+                "label": "Начальное значение",
+                "value": "start",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Скорость (мс)",
+                "value": "speed",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Шаг",
+                "value": "step",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Конечное значение",
+                "value": "end",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Пауза после шага (мс)",
+                "value": "pause",
+                "type": "number",
+                "required": true
+            }
+        ],
+        "formValue": {
+            "start": "",
+            "speed": "",
+            "step": "",
+            "end": "",
+            "pause": ""
+        },
+        "payload": "",
+        "submit": "Сохранить",
+        "cancel": "Отмена",
+        "topic": "step3",
+        "className": "",
+        "x": 2160,
+        "y": 160,
+        "wires": [
+            [
+                "64f7806605aa0f1c"
+            ]
+        ]
+    },
+    {
+        "id": "a01e0b10cbf2d3a8",
+        "type": "ui_form",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Шаг 4",
+        "label": "Шаг 4",
+        "group": "f7b3c712db9a2e4c",
+        "order": 1,
+        "width": "12",
+        "height": "0",
+        "options": [
+            {
+                "label": "Начальное значение",
+                "value": "start",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Скорость (мс)",
+                "value": "speed",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Шаг",
+                "value": "step",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Конечное значение",
+                "value": "end",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Пауза после шага (мс)",
+                "value": "pause",
+                "type": "number",
+                "required": true
+            }
+        ],
+        "formValue": {
+            "start": "",
+            "speed": "",
+            "step": "",
+            "end": "",
+            "pause": ""
+        },
+        "payload": "",
+        "submit": "Сохранить",
+        "cancel": "Отмена",
+        "topic": "step4",
+        "className": "",
+        "x": 2160,
+        "y": 220,
+        "wires": [
+            [
+                "64f7806605aa0f1c"
+            ]
+        ]
+    },
+    {
+        "id": "3d1fb9b727b79a0c",
+        "type": "ui_form",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Шаг 5",
+        "label": "Шаг 5",
+        "group": "b3e3ed472ab1cc55",
+        "order": 1,
+        "width": "12",
+        "height": "0",
+        "options": [
+            {
+                "label": "Начальное значение",
+                "value": "start",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Скорость (мс)",
+                "value": "speed",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Шаг",
+                "value": "step",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Конечное значение",
+                "value": "end",
+                "type": "number",
+                "required": true
+            },
+            {
+                "label": "Пауза после шага (мс)",
+                "value": "pause",
+                "type": "number",
+                "required": true
+            }
+        ],
+        "formValue": {
+            "start": "",
+            "speed": "",
+            "step": "",
+            "end": "",
+            "pause": ""
+        },
+        "payload": "",
+        "submit": "Сохранить",
+        "cancel": "Отмена",
+        "topic": "step5",
+        "className": "",
+        "x": 2160,
+        "y": 280,
+        "wires": [
+            [
+                "64f7806605aa0f1c"
+            ]
+        ]
+    },
+    {
+        "id": "64f7806605aa0f1c",
+        "type": "function",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Сохранить изменения шага",
+        "func": "const topic = msg.topic || '';\nconst match = topic.match(/step(\\d+)/);\nif (!match) {\n    return null;\n}\nconst index = Number(match[1]) - 1;\nif (index < 0) {\n    return null;\n}\nconst currentSteps = flow.get('steps');\nconst baseSteps = Array.isArray(currentSteps) ? [...currentSteps] : [...(flow.get('defaultSteps') || [])];\nconst current = baseSteps[index] || { start: 0, speed: 100, step: 1, end: 0, pause: 0 };\nfunction toNumber(value, fallback) {\n    const n = Number(value);\n    return Number.isFinite(n) ? n : fallback;\n}\nfunction validateStep(step, index) {\n    const speed = toNumber(step.speed, current.speed);\n    const stepValue = toNumber(step.step, current.step);\n    const start = toNumber(step.start, current.start);\n    const end = toNumber(step.end, current.end);\n    const pause = toNumber(step.pause, current.pause);\n    if (speed < 0) {\n        node.warn(`Шаг ${index + 1}: скорость не может быть отрицательной, установлено 0`);\n    }\n    if (pause < 0) {\n        node.warn(`Шаг ${index + 1}: пауза не может быть отрицательной, установлено 0`);\n    }\n    return {\n        start: start,\n        speed: Math.max(0, speed),\n        step: stepValue,\n        end: end,\n        pause: Math.max(0, pause)\n    };\n}\nconst updated = validateStep(msg.payload, index);\nbaseSteps[index] = updated;\nflow.set('steps', baseSteps);\nconst stepNo = index + 1;\nglobal.set(`ITER_START_${stepNo}`, updated.start);\nglobal.set(`ITER_SPEED_${stepNo}`, updated.speed);\nglobal.set(`ITER_STEP_${stepNo}`, updated.step);\nglobal.set(`ITER_END_${stepNo}`, updated.end);\nglobal.set(`ITER_PAUSE_${stepNo}`, updated.pause);\nconst controllerMsg = {\n    action: 'updateParameters',\n    steps: baseSteps,\n    updatedStep: stepNo\n};\nconst variablesMsg = {\n    topic: 'variables'\n};\nconst statusMsg = {\n    payload: `Параметры шага ${stepNo} обновлены через панель`\n};\nconst formsMsg = {\n    payload: baseSteps,\n    source: 'панель'\n};\nreturn [controllerMsg, variablesMsg, statusMsg, formsMsg];",
+        "outputs": 4,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2430,
+        "y": 160,
+        "wires": [
+            [
+                "e08c2f4a04e1bd7d"
+            ],
+            [
+                "ea0d15c23b7efc26"
+            ],
+            [
+                "40f5a9e8a3c33cd4"
+            ],
+            [
+                "d010a3b933ea5b86"
+            ]
+        ]
+    },
+    {
+        "id": "e08c2f4a04e1bd7d",
+        "type": "function",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Контроллер итерации",
+        "func": "// === ИНИЦИАЛИЗАЦИЯ СОСТОЯНИЯ ===\nlet state = context.get('state') || {};\n\n// Загрузка шагов из flow context при необходимости\nif (!state.steps || !Array.isArray(state.steps) || state.steps.length === 0) {\n    const flowSteps = flow.get('steps') || [];\n    state.steps = Array.isArray(flowSteps) && flowSteps.length > 0 ? flowSteps : [];\n}\n\n// Обновление шагов из сообщения\nif (Array.isArray(msg.steps) && msg.steps.length) {\n    state.steps = msg.steps;\n}\n\n// Инициализация номера шага\nif (!state.currentStep || state.currentStep < 1) {\n    state.currentStep = 1;\n}\nif (state.steps.length && state.currentStep > state.steps.length) {\n    state.currentStep = 1;\n}\n\n// Инициализация состояния управления\nif (state.control === undefined) {\n    state.control = global.get('ITERATION_CONTROL') || 0;\n}\n\nif (typeof state.skipChain !== 'number') {\n    state.skipChain = 0;\n}\n\nif (typeof state.flushPending !== 'boolean') {\n    state.flushPending = false;\n}\n\n// === ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ===\n\nfunction getStepConfig(stepNumber) {\n    if (!Array.isArray(state.steps) || !state.steps.length) {\n        return null;\n    }\n    const index = Math.max(0, Math.min(stepNumber - 1, state.steps.length - 1));\n    return state.steps[index];\n}\n\nfunction setCurrentStep(stepNumber) {\n    if (!Array.isArray(state.steps) || !state.steps.length) {\n        state.currentStep = stepNumber;\n    } else {\n        let step = stepNumber;\n        if (step < 1) {\n            step = 1;\n        }\n        if (step > state.steps.length) {\n            step = 1;\n        }\n        state.currentStep = step;\n    }\n    global.set('ITERATION_STEP', state.currentStep);\n}\n\nfunction setValue(value) {\n    state.value = value;\n    global.set('ITERATION_VALUE', value);\n}\n\nfunction setControl(controlValue) {\n    state.control = controlValue;\n    global.set('ITERATION_CONTROL', controlValue);\n}\n\nfunction isLastStep() {\n    return Array.isArray(state.steps) && state.steps.length > 0 && state.currentStep === state.steps.length;\n}\n\nfunction clearMainTimer() {\n    if (state.timer) {\n        clearTimeout(state.timer);\n        state.timer = null;\n    }\n}\n\nfunction clearPauseTimer() {\n    if (state.pauseTimer) {\n        clearTimeout(state.pauseTimer);\n        state.pauseTimer = null;\n    }\n}\n\nfunction clearAllTimers() {\n    clearMainTimer();\n    clearPauseTimer();\n    state.processing = false;\n}\n\nfunction broadcast(reason, includeValue = true) {\n    const out1 = includeValue ? {\n        payload: state.value,\n        step: state.currentStep,\n        topic: `Шаг ${state.currentStep}`,\n        reason,\n        ts: Date.now()\n    } : null;\n    const out2 = {\n        topic: 'state',\n        reason,\n        control: state.control,\n        step: state.currentStep,\n        value: state.value,\n        ts: Date.now()\n    };\n    node.send([out1, out2]);\n}\n\nfunction shouldSkipStep(cfg) {\n    if (!cfg) return true;\n    const speed = Number(cfg.speed) || 0;\n    const stepValue = Number(cfg.step) || 0;\n    return speed <= 0 || stepValue === 0;\n}\n\n// === ЛОГИКА ЗАВЕРШЕНИЯ ШАГА ===\n\nfunction finishStep(reason) {\n    clearAllTimers();\n    \n    // Проверка состояния контроллера\n    if (state.control !== 1) {\n        return;\n    }\n    \n    const cfg = getStepConfig(state.currentStep);\n    if (!cfg) {\n        return;\n    }\n    \n    if (reason) {\n        broadcast(reason, false);\n    }\n    \n    // Если цикл заканчивается на последнем шаге (в том числе при пропуске), ждём подтверждение вывода графика\n    if (isLastStep() && (reason === 'completed' || reason === 'skip')) {\n        state.flushPending = true;\n        broadcast('cycleComplete');\n        return;\n    }\n\n    // ИСПРАВЛЕНИЕ #3: Если шаг пропущен, не делаем паузу\n    if (reason === 'skip') {\n        advanceStep('nextStep');\n        return;\n    }\n    \n    const pause = Number(cfg.pause) || 0;\n    if (pause > 0) {\n        state.pauseTimer = setTimeout(() => {\n            state.pauseTimer = null;\n            // Повторная проверка состояния перед переходом\n            if (state.control !== 1) {\n                return;\n            }\n            advanceStep('pauseComplete');\n        }, pause);\n    } else {\n        // ИСПРАВЛЕНИЕ: Если паузы нет, сразу переходим к следующему шагу\n        advanceStep('nextStep');\n    }\n}\n\n// === ЛОГИКА ПЕРЕХОДА К СЛЕДУЮЩЕМУ ШАГУ ===\n\nfunction advanceStep(reason) {\n    clearAllTimers();\n    \n    if (state.flushPending) {\n        return;\n    }\n\n    if (!Array.isArray(state.steps) || !state.steps.length) {\n        return;\n    }\n    \n    // Вычисление следующего шага\n    let nextStep = state.currentStep ? state.currentStep + 1 : 1;\n    if (nextStep > state.steps.length) {\n        nextStep = 1;\n    }\n    \n    setCurrentStep(nextStep);\n    const cfg = getStepConfig(state.currentStep);\n    if (!cfg) {\n        return;\n    }\n    \n    // ИСПРАВЛЕНИЕ #6: Проверка на пропуск ДО установки значения\n    if (shouldSkipStep(cfg)) {\n        state.skipChain = (typeof state.skipChain === 'number' ? state.skipChain : 0) + 1;\n        // При пропуске шага значение НЕ меняется\n        broadcast('skip', false);\n\n        if (state.skipChain >= state.steps.length) {\n            setControl(0);\n            broadcast('skipLimit', false);\n            state.skipChain = 0;\n            return;\n        }\n\n        finishStep('skip');\n        return;\n    }\n\n    state.skipChain = 0;\n\n    // Установка начального значения только если шаг НЕ пропускается\n    const startValue = Number(cfg.start);\n    setValue(Number.isFinite(startValue) ? startValue : 0);\n    broadcast(reason || 'stepStart');\n    \n    // Проверка состояния перед запуском таймера\n    if (state.control !== 1) {\n        return;\n    }\n    \n    scheduleNextTick();\n}\n\n// === ЛОГИКА ПЛАНИРОВАНИЯ СЛЕДУЮЩЕГО ТИКА ===\n\nfunction scheduleNextTick(delayOverride) {\n    // ИСПРАВЛЕНИЕ #4: Защита от race conditions\n    if (state.processing) {\n        return;\n    }\n\n    if (state.flushPending) {\n        return;\n    }\n\n    clearMainTimer();\n    \n    // ИСПРАВЛЕНИЕ #5: Проверка состояния контроллера\n    if (state.control !== 1) {\n        return;\n    }\n    \n    const cfg = getStepConfig(state.currentStep);\n    if (!cfg) {\n        return;\n    }\n    \n    if (shouldSkipStep(cfg)) {\n        finishStep('skip');\n        return;\n    }\n    \n    // ИСПРАВЛЕНИЕ #7: Убрана компенсация задержек, простой setTimeout\n    const delay = delayOverride != null ? delayOverride : (Number(cfg.speed) || 0);\n    if (delay <= 0) {\n        return;\n    }\n    \n    // ИСПРАВЛЕНИЕ #4: Установка флага обработки\n    state.processing = true;\n    \n    state.timer = setTimeout(() => {\n        state.timer = null;\n        // ИСПРАВЛЕНИЕ #4: Сброс флага обработки\n        state.processing = false;\n        \n        // ИСПРАВЛЕНИЕ #5: Проверка состояния после таймера\n        if (state.control !== 1) {\n            return;\n        }\n        \n        const cfgInner = getStepConfig(state.currentStep);\n        if (!cfgInner) {\n            return;\n        }\n        \n        const stepValue = Math.abs(Number(cfgInner.step) || 0);\n        if (stepValue === 0) {\n            finishStep('skip');\n            return;\n        }\n        \n        const startValue = Number(cfgInner.start);\n        const endValue = Number(cfgInner.end);\n        const direction = endValue >= startValue ? 1 : -1;\n        const increment = stepValue * direction;\n        \n        let nextValue = state.value + increment;\n        \n        // Ограничение по конечному значению\n        if (direction > 0) {\n            if (nextValue > endValue) {\n                nextValue = endValue;\n            }\n        } else {\n            if (nextValue < endValue) {\n                nextValue = endValue;\n            }\n        }\n        \n        setValue(nextValue);\n        broadcast('tick');\n        \n        // Проверка достижения конечного значения\n        const reachedEnd = (direction > 0 && nextValue >= endValue) || (direction < 0 && nextValue <= endValue);\n        if (reachedEnd) {\n            finishStep('completed');\n        } else {\n            scheduleNextTick();\n        }\n    }, delay);\n}\n\n// === ИНИЦИАЛИЗАЦИЯ ЗНАЧЕНИЯ ПРИ ПЕРВОМ ЗАПУСКЕ ===\n\nif (!Number.isFinite(state.value)) {\n    const cfg = getStepConfig(state.currentStep);\n    const startValue = cfg ? Number(cfg.start) : 0;\n    setValue(Number.isFinite(startValue) ? startValue : 0);\n}\n\n// === ОБРАБОТКА КОМАНД ===\n\nconst action = msg.action || msg.topic || '';\n\nswitch (action) {\n    case 'restart':\n        clearAllTimers();\n        state.flushPending = false;\n        \n        if (Array.isArray(msg.steps) && msg.steps.length) {\n            state.steps = msg.steps;\n        }\n        \n        if (!Array.isArray(state.steps) || !state.steps.length) {\n            break;\n        }\n        \n        setCurrentStep(1);\n        const firstCfg = getStepConfig(state.currentStep);\n        \n        if (firstCfg) {\n            if (shouldSkipStep(firstCfg)) {\n                // Не устанавливаем значение при пропуске\n                setControl(2);\n                broadcast('restart');\n                setControl(1);\n                broadcast('run', false);\n                finishStep('skip');\n            } else {\n                const startValue = Number(firstCfg.start);\n                setValue(Number.isFinite(startValue) ? startValue : 0);\n                setControl(2);\n                broadcast('restart');\n                setControl(1);\n                broadcast('run', false);\n                scheduleNextTick();\n            }\n        }\n        break;\n        \n    case 'start':\n        if (!Array.isArray(state.steps) || !state.steps.length) {\n            break;\n        }\n        \n        state.flushPending = false;\n        \n        if (state.control === 1) {\n            // Уже запущен, просто возобновляем если нужно\n            if (!state.timer && !state.pauseTimer && !state.processing) {\n                scheduleNextTick();\n            }\n            broadcast('resume', false);\n            break;\n        }\n        \n        setControl(1);\n        clearPauseTimer();\n        broadcast('resume', false);\n        scheduleNextTick();\n        break;\n        \n    case 'stop':\n        clearAllTimers();\n        state.flushPending = false;\n        setControl(0);\n        broadcast('stop', false);\n        break;\n        \n    case 'updateParameters':\n        if (Array.isArray(msg.steps) && msg.steps.length) {\n            state.steps = msg.steps;\n        }\n        \n        const currentCfg = getStepConfig(state.currentStep);\n        if (currentCfg) {\n            const startVal = Number(currentCfg.start);\n            const endVal = Number(currentCfg.end);\n            \n            if (Number.isFinite(startVal) && Number.isFinite(endVal)) {\n                const min = Math.min(startVal, endVal);\n                const max = Math.max(startVal, endVal);\n                \n                if (!Number.isFinite(state.value) || state.value < min || state.value > max) {\n                    setValue(startVal);\n                    broadcast('parameters');\n                } else {\n                    broadcast('parameters', false);\n                }\n            } else {\n                broadcast('parameters', false);\n            }\n        } else {\n            broadcast('parameters', false);\n        }\n        \n        if (state.control === 1 && !state.processing) {\n            scheduleNextTick();\n        }\n        break;\n\n    case 'flushResume':\n        if (state.flushPending) {\n            state.flushPending = false;\n            if (state.control === 1) {\n                advanceStep('cycleResume');\n            }\n        }\n        break;\n\n    default:\n        if (state.control === 1 && !state.timer && !state.pauseTimer && !state.processing) {\n            scheduleNextTick();\n        }\n        break;\n}\n\n// Сохранение состояния\ncontext.set('state', state);\nreturn null;\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1490,
+        "y": 20,
+        "wires": [
+            [
+                "53d86127cd20b3af"
+            ],
+            [
+                "ea0d15c23b7efc26",
+                "f7b3b90ce553d92f"
+            ]
+        ]
+    },
+    {
+        "id": "53d86127cd20b3af",
+        "type": "function",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Отображение значения",
+        "func": "const reason = msg.reason || '';\nconst command = msg.command || '';\nconst outputs = [null, null, null, null, null];\nconst MAX_BUFFER_SIZE = 2000;\n\nfunction ensureBuffer() {\n    const current = flow.get('trendBuffer');\n    if (current && typeof current === 'object') {\n        const labels = Array.isArray(current.labels) ? current.labels : [];\n        const value = Array.isArray(current.value) ? current.value : [];\n        const step = Array.isArray(current.step) ? current.step : [];\n        return { labels, value, step };\n    }\n    return { labels: [], value: [], step: [] };\n}\n\nfunction formatTimestamp(ts) {\n    const numeric = Number(ts);\n    if (Number.isFinite(numeric)) {\n        try {\n            return new Date(numeric).toISOString();\n        } catch (err) {\n            // ignore and fall through\n        }\n    }\n    return new Date().toISOString();\n}\n\nfunction appendPoint(buffer, value, step, ts) {\n    if (!Number.isFinite(value) || !Number.isFinite(step)) {\n        return;\n    }\n\n    while (buffer.labels.length >= MAX_BUFFER_SIZE) {\n        buffer.labels.shift();\n        buffer.value.shift();\n        buffer.step.shift();\n    }\n\n    buffer.labels.push(formatTimestamp(ts));\n    buffer.value.push(value);\n    buffer.step.push(step);\n}\n\nfunction cloneBuffer(buffer) {\n    return {\n        labels: buffer.labels.slice(),\n        value: buffer.value.slice(),\n        step: buffer.step.slice()\n    };\n}\n\nfunction buildChartMessages(buffer, options = {}) {\n    const { forceClear = false } = options;\n    const messages = [];\n\n    if (forceClear) {\n        messages.push({ ui_control: { clear: true } });\n    }\n\n    if (buffer.labels.length && buffer.value.length && buffer.step.length) {\n        messages.push({\n            payload: [\n                {\n                    series: ['ITERATION_VALUE', 'ITERATION_STEP'],\n                    data: [buffer.value, buffer.step],\n                    labels: buffer.labels\n                }\n            ],\n            topic: 'ITERATION_BUFFER'\n        });\n    }\n\n    return messages;\n}\n\nfunction resetBuffer(buffer) {\n    buffer.labels = [];\n    buffer.value = [];\n    buffer.step = [];\n}\n\nconst buffer = ensureBuffer();\nconst numericValue = Number(msg.payload);\nconst stepCandidate = Number(msg.step);\nconst stepValue = Number.isFinite(stepCandidate) ? stepCandidate : Number(global.get('ITERATION_STEP'));\nconst timestamp = Number.isFinite(Number(msg.ts)) ? Number(msg.ts) : Date.now();\n\nif (reason === 'tick') {\n    appendPoint(buffer, numericValue, stepValue, timestamp);\n}\n\nif (reason === 'restart' || reason === 'stop') {\n    resetBuffer(buffer);\n    outputs[0] = [{ ui_control: { clear: true } }];\n}\n\nconst startTriggers = ['restart', 'nextStep', 'pauseComplete', 'cycleResume'];\nif (startTriggers.includes(reason)) {\n    appendPoint(buffer, numericValue, stepValue, timestamp);\n}\n\nif (reason && Number.isFinite(numericValue)) {\n    outputs[2] = { payload: numericValue };\n}\n\nif (reason && Number.isFinite(stepValue)) {\n    outputs[3] = { payload: stepValue };\n}\n\nif (command === 'manualFlush') {\n    const snapshot = cloneBuffer(buffer);\n    if (snapshot.labels.length) {\n        outputs[0] = buildChartMessages(snapshot, { forceClear: true });\n    }\n}\n\nif (reason === 'cycleComplete') {\n    const snapshot = cloneBuffer(buffer);\n    const chartMessages = buildChartMessages(snapshot, { forceClear: true });\n    outputs[0] = chartMessages.length ? chartMessages : [{ ui_control: { clear: true } }];\n    outputs[4] = {\n        action: 'flushResume',\n        topic: 'flushResume',\n        reason: 'cycleComplete',\n        ts: Date.now()\n    };\n    resetBuffer(buffer);\n}\n\nflow.set('trendBuffer', buffer);\nreturn outputs;\n",
+        "outputs": 5,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1740,
+        "y": 20,
+        "wires": [
+            [
+                "d1e2f3a4b5c6d7e8"
+            ],
+            [
+                "d1e2f3a4b5c6d7e8"
+            ],
+            [
+                "a3d1361073aa51d0"
+            ],
+            [
+                "a8ef6da5914e9c2a"
+            ],
+            [
+                "e08c2f4a04e1bd7d"
+            ]
+        ]
+    },
+    {
+        "id": "d1e2f3a4b5c6d7e8",
+        "type": "ui_chart",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "График итерации",
+        "group": "a1b2c3d4e5f6a7b8",
+        "order": 2,
+        "width": "12",
+        "height": "6",
+        "label": "График итерации",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss.SSS",
+        "interpolate": "linear",
+        "nodata": "Нет данных",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 0,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 2040,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a3d1361073aa51d0",
+        "type": "ui_text",
+        "z": "e1aefb0d6fb2a4a3",
+        "group": "6f6d1d13c83d9c31",
+        "name": "Текущее значение",
+        "order": 2,
+        "width": "6",
+        "height": "1",
+        "label": "Текущее значение",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": "",
+        "x": 2040,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a8ef6da5914e9c2a",
+        "type": "ui_text",
+        "z": "e1aefb0d6fb2a4a3",
+        "group": "6f6d1d13c83d9c31",
+        "name": "Активный шаг",
+        "order": 3,
+        "width": "6",
+        "height": "1",
+        "label": "Активный шаг",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": "",
+        "x": 2040,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7ec4d0f28f018ae0",
+        "type": "ui_text",
+        "z": "e1aefb0d6fb2a4a3",
+        "group": "fa9b12c4a61eab67",
+        "name": "Версия проекта",
+        "order": 1,
+        "width": "12",
+        "height": "1",
+        "label": "Версия",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": "",
+        "x": 750,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d8910ecbdabf1e7a",
+        "type": "ui_template",
+        "z": "e1aefb0d6fb2a4a3",
+        "group": "c8e9f2a1b3d4e5f6",
+        "name": "История версий",
+        "order": 1,
+        "width": "12",
+        "height": "0",
+        "format": "<div layout=\"column\" class=\"nr-dashboard-template\">\n  <div style=\"font-weight:bold; margin-bottom:6px;\">История версий</div>\n  <div ng-repeat=\"item in msg.payload track by $index\" style=\"margin-bottom:4px;\">\n    {{$index + 1}}. {{item}}\n  </div>\n</div>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 780,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ea0d15c23b7efc26",
+        "type": "function",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Сформировать список переменных",
+        "func": "if (msg.reason === 'tick') {\n    return null;\n}\n\nconst data = [];\nconst versionDisplay = flow.get('versionDisplay') || '';\nconst versionCode = flow.get('version') || '';\nconst descriptions = {\n    'VER': 'Версия проекта (число)',\n    'flow.version': 'Версия проекта (строка)',\n    'versionDisplay': 'Отображаемая версия',\n    'ITERATION_CONTROL': 'Управление (0-стоп, 1-старт, 2-рестарт)',\n    'ITERATION_STEP': 'Номер текущего шага',\n    'ITERATION_VALUE': 'Текущее значение итерации'\n};\ndata.push({ name: 'VER', value: global.get('VER'), description: descriptions['VER'] });\ndata.push({ name: 'flow.version', value: versionCode, description: descriptions['flow.version'] });\ndata.push({ name: 'versionDisplay', value: versionDisplay, description: descriptions['versionDisplay'] });\ndata.push({ name: 'ITERATION_CONTROL', value: global.get('ITERATION_CONTROL'), description: descriptions['ITERATION_CONTROL'] });\ndata.push({ name: 'ITERATION_STEP', value: global.get('ITERATION_STEP'), description: descriptions['ITERATION_STEP'] });\ndata.push({ name: 'ITERATION_VALUE', value: global.get('ITERATION_VALUE'), description: descriptions['ITERATION_VALUE'] });\nfor (let i = 1; i <= 5; i++) {\n    data.push({ name: `ITER_START_${i}`, value: global.get(`ITER_START_${i}`), description: `Начальное значение шага ${i}` });\n    data.push({ name: `ITER_SPEED_${i}`, value: global.get(`ITER_SPEED_${i}`), description: `Скорость шага ${i} (мс)` });\n    data.push({ name: `ITER_STEP_${i}`, value: global.get(`ITER_STEP_${i}`), description: `Шаг изменения шага ${i}` });\n    data.push({ name: `ITER_END_${i}`, value: global.get(`ITER_END_${i}`), description: `Конечное значение шага ${i}` });\n    data.push({ name: `ITER_PAUSE_${i}`, value: global.get(`ITER_PAUSE_${i}`), description: `Пауза после шага ${i} (мс)` });\n}\nmsg.payload = data;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1670,
+        "y": 220,
+        "wires": [
+            [
+                "b0d44d2c3625f111"
+            ]
+        ]
+    },
+    {
+        "id": "b0d44d2c3625f111",
+        "type": "ui_template",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Переменные",
+        "group": "5d2d0d5ecb20a567",
+        "order": 1,
+        "width": "12",
+        "height": "0",
+        "format": "<div layout=\"column\" class=\"nr-dashboard-template\">\n  <div style=\"font-weight:bold; margin-bottom:6px;\">Текущие переменные</div>\n  <div ng-repeat=\"item in msg.payload track by $index\" style=\"display:flex; justify-content:space-between; border-bottom:1px solid #ccc; padding:2px 0;\">\n    <span style=\"font-weight:500;\">{{item.name}} <span style=\"font-weight:normal; color:#666; font-size:0.9em;\">({{item.description}})</span></span>\n    <span>{{item.value}}</span>\n  </div>\n</div>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 1990,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f7b3b90ce553d92f",
+        "type": "function",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Статус контроллера",
+        "func": "const reason = msg.reason || '';\nif (reason === 'tick') {\n    return null;\n}\nlet text = '';\nswitch (reason) {\n    case 'restart':\n        text = 'Контроллер перезапущен';\n        break;\n    case 'run':\n    case 'resume':\n        text = 'Контроллер запущен';\n        break;\n    case 'stop':\n        text = 'Контроллер остановлен';\n        break;\n    case 'parameters':\n        text = 'Параметры обновлены';\n        break;\n    case 'pauseComplete':\n        text = 'Пауза завершена';\n        break;\n    case 'nextStep':\n    case 'stepStart':\n        text = `Начат шаг ${msg.step}`;\n        break;\n    case 'skip':\n        text = `Шаг ${msg.step} пропущен (скорость=0 или шаг=0)`;\n        break;\n    default:\n        text = `Состояние обновлено (${reason || 'без причины'})`;\n}\ntext += ` (управление=${msg.control})`;\nmsg.payload = text;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1680,
+        "y": 280,
+        "wires": [
+            [
+                "40f5a9e8a3c33cd4"
+            ]
+        ]
+    },
+    {
+        "id": "40f5a9e8a3c33cd4",
+        "type": "ui_text",
+        "z": "e1aefb0d6fb2a4a3",
+        "group": "6f6d1d13c83d9c31",
+        "name": "Статус операций",
+        "order": 4,
+        "width": "12",
+        "height": "1",
+        "label": "Статус",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": "",
+        "x": 2000,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8cbb2de6c2276b7e",
+        "type": "ui_button",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Старт",
+        "group": "6f6d1d13c83d9c31",
+        "order": 1,
+        "width": "4",
+        "height": "1",
+        "passthru": false,
+        "label": "Старт",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 360,
+        "y": 360,
+        "wires": [
+            [
+                "ad5b9d54157b92ce"
+            ]
+        ]
+    },
+    {
+        "id": "ad5b9d54157b92ce",
+        "type": "change",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Команда старт",
+        "rules": [
+            {
+                "t": "set",
+                "p": "action",
+                "pt": "msg",
+                "to": "start",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 620,
+        "y": 360,
+        "wires": [
+            [
+                "e08c2f4a04e1bd7d"
+            ]
+        ]
+    },
+    {
+        "id": "cf0a74fd4034eab1",
+        "type": "ui_button",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Пауза",
+        "group": "6f6d1d13c83d9c31",
+        "order": 5,
+        "width": "4",
+        "height": "1",
+        "passthru": false,
+        "label": "Пауза",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 360,
+        "y": 400,
+        "wires": [
+            [
+                "90f832c548d5b7da"
+            ]
+        ]
+    },
+    {
+        "id": "90f832c548d5b7da",
+        "type": "change",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Команда стоп",
+        "rules": [
+            {
+                "t": "set",
+                "p": "action",
+                "pt": "msg",
+                "to": "stop",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 620,
+        "y": 400,
+        "wires": [
+            [
+                "e08c2f4a04e1bd7d"
+            ]
+        ]
+    },
+    {
+        "id": "9b9a9f3fd8661c1f",
+        "type": "ui_button",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Рестарт",
+        "group": "6f6d1d13c83d9c31",
+        "order": 6,
+        "width": "4",
+        "height": "1",
+        "passthru": false,
+        "label": "Рестарт",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 360,
+        "y": 440,
+        "wires": [
+            [
+                "57f9620dc9a3d91c"
+            ]
+        ]
+    },
+    {
+        "id": "57f9620dc9a3d91c",
+        "type": "function",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Команда рестарт",
+        "func": "msg.action = 'restart';\nconst steps = flow.get('steps');\nif (Array.isArray(steps)) {\n    msg.steps = steps;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 440,
+        "wires": [
+            [
+                "e08c2f4a04e1bd7d"
+            ]
+        ]
+    },
+    {
+        "id": "0b3c7ad4fcb98c66",
+        "type": "ui_button",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Загрузить из файла",
+        "group": "6f6d1d13c83d9c31",
+        "order": 7,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "label": "Загрузить из файла",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 370,
+        "y": 480,
+        "wires": [
+            [
+                "44f4dd55b0461dc4"
+            ]
+        ]
+    },
+    {
+        "id": "44f4dd55b0461dc4",
+        "type": "function",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Чтение из файла",
+        "func": "const filename = flow.get('configFile');\nif (!filename) {\n    node.warn('Файл конфигурации не задан');\n    return [null, { payload: 'Файл конфигурации не задан' }];\n}\nconst requestMsg = {\n    filename,\n    source: 'файл',\n    topic: 'loadParameters'\n};\nconst statusMsg = {\n    payload: 'Загрузка параметров из файла...'\n};\nreturn [requestMsg, statusMsg];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 480,
+        "wires": [
+            [
+                "f4ef779e2a6ce55a"
+            ],
+            [
+                "40f5a9e8a3c33cd4"
+            ]
+        ]
+    },
+    {
+        "id": "26bc12fb3da587f4",
+        "type": "ui_button",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Сохранить в файл",
+        "group": "6f6d1d13c83d9c31",
+        "order": 8,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "label": "Сохранить в файл",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 370,
+        "y": 520,
+        "wires": [
+            [
+                "1a31e7185bb16a2d"
+            ]
+        ]
+    },
+    {
+        "id": "1a31e7185bb16a2d",
+        "type": "function",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Подготовить запись",
+        "func": "const steps = flow.get('steps') || flow.get('defaultSteps') || [];\nconst filename = flow.get('configFile');\nif (!filename) {\n    node.warn('Файл конфигурации не задан');\n    return [null, { payload: 'Файл конфигурации не задан' }];\n}\nconst saveMsg = {\n    filename,\n    payload: { steps }\n};\nconst statusMsg = {\n    payload: 'Сохранение параметров в файл...'\n};\nreturn [saveMsg, statusMsg];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 520,
+        "wires": [
+            [
+                "f6b510f8c6df775b"
+            ],
+            [
+                "40f5a9e8a3c33cd4"
+            ]
+        ]
+    },
+    {
+        "id": "f6b510f8c6df775b",
+        "type": "json",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "JSON -> текст",
+        "property": "payload",
+        "action": "str",
+        "pretty": true,
+        "x": 900,
+        "y": 520,
+        "wires": [
+            [
+                "2d466f810e16d908"
+            ]
+        ]
+    },
+    {
+        "id": "2d466f810e16d908",
+        "type": "file",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Запись параметров",
+        "filename": "filename",
+        "filenameType": "msg",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "utf8",
+        "x": 1140,
+        "y": 520,
+        "wires": [
+            [
+                "c5f923dfb5c66e56"
+            ]
+        ]
+    },
+    {
+        "id": "c5f923dfb5c66e56",
+        "type": "function",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Сообщить о сохранении",
+        "func": "msg.payload = 'Параметры сохранены в файл';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1370,
+        "y": 520,
+        "wires": [
+            [
+                "40f5a9e8a3c33cd4"
+            ]
+        ]
+    },
+    {
+        "id": "a7a4a1f43fa8e9f6",
+        "type": "http in",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "API состояние",
+        "url": "/iteration/state",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 360,
+        "y": 600,
+        "wires": [
+            [
+                "a6b2ac1e32213ba2"
+            ]
+        ]
+    },
+    {
+        "id": "a6b2ac1e32213ba2",
+        "type": "function",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Подготовить ответ",
+        "func": "const response = {\n    version: flow.get('version'),\n    versionDisplay: flow.get('versionDisplay'),\n    control: global.get('ITERATION_CONTROL'),\n    step: global.get('ITERATION_STEP'),\n    value: global.get('ITERATION_VALUE'),\n    steps: []\n};\nfor (let i = 1; i <= 5; i++) {\n    response.steps.push({\n        index: i,\n        start: global.get(`ITER_START_${i}`),\n        speed: global.get(`ITER_SPEED_${i}`),\n        step: global.get(`ITER_STEP_${i}`),\n        end: global.get(`ITER_END_${i}`),\n        pause: global.get(`ITER_PAUSE_${i}`)\n    });\n}\nmsg.payload = response;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 600,
+        "wires": [
+            [
+                "3acaa5c9a6c4f4a2"
+            ]
+        ]
+    },
+    {
+        "id": "3acaa5c9a6c4f4a2",
+        "type": "http response",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "HTTP ответ",
+        "statusCode": "",
+        "headers": {},
+        "x": 850,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8d5ac7eb8764bd1e",
+        "type": "change",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Обновить версию в контексте",
+        "rules": [
+            {
+                "t": "set",
+                "p": "version",
+                "pt": "flow",
+                "to": "081120251945",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 60,
+        "wires": [
+            [
+                "6bb4e19ff77f7e43"
+            ]
+        ]
+    },
+    {
+        "id": "d4f5a0cd9b2e8f61",
+        "type": "ui_button",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Вывести тренд",
+        "group": "a1b2c3d4e5f6a7b8",
+        "order": 1,
+        "width": "4",
+        "height": "1",
+        "passthru": false,
+        "label": "Вывести тренд",
+        "tooltip": "Разовая отрисовка данных из буфера",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 1800,
+        "y": 60,
+        "wires": [
+            [
+                "c3ef27d2b13a76f8"
+            ]
+        ]
+    },
+    {
+        "id": "c3ef27d2b13a76f8",
+        "type": "change",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Команда ручного вывода",
+        "rules": [
+            {
+                "t": "set",
+                "p": "command",
+                "pt": "msg",
+                "to": "manualFlush",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 620,
+        "y": 440,
+        "wires": [
+            [
+                "53d86127cd20b3af"
+            ]
+        ]
+    }
+]
