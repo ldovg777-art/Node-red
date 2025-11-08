@@ -27,48 +27,5 @@ node-red находится в модуле adam  6717 фирмы advantech эт
 - Переменная. Управление Процессом итерации (Значение один. Старт итерации. Значение ноль. Остановка итерации. Значение 2. Рестарт итерации.). 
 При загрузке. Проекта итерация должна быть включена.
 Шаги итерации с 1 по 5 следует один за другим и затем после 5 шага начинаются с начала с 1 шага. И так в цикле. Если задано значение скорости 0 миллисекунд то шаг пропускается.
-Для Того, чтобы задавать скорость, использовать стандартную ноду – delay - (Описание:
-  Delays each message passing through the node or limits the rate at which they can pass
-Inputs
-delaynumber
-Sets the delay, in milliseconds, to be applied to the message. This option only applies if the node is configured to allow the message to override the configured default delay interval.
-ratenumber
-Sets the rate value in milliseconds between messages. This node overwrites the existing rate value defined in the node configuration when it receives the message which contains msg.rate value in milliSeconds. This option only applies if the node is configured to allow the message to override the configured default rate interval.
-reset
-If the received message has this property set to any value, all outstanding messages held by the node are cleared without being sent.
-flush
-If the received message has this property set to a numeric value then that many messages will be released immediately. If set to any other type (e.g. boolean), then all outstanding messages held by the node are sent immediately.
-toFront
-When in rate limit mode, if the received message has this property set to boolean true, then the message is pushed to the front of the queue and will be released next. This can be used in combination with msg.flush=1 to resend immediately.
-Details
-When configured to delay messages, the delay interval can be a fixed value, a random value within a range or dynamically set for each message. Each message is delayed independently of any other message, based on the time of its arrival.
-When configured to rate limit messages, their delivery is spread across the configured time period. The status shows the number of messages currently in the queue. It can optionally discard intermediate messages as they arrive.
-If set to allow override of the rate, the new rate will be applied immediately, and will remain in effect until changed again, the node is reset, or the flow is restarted.
-The rate limiting can be applied to all messages, or group them according to their msg.topic value. When grouping, intermediate messages are automatically dropped. At each time interval, the node can either release the most recent message for all topics, or release the most recent message for the next topic.
-Note: In rate limit mode the maximum queue depth can be set by a property in your settings.js file. For example nodeMessageBufferMaxLength: 1000,).
+На гитхаб формируй сообщения и коментарии на русском языке, чтобы мне было понятно.
 
-Также можно использовать ноду. Триггер. Вот ее описание-  trigger
-When triggered, can send a message, and then optionally a second message, unless extended or reset.
-
-Inputs
-delaynumber
-Sets the delay, in milliseconds, to be applied to the message. This option only applies if the node is configured to allow the message to override the configured default delay interval.
-reset
-If a message is received with this property, any timeout or repeat currently in progress will be cleared and no message triggered.
-Details
-This node can be used to create a timeout within a flow. By default, when it receives a message, it sends on a message with a payload of 1. It then waits 250ms before sending a second message with a payload of 0. This could be used, for example, to blink an LED attached to a Raspberry Pi GPIO pin.
-
-The payloads of each message sent can be configured to a variety of values, including the option to not send anything. For example, setting the initial message to nothing and selecting the option to extend the timer with each received message, the node will act as a watchdog timer; only sending a message if nothing is received within the set interval.
-
-If set to a string type, the node supports the mustache template syntax.
-
-The delay between sending messages can be overridden by msg.delay if that option is enabled in the node. The value must be provided in milliseconds.
-
-If the node receives a message with a reset property, or a payload that matches that configured in the node, any timeout or repeat currently in progress will be cleared and no message triggered.
-
-The node can be configured to resend a message at a regular interval until it is reset by a received message.
-
-Optionally, the node can be configured to treat messages as if they are separate streams, using a msg property to identify each stream. Default msg.topic.
-
-The status indicates the node is currently active. If multiple streams are used the status indicates the number of streams being held.
-На гитхаб формируй сообщения и коментарии на русском языке, чтобы мне было понятно. 
