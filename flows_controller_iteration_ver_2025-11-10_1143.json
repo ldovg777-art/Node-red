@@ -4,7 +4,7 @@
         "type": "tab",
         "label": "Контроллер итерации",
         "disabled": false,
-        "info": "Версия: 2025-11-09_2300 (091120252300)",
+        "info": "Версия: 2025-11-10_1143 (101120251143)",
         "env": [],
         "sort": 0
     },
@@ -161,8 +161,8 @@
         "type": "function",
         "z": "e1aefb0d6fb2a4a3",
         "name": "Инициализация проекта",
-        "func": "const versionDisplay = \"091120252300\";\nconst versionCode = '2025-11-09_2300';\nconst versionNumber = Number(versionDisplay);\nconst configFile = \"/data/controller_iteration_params.json\";\nconst trendExportDir = \"/data/trends\";\nconst emptyExportSnapshot = { labels: [], value: [], step: [] };\nconst defaultSteps = [\n    { start: -1000, speed: 100, step: 100, end: 1000, pause: 0 },\n    { start: -500, speed: 150, step: 50, end: 500, pause: 100 },\n    { start: -250, speed: 200, step: 25, end: 250, pause: 100 },\n    { start: 0, speed: 250, step: 50, end: 500, pause: 200 },\n    { start: 500, speed: 300, step: 100, end: -500, pause: 0 }\n];\nconst changeLog = [\n    \"061120251343: Начальная версия. Добавлен пятишаговый контроллер итерации с управлением, чтением/записью параметров, панелью мониторинга и HTTP интерфейсом.\",\n    \"061120251400: Исправлено экранирование function-узлов и восстановлено разбиение шагов формы.\",\n    \"061120251523: Исправлены таймеры контроллера итерации, восстановлено чтение/запись параметров и VER теперь число.\",\n    \"061120251606: Формы сохраняют значения без очистки, график ограничен 10 минутами и 500 точками.\",\n    \"061120251656: Пропуск шагов со скоростью 0 не меняет ITERATION_VALUE; обновлена версия 2025-11-06_1656.\",\n    \"061120251854: Исправлены race conditions в таймерах, синхронизация состояния, логика пропуска шагов, finishStep при pause=0, валидация параметров и оптимизация производительности.\",\n    \"061120251923: Исправлена логика паузы при пропуске шага (пауза не выполняется если шаг пропущен), добавлен номер шага на график, история версий перенесена в конец дашборда.\",\n    \"061120252015: Шаг итерации теперь всегда положительный, направление определяется автоматически по начальному и конечному значениям. Добавлен тренд ITERATION_STEP на график итерации.\",\n    \"061120252036: Добавлены русские описания для всех переменных в секции 'Значения' на дашборде.\",\n    \"061120252139: Добавлены три графика итерации с разными масштабами времени: 30 секунд, 5 минут и 1 час. Тренды отключены по умолчанию при загрузке проекта с возможностью выборочного включения через легенду.\",\n    \"061120252244: Оставлен один график на 5 минут с количеством точек 500.\",\n    \"061120252305: Исправлены критические проблемы стабильности: race conditions в таймерах (добавлена защита флагом processing), исправлена логика пропуска шагов (значение ITERATION_VALUE не меняется при skip), убрана компенсация задержек (оставлен простой setTimeout), добавлена обработка ошибок записи файла, улучшена синхронизация состояния контроллера.\",\n    \"081120251732: Обновлены версия проекта и имя файла, синхронизирован flow.version.\",\n    \"081120251908: Исправлены версия/имя файла, добавлены лиии без маркеров, миллисекунды на оси времени и кнопка рядом с графиком.\",\n    \"081120251945: Гарантирована выгрузка тренда при пропуске последнего шага; синхронизированы версия и имя файла.\",\n    \"081120252018: Добавлен экспорт данных тренда в файл по кнопке после завершения цикла.\",\n    \"081120252047: Исправлена конфигурация узла записи тренда, обеспечена запись файла экспорта.\",\n    \"091120250057: Добавлен столбец времени (мс) в экспорт тренда и убрана версия из имени файла экспорта.\",\n    \"09112025925: Добавлены глобальные переменные времени цикла и шагов итерации, отображение времени шагов на панели.\",\n    \"091120251048: Добавлены расчётные длительности шагов и цикла, фактические значения сохраняются до нового измерения.\",\n    \"091120251205: График итерации отображает фактические метки времени, учитывая реальные паузы между шагами.\",\n    \"091120251436: Исправлена структура файла и гарантирован автозапуск итерации при загрузке проекта.\",\n    \"091120251523: Добавлен теоретический график итерации, оба графика показывают время от 0 мс (относительное время от начала цикла).\",\n    \"091120251532: Исправлен график фактической итерации - временная шкала всегда начинается с нуля (первая точка всегда имеет время 0 мс).\",\n    \"091120251734: Обновлено имя файла на версию 091120251734.\",\n    \"091120251747: Временная шкала графиков в миллисекундах, теоретический график обновляется при рестарте.\",\n    \"091120252204: Исправлена функция экспорта тренда (убран некорректный Date.parse), исправлено количество outputs в функции сохранения шага (4→5), добавлены пояснения в названия графиков.\",\n    \"091120252022: Изменена интерполяция графиков с linear на step-after для отображения реальной ступенчатой картины итерации.\",\n    \"091120252300: Унифицированы настройки обоих графиков - установлена интерполяция step и формат времени mm:ss для одинакового отображения.\"\n];\nfunction ensureNumber(key, fallback = 0) {\n    const numeric = Number(global.get(key));\n    if (!Number.isFinite(numeric)) {\n        global.set(key, fallback);\n    }\n}\nfunction calculateStepDuration(cfg) {\n    const speed = Number(cfg?.speed) || 0;\n    const stepValue = Math.abs(Number(cfg?.step) || 0);\n    if (speed <= 0 || stepValue <= 0) {\n        return 0;\n    }\n    const start = Number(cfg?.start) || 0;\n    const end = Number(cfg?.end) || 0;\n    const distance = Math.abs(end - start);\n    const iterations = distance === 0 ? 1 : Math.ceil(distance / stepValue);\n    return Math.max(0, Math.round(iterations * speed));\n}\nfunction updatePlanEstimates(steps) {\n    let cyclePlan = 0;\n    steps.forEach((cfg, index) => {\n        const duration = calculateStepDuration(cfg);\n        global.set(`ITER_STEP_TIME_PLAN_${index + 1}`, duration);\n        if (duration > 0) {\n            cyclePlan += duration;\n            if (index < steps.length - 1) {\n                const pause = Number(cfg?.pause) || 0;\n                cyclePlan += Math.max(0, pause);\n            }\n        }\n    });\n    global.set('ITERATION_CYCLE_TIME_PLAN', Math.max(0, Math.round(cyclePlan)));\n}\nflow.set('version', versionCode);\nflow.set('versionDisplay', versionDisplay);\nflow.set('configFile', configFile);\nflow.set('defaultSteps', defaultSteps);\nflow.set('changeLog', changeLog);\nflow.set('trendExportDir', trendExportDir);\nflow.set('trendExportData', emptyExportSnapshot);\nflow.set('trendExportReady', false);\nfor (let i = 1; i <= 5; i += 1) {\n    ensureNumber(`ITER_STEP_TIME_${i}`, 0);\n}\nensureNumber('ITERATION_CYCLE_TIME', 0);\nupdatePlanEstimates(defaultSteps);\nglobal.set('VER', versionNumber);\nconst loadMsg = {\n    topic: 'loadParameters',\n    filename: configFile,\n    defaults: defaultSteps,\n    source: 'файл'\n};\nconst versionMsg = {\n    payload: `Текущая версия: ${versionCode} (${versionDisplay})`\n};\nconst changeMsg = {\n    payload: changeLog\n};\nreturn [loadMsg, versionMsg, changeMsg];",
-        "outputs": 3,
+        "func": "const versionDisplay = \"101120251143\";\nconst versionCode = '2025-11-10_1143';\nconst versionNumber = Number(versionDisplay);\nconst configFile = \"/data/controller_iteration_params.json\";\nconst trendExportDir = \"/data/trends\";\nconst notesFile = \"/data/iteration_notes.json\";\nconst emptyExportSnapshot = { labels: [], value: [], step: [] };\nconst defaultSteps = [\n    { start: -1000, speed: 100, step: 100, end: 1000, pause: 0 },\n    { start: -500, speed: 150, step: 50, end: 500, pause: 100 },\n    { start: -250, speed: 200, step: 25, end: 250, pause: 100 },\n    { start: 0, speed: 250, step: 50, end: 500, pause: 200 },\n    { start: 500, speed: 300, step: 100, end: -500, pause: 0 }\n];\nconst changeLog = [\n    \"061120251343: Начальная версия. Добавлен пятишаговый контроллер итерации с управлением, чтением/записью параметров, панелью мониторинга и HTTP интерфейсом.\",\n    \"061120251400: Исправлено экранирование function-узлов и восстановлено разбиение шагов формы.\",\n    \"061120251523: Исправлены таймеры контроллера итерации, восстановлено чтение/запись параметров и VER теперь число.\",\n    \"061120251606: Формы сохраняют значения без очистки, график ограничен 10 минутами и 500 точками.\",\n    \"061120251656: Пропуск шагов со скоростью 0 не меняет ITERATION_VALUE; обновлена версия 2025-11-06_1656.\",\n    \"061120251854: Исправлены race conditions в таймерах, синхронизация состояния, логика пропуска шагов, finishStep при pause=0, валидация параметров и оптимизация производительности.\",\n    \"061120251923: Исправлена логика паузы при пропуске шага (пауза не выполняется если шаг пропущен), добавлен номер шага на график, история версий перенесена в конец дашборда.\",\n    \"061120252015: Шаг итерации теперь всегда положительный, направление определяется автоматически по начальному и конечному значениям. Добавлен тренд ITERATION_STEP на график итерации.\",\n    \"061120252036: Добавлены русские описания для всех переменных в секции 'Значения' на дашборде.\",\n    \"061120252139: Добавлены три графика итерации с разными масштабами времени: 30 секунд, 5 минут и 1 час. Тренды отключены по умолчанию при загрузке проекта с возможностью выборочного включения через легенду.\",\n    \"061120252244: Оставлен один график на 5 минут с количеством точек 500.\",\n    \"061120252305: Исправлены критические проблемы стабильности: race conditions в таймерах (добавлена защита флагом processing), исправлена логика пропуска шагов (значение ITERATION_VALUE не меняется при skip), убрана компенсация задержек (оставлен простой setTimeout), добавлена обработка ошибок записи файла, улучшена синхронизация состояния контроллера.\",\n    \"081120251732: Обновлены версия проекта и имя файла, синхронизирован flow.version.\",\n    \"081120251908: Исправлены версия/имя файла, добавлены линии без маркеров, миллисекунды на оси времени и кнопка рядом с графиком.\",\n    \"081120251945: Гарантирована выгрузка тренда при пропуске последнего шага; синхронизированы версия и имя файла.\",\n    \"081120252018: Добавлен экспорт данных тренда в файл по кнопке после завершения цикла.\",\n    \"081120252047: Исправлена конфигурация узла записи тренда, обеспечена запись файла экспорта.\",\n    \"091120250057: Добавлен столбец времени (мс) в экспорт тренда и убрана версия из имени файла экспорта.\",\n    \"09112025925: Добавлены глобальные переменные времени цикла и шагов итерации, отображение времени шагов на панели.\",\n    \"091120251048: Добавлены расчётные длительности шагов и цикла, фактические значения сохраняются до нового измерения.\",\n    \"091120251205: График итерации отображает фактические метки времени, учитывая реальные паузы между шагами.\",\n    \"091120251436: Исправлена структура файла и гарантирован автозапуск итерации при загрузке проекта.\",\n    \"091120251523: Добавлен теоретический график итерации, оба графика показывают время от 0 мс (относительное время от начала цикла).\",\n    \"091120251532: Исправлен график фактической итерации - временная шкала всегда начинается с нуля (первая точка всегда имеет время 0 мс).\",\n    \"091120251734: Обновлено имя файла на версию 091120251734.\",\n    \"091120251747: Временная шкала графиков в миллисекундах, теоретический график обновляется при рестарте.\",\n    \"091120252204: Исправлена функция экспорта тренда (убран некорректный Date.parse), исправлено количество outputs в функции сохранения шага (4→5), добавлены пояснения в названия графиков.\",\n    \"091120252022: Изменена интерполяция графиков с linear на step-after для отображения реальной ступенчатой картины итерации.\",\n    \"091120252300: Унифицированы настройки обоих графиков - установлена интерполяция step и формат времени mm:ss для одинакового отображения.\",\n    \"101120251042: Убрано дублирование конечной точки на теоретическом графике.\",\n    \"101120251143: Добавлена панель заметок на дашборде с сохранением и загрузкой записей из файла.\"\n];\n\nfunction ensureNumber(key, fallback = 0) {\n    const numeric = Number(global.get(key));\n    if (!Number.isFinite(numeric)) {\n        global.set(key, fallback);\n    }\n}\n\nfunction calculateStepDuration(cfg) {\n    const speed = Number(cfg?.speed) || 0;\n    const stepValue = Math.abs(Number(cfg?.step) || 0);\n    if (speed <= 0 || stepValue <= 0) {\n        return 0;\n    }\n    const start = Number(cfg?.start) || 0;\n    const end = Number(cfg?.end) || 0;\n    const distance = Math.abs(end - start);\n    const iterations = distance === 0 ? 1 : Math.ceil(distance / stepValue);\n    return Math.max(0, Math.round(iterations * speed));\n}\n\nfunction updatePlanEstimates(steps) {\n    let cyclePlan = 0;\n    steps.forEach((cfg, index) => {\n        const duration = calculateStepDuration(cfg);\n        global.set(`ITER_STEP_TIME_PLAN_${index + 1}`, duration);\n        if (duration > 0) {\n            cyclePlan += duration;\n            if (index < steps.length - 1) {\n                const pause = Number(cfg?.pause) || 0;\n                cyclePlan += Math.max(0, pause);\n            }\n        }\n    });\n    global.set('ITERATION_CYCLE_TIME_PLAN', Math.max(0, Math.round(cyclePlan)));\n}\n\nflow.set('version', versionCode);\nflow.set('versionDisplay', versionDisplay);\nflow.set('configFile', configFile);\nflow.set('defaultSteps', defaultSteps);\nflow.set('changeLog', changeLog);\nflow.set('trendExportDir', trendExportDir);\nflow.set('trendExportData', emptyExportSnapshot);\nflow.set('trendExportReady', false);\nflow.set('notesFile', notesFile);\nflow.set('notes', []);\n\nfor (let i = 1; i <= 5; i += 1) {\n    ensureNumber(`ITER_STEP_TIME_${i}`, 0);\n}\nensureNumber('ITERATION_CYCLE_TIME', 0);\nupdatePlanEstimates(defaultSteps);\n\nglobal.set('VER', versionNumber);\n\nconst loadMsg = {\n    topic: 'loadParameters',\n    filename: configFile,\n    defaults: defaultSteps,\n    source: 'файл'\n};\nconst versionMsg = {\n    payload: `Текущая версия: ${versionCode} (${versionDisplay})`\n};\nconst changeMsg = {\n    payload: changeLog\n};\nconst notesMsg = {\n    topic: 'loadNotes',\n    filename: notesFile,\n    source: 'файл'\n};\n\nreturn [loadMsg, versionMsg, changeMsg, notesMsg];",
+        "outputs": 4,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -178,6 +178,9 @@
             ],
             [
                 "d8910ecbdabf1e7a"
+            ],
+            [
+                "b6a5027ddf1bde61"
             ]
         ]
     },
@@ -255,7 +258,9 @@
         "scope": [
             "f4ef779e2a6ce55a",
             "c1aafee4ff7c32b5",
-            "2d466f810e16d908"
+            "2d466f810e16d908",
+            "dfe814b0c4719923",
+            "f31d7c6bba61a9d4"
         ],
         "uncaught": false,
         "x": 760,
@@ -271,8 +276,8 @@
         "type": "function",
         "z": "e1aefb0d6fb2a4a3",
         "name": "Обработка ошибки файла",
-        "func": "if (msg.error && msg.error.message) {\n    const errorMsg = msg.error.message;\n    node.warn(`Ошибка работы с файлом: ${errorMsg}`);\n    \n    // Проверяем тип операции\n    if (msg.filename && errorMsg.includes('ENOENT')) {\n        // Ошибка чтения - файл не найден\n        node.warn('Файл параметров не найден, используем значения по умолчанию');\n        const defaults = flow.get('defaultSteps') || [];\n        msg.payload = { steps: defaults };\n        msg.source = 'значения по умолчанию';\n        return [msg, null];\n    } else if (msg.filename) {\n        // Ошибка записи или другая ошибка\n        const statusMsg = {\n            payload: `Ошибка работы с файлом: ${errorMsg}`\n        };\n        return [null, statusMsg];\n    }\n}\n// Неизвестная ошибка\nconst defaults = flow.get('defaultSteps') || [];\nmsg.payload = { steps: defaults };\nmsg.source = 'значения по умолчанию';\nreturn [msg, null];",
-        "outputs": 2,
+        "func": "if (msg.error && msg.error.message) {\n    const errorMsg = msg.error.message;\n    const topic = msg.topic;\n    const filename = msg.filename;\n\n    node.warn(`Ошибка работы с файлом: ${errorMsg}`);\n\n    if (topic === 'loadNotes') {\n        const statusMsg = {\n            payload: filename && errorMsg.includes('ENOENT')\n                ? 'Файл заметок не найден, создан пустой список'\n                : `Ошибка загрузки заметок: ${errorMsg}`\n        };\n        const notesMsg = {\n            payload: [],\n            topic: 'notesUpdate',\n            statusText: statusMsg.payload\n        };\n        flow.set('notes', []);\n        return [null, statusMsg, notesMsg];\n    }\n\n    if (topic === 'saveNotes') {\n        const statusMsg = {\n            payload: `Ошибка сохранения заметок: ${errorMsg}`\n        };\n        return [null, statusMsg, null];\n    }\n\n    if (filename && errorMsg.includes('ENOENT')) {\n        node.warn('Файл параметров не найден, используем значения по умолчанию');\n        const defaults = flow.get('defaultSteps') || [];\n        msg.payload = { steps: defaults };\n        msg.source = 'значения по умолчанию';\n        return [msg, null, null];\n    }\n\n    if (filename) {\n        const statusMsg = {\n            payload: `Ошибка работы с файлом: ${errorMsg}`\n        };\n        return [null, statusMsg, null];\n    }\n}\n\nconst defaults = flow.get('defaultSteps') || [];\nmsg.payload = { steps: defaults };\nmsg.source = 'значения по умолчанию';\nreturn [msg, null, null];",
+        "outputs": 3,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -285,7 +290,17 @@
             ],
             [
                 "40f5a9e8a3c33cd4"
+            ],
+            [
+                "c0d2f4a8b7e31c9d"
             ]
+        ],
+        "scope": [
+            "f4ef779e2a6ce55a",
+            "c1aafee4ff7c32b5",
+            "2d466f810e16d908",
+            "dfe814b0c4719923",
+            "f31d7c6bba61a9d4"
         ]
     },
     {
@@ -786,7 +801,7 @@
         "type": "function",
         "z": "e1aefb0d6fb2a4a3",
         "name": "Вычисление теоретической траектории",
-        "func": "// Вычисление теоретической траектории на основе параметров шагов\nconst topic = msg.topic || '';\nif (topic !== 'updateTheoretical') {\n    return null;\n}\n\nconst steps = flow.get('steps') || flow.get('defaultSteps') || [];\nif (!Array.isArray(steps) || steps.length === 0) {\n    return [{ ui_control: { clear: true } }];\n}\n\nconst valuePoints = [];\nconst stepPoints = [];\nlet currentTime = 0;\n\nfor (let i = 0; i < steps.length; i++) {\n    const cfg = steps[i];\n    const stepNumber = i + 1;\n    const start = Number(cfg?.start) || 0;\n    const end = Number(cfg?.end) || 0;\n    const stepValue = Math.abs(Number(cfg?.step) || 0);\n    const speed = Number(cfg?.speed) || 0;\n    const pause = Number(cfg?.pause) || 0;\n    \n    // Пропуск шага если скорость = 0 или шаг = 0\n    if (speed <= 0 || stepValue <= 0) {\n        // Пропущенный шаг - значение не меняется, время не тратится\n        continue;\n    }\n    \n    // Начальная точка шага\n    valuePoints.push({ x: currentTime, y: start });\n    stepPoints.push({ x: currentTime, y: stepNumber });\n    \n    // Вычисление направления\n    const direction = end >= start ? 1 : -1;\n    const increment = stepValue * direction;\n    \n    // Вычисление всех промежуточных точек\n    let currentValue = start;\n    let tickTime = currentTime;\n    \n    while (true) {\n        const nextValue = currentValue + increment;\n        const reachedEnd = (direction > 0 && nextValue > end) || (direction < 0 && nextValue < end);\n        \n        if (reachedEnd) {\n            // Конечная точка шага\n            tickTime += speed;\n            valuePoints.push({ x: tickTime, y: end });\n            stepPoints.push({ x: tickTime, y: stepNumber });\n            currentTime = tickTime;\n            break;\n        } else {\n            currentValue = nextValue;\n            tickTime += speed;\n            valuePoints.push({ x: tickTime, y: currentValue });\n            stepPoints.push({ x: tickTime, y: stepNumber });\n        }\n    }\n    \n    // Добавление паузы после шага (кроме последнего)\n    if (pause > 0 && i < steps.length - 1) {\n        currentTime += pause;\n        // Точка в конце паузы (значение не меняется)\n        valuePoints.push({ x: currentTime, y: end });\n        stepPoints.push({ x: currentTime, y: stepNumber });\n    }\n}\n\nif (valuePoints.length === 0 || stepPoints.length === 0) {\n    return [{ ui_control: { clear: true } }];\n}\n\nreturn [\n    { ui_control: { clear: true } },\n    {\n        payload: [\n            {\n                series: ['ITERATION_VALUE_THEORETICAL', 'ITERATION_STEP_THEORETICAL'],\n                data: [valuePoints, stepPoints],\n                labels: []\n            }\n        ],\n        topic: 'THEORETICAL_CHART'\n    }\n];",
+        "func": "// Вычисление теоретической траектории на основе параметров шагов\nconst topic = msg.topic || '';\nif (topic !== 'updateTheoretical') {\n    return null;\n}\n\nconst steps = flow.get('steps') || flow.get('defaultSteps') || [];\nif (!Array.isArray(steps) || steps.length === 0) {\n    return [{ ui_control: { clear: true } }];\n}\n\nconst valuePoints = [];\nconst stepPoints = [];\nlet currentTime = 0;\n\nfor (let i = 0; i < steps.length; i++) {\n    const cfg = steps[i];\n    const stepNumber = i + 1;\n    const start = Number(cfg?.start) || 0;\n    const end = Number(cfg?.end) || 0;\n    const stepValue = Math.abs(Number(cfg?.step) || 0);\n    const speed = Number(cfg?.speed) || 0;\n    const pause = Number(cfg?.pause) || 0;\n\n    // Пропуск шага если скорость = 0 или шаг = 0\n    if (speed <= 0 || stepValue <= 0) {\n        // Пропущенный шаг - значение не меняется, время не тратится\n        continue;\n    }\n\n    // Начальная точка шага\n    valuePoints.push({ x: currentTime, y: start });\n    stepPoints.push({ x: currentTime, y: stepNumber });\n\n    // Вычисление направления\n    const direction = end >= start ? 1 : -1;\n    const increment = stepValue * direction;\n\n    // Вычисление всех промежуточных точек\n    let currentValue = start;\n    let tickTime = currentTime;\n\n    while (true) {\n        const nextValue = currentValue + increment;\n        const reachedEnd = (direction > 0 && nextValue >= end) || (direction < 0 && nextValue <= end);\n\n        tickTime += speed;\n        const outputValue = reachedEnd ? end : nextValue;\n\n        valuePoints.push({ x: tickTime, y: outputValue });\n        stepPoints.push({ x: tickTime, y: stepNumber });\n\n        currentValue = outputValue;\n\n        if (reachedEnd) {\n            currentTime = tickTime;\n            break;\n        }\n    }\n\n    // Добавление паузы после шага (кроме последнего)\n    if (pause > 0 && i < steps.length - 1) {\n        currentTime += pause;\n        // Точка в конце паузы (значение не меняется)\n        valuePoints.push({ x: currentTime, y: end });\n        stepPoints.push({ x: currentTime, y: stepNumber });\n    }\n}\n\nif (valuePoints.length === 0 || stepPoints.length === 0) {\n    return [{ ui_control: { clear: true } }];\n}\n\nreturn [\n    { ui_control: { clear: true } },\n    {\n        payload: [\n            {\n                series: ['ITERATION_VALUE_THEORETICAL', 'ITERATION_STEP_THEORETICAL'],\n                data: [valuePoints, stepPoints],\n                labels: []\n            }\n        ],\n        topic: 'THEORETICAL_CHART'\n    }\n];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -1981,6 +1996,274 @@
         "style": "",
         "x": 2330,
         "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f2c1a7d9b4e56a01",
+        "type": "ui_group",
+        "name": "Заметки",
+        "tab": "c1a3dcd1bb6d2abc",
+        "order": 12,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "f8b1c0d94e72a31a",
+        "type": "ui_button",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Обновить заметки",
+        "group": "f2c1a7d9b4e56a01",
+        "order": 2,
+        "width": "4",
+        "height": "1",
+        "passthru": false,
+        "label": "Обновить список",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "mdi-refresh",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "manualReload",
+        "topicType": "str",
+        "x": 1880,
+        "y": 640,
+        "wires": [
+            [
+                "b6a5027ddf1bde61"
+            ]
+        ]
+    },
+    {
+        "id": "9cb48f5b66f0e44b",
+        "type": "ui_form",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Новая заметка",
+        "label": "Новая заметка",
+        "group": "f2c1a7d9b4e56a01",
+        "order": 1,
+        "width": "12",
+        "height": "0",
+        "options": [
+            {
+                "label": "Текст заметки",
+                "value": "text",
+                "type": "textarea",
+                "rows": 5,
+                "required": true
+            }
+        ],
+        "formValue": {
+            "text": ""
+        },
+        "payload": "",
+        "submit": "Сохранить",
+        "cancel": "Очистить",
+        "topic": "addNote",
+        "className": "",
+        "x": 1870,
+        "y": 700,
+        "resetAfterSubmit": true,
+        "wires": [
+            [
+                "d2efc789ab4130de"
+            ]
+        ]
+    },
+    {
+        "id": "d2efc789ab4130de",
+        "type": "function",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Подготовить заметку",
+        "func": "const form = msg.payload || {};\nconst rawText = (form.text ?? '').toString().trim();\nif (!rawText) {\n    node.warn('Пустая заметка не сохранена');\n    return null;\n}\n\nconst now = new Date();\nconst timestamp = now.getTime();\nconst displayTime = now.toLocaleString('ru-RU', { hour12: false });\n\nconst note = {\n    id: `note_${timestamp}`,\n    text: rawText,\n    createdAt: timestamp,\n    createdIso: now.toISOString(),\n    displayTime\n};\n\nconst step = Number(global.get('ITERATION_STEP'));\nif (Number.isFinite(step)) {\n    note.step = step;\n}\n\nconst value = Number(global.get('ITERATION_VALUE'));\nif (Number.isFinite(value)) {\n    note.value = value;\n}\n\nmsg.note = note;\nmsg.payload = note;\nmsg.topic = 'preparedNote';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2140,
+        "y": 700,
+        "wires": [
+            [
+                "4b8f1ca2de377a55"
+            ]
+        ]
+    },
+    {
+        "id": "4b8f1ca2de377a55",
+        "type": "function",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Сохранить заметку",
+        "func": "const note = msg.note || msg.payload;\nif (!note || typeof note.text !== 'string') {\n    return null;\n}\n\nconst notesFile = flow.get('notesFile');\nif (!notesFile) {\n    node.warn('Файл заметок не настроен');\n    return [null, null];\n}\n\nconst current = flow.get('notes');\nconst notes = Array.isArray(current) ? [...current] : [];\nnotes.unshift(note);\nflow.set('notes', notes);\n\nconst updateMsg = {\n    payload: notes,\n    note,\n    noteCount: notes.length,\n    statusText: `Заметка сохранена (всего ${notes.length})`,\n    topic: 'notesUpdate'\n};\n\nconst fileMsg = {\n    payload: notes,\n    filename: notesFile,\n    topic: 'saveNotes',\n    noteCount: notes.length,\n    statusText: `Заметки сохранены (${notes.length})`\n};\n\nreturn [updateMsg, fileMsg];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2390,
+        "y": 700,
+        "wires": [
+            [
+                "c0d2f4a8b7e31c9d"
+            ],
+            [
+                "a853b24f3e9dd0a4"
+            ]
+        ]
+    },
+    {
+        "id": "a853b24f3e9dd0a4",
+        "type": "json",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Заметки -> текст",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 2650,
+        "y": 740,
+        "wires": [
+            [
+                "f31d7c6bba61a9d4"
+            ]
+        ]
+    },
+    {
+        "id": "f31d7c6bba61a9d4",
+        "type": "file",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Запись заметок",
+        "filename": "filename",
+        "filenameType": "msg",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "utf8",
+        "x": 2860,
+        "y": 740,
+        "wires": [
+            [
+                "e7c4d18faee6b84c"
+            ]
+        ]
+    },
+    {
+        "id": "e7c4d18faee6b84c",
+        "type": "function",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Сообщить о заметках",
+        "func": "const statusText = msg.statusText || `Заметки сохранены (${msg.noteCount ?? 0})`;\nmsg.payload = statusText;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3070,
+        "y": 740,
+        "wires": [
+            [
+                "40f5a9e8a3c33cd4"
+            ]
+        ]
+    },
+    {
+        "id": "b6a5027ddf1bde61",
+        "type": "function",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Загрузить заметки",
+        "func": "const notesFile = flow.get('notesFile');\nif (!notesFile) {\n    node.warn('Файл заметок не задан');\n    return [null, { payload: 'Файл заметок не задан' }];\n}\n\nconst statusText = msg.topic === 'manualReload' ? 'Обновление заметок...' : 'Загрузка заметок...';\n\nconst requestMsg = {\n    filename: notesFile,\n    topic: 'loadNotes',\n    source: 'файл'\n};\n\nconst statusMsg = {\n    payload: statusText\n};\n\nreturn [requestMsg, statusMsg];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2140,
+        "y": 640,
+        "wires": [
+            [
+                "dfe814b0c4719923"
+            ],
+            [
+                "40f5a9e8a3c33cd4"
+            ]
+        ]
+    },
+    {
+        "id": "dfe814b0c4719923",
+        "type": "file in",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Чтение заметок",
+        "filename": "filename",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": true,
+        "encoding": "utf8",
+        "x": 2390,
+        "y": 640,
+        "wires": [
+            [
+                "c35f2bd0e49a5bb1"
+            ]
+        ]
+    },
+    {
+        "id": "c35f2bd0e49a5bb1",
+        "type": "json",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Заметки JSON -> объект",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 2620,
+        "y": 640,
+        "wires": [
+            [
+                "c0d2f4a8b7e31c9d"
+            ]
+        ]
+    },
+    {
+        "id": "c0d2f4a8b7e31c9d",
+        "type": "function",
+        "z": "e1aefb0d6fb2a4a3",
+        "name": "Применить заметки",
+        "func": "const raw = msg.payload;\nconst list = Array.isArray(raw) ? raw : [];\n\nconst normalized = list\n    .filter((item) => typeof item?.text === 'string' && item.text.trim() !== '')\n    .map((item) => {\n        const createdAt = Number(item.createdAt) || Date.parse(item.createdIso || '') || Date.now();\n        const text = item.text.toString();\n        const displayTime = typeof item.displayTime === 'string' && item.displayTime.trim()\n            ? item.displayTime\n            : new Date(createdAt).toLocaleString('ru-RU', { hour12: false });\n        const id = typeof item.id === 'string' && item.id.trim() ? item.id : `note_${createdAt}`;\n\n        const note = {\n            id,\n            text,\n            createdAt,\n            createdIso: item.createdIso || new Date(createdAt).toISOString(),\n            displayTime\n        };\n\n        if (Number.isFinite(Number(item.step))) {\n            note.step = Number(item.step);\n        }\n        if (Number.isFinite(Number(item.value))) {\n            note.value = Number(item.value);\n        }\n\n        return note;\n    })\n    .sort((a, b) => b.createdAt - a.createdAt);\n\nflow.set('notes', normalized);\n\nconst statusText = msg.statusText\n    || (msg.topic === 'loadNotes'\n        ? `Заметки загружены (${normalized.length})`\n        : `Заметки обновлены (${normalized.length})`);\n\nconst uiMsg = {\n    payload: normalized,\n    topic: 'notesDisplay'\n};\n\nconst statusMsg = statusText ? { payload: statusText, noteCount: normalized.length } : null;\n\nmsg.payload = normalized;\nmsg.noteCount = normalized.length;\n\nreturn [uiMsg, statusMsg];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2860,
+        "y": 640,
+        "wires": [
+            [
+                "ab9c4d81ef59a0c3"
+            ],
+            [
+                "40f5a9e8a3c33cd4"
+            ]
+        ]
+    },
+    {
+        "id": "ab9c4d81ef59a0c3",
+        "type": "ui_template",
+        "z": "e1aefb0d6fb2a4a3",
+        "group": "f2c1a7d9b4e56a01",
+        "name": "Список заметок",
+        "order": 3,
+        "width": "12",
+        "height": "0",
+        "format": "<div class=\"notes-wrapper\">\n  <div class=\"notes-empty\" ng-if=\"!(msg.payload && msg.payload.length)\">Заметок пока нет.</div>\n  <div class=\"note-entry\" ng-repeat=\"note in msg.payload track by note.id\">\n    <div class=\"note-meta\">\n      <span class=\"note-time\">{{note.displayTime}}</span>\n      <span class=\"note-step\" ng-if=\"note.step !== undefined\">Шаг: {{note.step}}</span>\n      <span class=\"note-value\" ng-if=\"note.value !== undefined\">Значение: {{note.value}}</span>\n    </div>\n    <div class=\"note-text\">{{note.text}}</div>\n  </div>\n</div>\n<style>\n  .notes-wrapper {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n  }\n  .note-entry {\n    padding: 8px 10px;\n    border: 1px solid #ccc;\n    border-radius: 4px;\n    background: #f9f9f9;\n    word-break: break-word;\n  }\n  .note-meta {\n    font-size: 13px;\n    color: #555;\n    display: flex;\n    flex-wrap: wrap;\n    gap: 12px;\n    margin-bottom: 4px;\n  }\n  .note-text {\n    white-space: pre-wrap;\n    font-size: 15px;\n  }\n  .notes-empty {\n    font-style: italic;\n    color: #777;\n  }\n</style>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 3120,
+        "y": 640,
         "wires": [
             []
         ]
