@@ -4,7 +4,7 @@
         "type": "tab",
         "label": "Контроллер итерации",
         "disabled": false,
-        "info": "Версия: 2025-11-10_2326 (101120252326)",
+        "info": "Версия: 2025-11-11_0851 (11112025851)",
         "env": []
     },
     {
@@ -261,230 +261,6 @@
         }
     },
     {
-        "id": "db570711433c39a6",
-        "type": "ui_base",
-        "name": "Dashboard",
-        "theme": {
-            "sidebar": {
-                "state": "closed"
-            },
-            "header": {
-                "state": "visible"
-            },
-            "page": {
-                "state": "visible"
-            }
-        },
-        "site": {
-            "name": "Контроллер итерации",
-            "hideNavbar": false,
-            "allowSwipe": true,
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
-            }
-        }
-    },
-    {
-        "id": "bea66fc9da936c42",
-        "type": "ui_base",
-        "name": "Dashboard",
-        "theme": {
-            "sidebar": {
-                "state": "closed"
-            },
-            "header": {
-                "state": "visible"
-            },
-            "page": {
-                "state": "visible"
-            }
-        },
-        "site": {
-            "name": "Контроллер итерации",
-            "hideNavbar": false,
-            "allowSwipe": true,
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
-            }
-        }
-    },
-    {
-        "id": "2a737a0c5024704e",
-        "type": "ui_base",
-        "name": "Dashboard",
-        "theme": {
-            "sidebar": {
-                "state": "closed"
-            },
-            "header": {
-                "state": "visible"
-            },
-            "page": {
-                "state": "visible"
-            }
-        },
-        "site": {
-            "name": "Контроллер итерации",
-            "hideNavbar": false,
-            "allowSwipe": true,
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
-            }
-        }
-    },
-    {
-        "id": "19669274cf57df06",
-        "type": "ui_base",
-        "name": "Dashboard",
-        "theme": {
-            "sidebar": {
-                "state": "closed"
-            },
-            "header": {
-                "state": "visible"
-            },
-            "page": {
-                "state": "visible"
-            }
-        },
-        "site": {
-            "name": "Контроллер итерации",
-            "hideNavbar": false,
-            "allowSwipe": true,
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
-            }
-        }
-    },
-    {
-        "id": "6ccf3f0c78435ea5",
-        "type": "ui_base",
-        "name": "Dashboard",
-        "theme": {
-            "sidebar": {
-                "state": "closed"
-            },
-            "header": {
-                "state": "visible"
-            },
-            "page": {
-                "state": "visible"
-            }
-        },
-        "site": {
-            "name": "Контроллер итерации",
-            "hideNavbar": false,
-            "allowSwipe": true,
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
-            }
-        }
-    },
-    {
-        "id": "1936b1f7320c2601",
-        "type": "ui_base",
-        "name": "Dashboard",
-        "theme": {
-            "sidebar": {
-                "state": "closed"
-            },
-            "header": {
-                "state": "visible"
-            },
-            "page": {
-                "state": "visible"
-            }
-        },
-        "site": {
-            "name": "Контроллер итерации",
-            "hideNavbar": false,
-            "allowSwipe": true,
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
-            }
-        }
-    },
-    {
-        "id": "7e1aeec0cd8b17d4",
-        "type": "ui_base",
-        "name": "Dashboard",
-        "theme": {
-            "sidebar": {
-                "state": "closed"
-            },
-            "header": {
-                "state": "visible"
-            },
-            "page": {
-                "state": "visible"
-            }
-        },
-        "site": {
-            "name": "Контроллер итерации",
-            "hideNavbar": false,
-            "allowSwipe": true,
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
-            }
-        }
-    },
-    {
         "id": "dd674293b3127467",
         "type": "inject",
         "z": "f54f1d203647689a",
@@ -518,7 +294,7 @@
         "type": "function",
         "z": "f54f1d203647689a",
         "name": "Инициализация проекта",
-        "func": "const versionDisplay = \"101120252326\";\nconst versionCode = '2025-11-10_2326';\nconst versionNumber = Number(versionDisplay);\nconst configFile = \"/data/controller_iteration_params.json\";\nconst trendExportDir = \"/data/trends\";\nconst notesFile = \"/data/iteration_notes.json\";\nconst emptyExportSnapshot = { labels: [], value: [], step: [] };\nconst defaultSteps = [\n    { start: -1000, speed: 100, step: 100, end: 1000, pause: 0 },\n    { start: -500, speed: 150, step: 50, end: 500, pause: 100 },\n    { start: -250, speed: 200, step: 25, end: 250, pause: 100 },\n    { start: 0, speed: 250, step: 50, end: 500, pause: 200 },\n    { start: 500, speed: 300, step: 100, end: -500, pause: 0 }\n];\nconst changeLog = [\n    \"061120251343: Начальная версия. Добавлен пятишаговый контроллер итерации с управлением, чтением/записью параметров, панелью мониторинга и HTTP интерфейсом.\",\n    \"061120251400: Исправлено экранирование function-узлов и восстановлено разбиение шагов формы.\",\n    \"061120251523: Исправлены таймеры контроллера итерации, восстановлено чтение/запись параметров и VER теперь число.\",\n    \"061120251606: Формы сохраняют значения без очистки, график ограничен 10 минутами и 500 точками.\",\n    \"061120251656: Пропуск шагов со скоростью 0 не меняет ITERATION_VALUE; обновлена версия 2025-11-06_1656.\",\n    \"061120251854: Исправлены race conditions в таймерах, синхронизация состояния, логика пропуска шагов, finishStep при pause=0, валидация параметров и оптимизация производительности.\",\n    \"061120251923: Исправлена логика паузы при пропуске шага (пауза не выполняется если шаг пропущен), добавлен номер шага на график, история версий перенесена в конец дашборда.\",\n    \"061120252015: Шаг итерации теперь всегда положительный, направление определяется автоматически по начальному и конечному значениям. Добавлен тренд ITERATION_STEP на график итерации.\",\n    \"061120252036: Добавлены русские описания для всех переменных в секции 'Значения' на дашборде.\",\n    \"061120252139: Добавлены три графика итерации с разными масштабами времени: 30 секунд, 5 минут и 1 час. Тренды отключены по умолчанию при загрузке проекта с возможностью выборочного включения через легенду.\",\n    \"061120252244: Оставлен один график на 5 минут с количеством точек 500.\",\n    \"061120252305: Исправлены критические проблемы стабильности: race conditions в таймерах (добавлена защита флагом processing), исправлена логика пропуска шагов (значение ITERATION_VALUE не меняется при skip), убрана компенсация задержек (оставлен простой setTimeout), добавлена обработка ошибок записи файла, улучшена синхронизация состояния контроллера.\",\n    \"081120251732: Обновлены версия проекта и имя файла, синхронизирован flow.version.\",\n    \"081120251908: Исправлены версия/имя файла, добавлены линии без маркеров, миллисекунды на оси времени и кнопка рядом с графиком.\",\n    \"081120251945: Гарантирована выгрузка тренда при пропуске последнего шага; синхронизированы версия и имя файла.\",\n    \"081120252018: Добавлен экспорт данных тренда в файл по кнопке после завершения цикла.\",\n    \"081120252047: Исправлена конфигурация узла записи тренда, обеспечена запись файла экспорта.\",\n    \"091120250057: Добавлен столбец времени (мс) в экспорт тренда и убрана версия из имени файла экспорта.\",\n    \"091120250925: Добавлены глобальные переменные времени цикла и шагов итерации, отображение времени шагов на панели.\",\n    \"091120251048: Добавлены расчётные длительности шагов и цикла, фактические значения сохраняются до нового измерения.\",\n    \"091120251205: График итерации отображает фактические метки времени, учитывая реальные паузы между шагами.\",\n    \"091120251436: Исправлена структура файла и гарантирован автозапуск итерации при загрузке проекта.\",\n    \"091120251523: Добавлен теоретический график итерации, оба графика показывают время от 0 мс (относительное время от начала цикла).\",\n    \"091120251532: Исправлен график фактической итерации - временная шкала всегда начинается с нуля (первая точка всегда имеет время 0 мс).\",\n    \"091120251734: Обновлено имя файла на версию 091120251734.\",\n    \"091120251747: Временная шкала графиков в миллисекундах, теоретический график обновляется при рестарте.\",\n    \"091120252204: Исправлена функция экспорта тренда (убран некорректный Date.parse), исправлено количество outputs в функции сохранения шага (4→5), добавлены пояснения в названия графиков.\",\n    \"091120252022: Изменена интерполяция графиков с linear на step-after для отображения реальной ступенчатой картины итерации.\",\n    \"091120252300: Унифицированы настройки обоих графиков - установлена интерполяция step и формат времени mm:ss для одинакового отображения.\",\n    \"101120251042: Убрано дублирование конечной точки на теоретическом графике.\",\n    \"101120251143: Добавлена панель заметок на дашборде с сохранением и загрузкой записей из файла.\",\n    \"101120251228: Вынесены переменные, версия и заметки на отдельные вкладки, заметки показывают текущую версию.\",\n    \"101120251339: Добавлены отдельные вкладки «История версий» и «Заметки», запись заметок ведётся с новой строкой.\",\n    \"101120251456: Включено сохранение данных на вкладках и синхронизирована версия контекста.\",\n    \"101120251511: Добавлен узел ui_base для корректной работы дашборда, исправлена структура проекта.\",\n    \"101120251732: Увеличен буфер тренда с 2000 до 20000 точек для более детальной записи итераций.\",\n    \"101120251745: Поле 'Новая заметка' теперь активно сразу при загрузке проекта (добавлена инициализация формы).\",\n    \"101120252034: Исправлена блокировка поля ввода заметок - отключена прямая инициализация формы, textarea с resetAfterSubmit работает корректно.\",\n    \"101120252042: Исправлена недоступность поля ввода заметок - подключен 5-й выход узла инициализации к форме заметок для корректной инициализации при загрузке проекта.\",\n    \"101120252151: Удалена пустая вкладка Flow 3 и обновлена версия проекта.\",\n    \"101120252256: Синхронизированы версии контекста, вкладок и история изменений.\",\n    \"101120252311: Исправлена установка ITERATION_CYCLE_TIME после паузы после 5 шага, добавлена пауза после последнего шага перед завершением цикла.\",\n    \"101120252326: Исправлено отображение ITERATION_CYCLE_TIME - теперь вычисляется из суммы фактических времён шагов, если значение не установлено или равно 0.\",\n];\n\nfunction ensureNumber(key, fallback = 0) {\n    const numeric = Number(global.get(key));\n    if (!Number.isFinite(numeric)) {\n        global.set(key, fallback);\n    }\n}\n\nfunction calculateStepDuration(cfg) {\n    const speed = Number(cfg?.speed) || 0;\n    const stepValue = Math.abs(Number(cfg?.step) || 0);\n    if (speed <= 0 || stepValue <= 0) {\n        return 0;\n    }\n    const start = Number(cfg?.start) || 0;\n    const end = Number(cfg?.end) || 0;\n    const distance = Math.abs(end - start);\n    const iterations = distance === 0 ? 1 : Math.ceil(distance / stepValue);\n    return Math.max(0, Math.round(iterations * speed));\n}\n\nfunction updatePlanEstimates(steps) {\n    let cyclePlan = 0;\n    steps.forEach((cfg, index) => {\n        const duration = calculateStepDuration(cfg);\n        global.set(`ITER_STEP_TIME_PLAN_${index + 1}`, duration);\n        if (duration > 0) {\n            cyclePlan += duration;\n            if (index < steps.length - 1) {\n                const pause = Number(cfg?.pause) || 0;\n                cyclePlan += Math.max(0, pause);\n            }\n        }\n    });\n    global.set('ITERATION_CYCLE_TIME_PLAN', Math.max(0, Math.round(cyclePlan)));\n}\n\nflow.set('version', versionCode);\nflow.set('versionDisplay', versionDisplay);\nflow.set('configFile', configFile);\nflow.set('defaultSteps', defaultSteps);\nflow.set('changeLog', changeLog);\nflow.set('trendExportDir', trendExportDir);\nflow.set('trendExportData', emptyExportSnapshot);\nflow.set('trendExportReady', false);\nflow.set('notesFile', notesFile);\nflow.set('notes', []);\n\nfor (let i = 1; i <= 5; i += 1) {\n    ensureNumber(`ITER_STEP_TIME_${i}`, 0);\n}\nensureNumber('ITERATION_CYCLE_TIME', 0);\nupdatePlanEstimates(defaultSteps);\n\nglobal.set('VER', versionNumber);\n\nconst loadMsg = {\n    topic: 'loadParameters',\n    filename: configFile,\n    defaults: defaultSteps,\n    source: 'файл'\n};\nconst versionMsg = {\n    payload: `Текущая версия: ${versionCode} (${versionDisplay})`\n};\nconst changeMsg = {\n    payload: changeLog\n};\nconst notesMsg = {\n    topic: 'loadNotes',\n    filename: notesFile,\n    source: 'файл'\n};\nconst formInitMsg = {\n    payload: { text: \"\" },\n    topic: 'initForm'\n};\n\nreturn [loadMsg, versionMsg, changeMsg, notesMsg, formInitMsg];",
+        "func": "const versionDisplay = \"11112025851\";\nconst versionCode = '2025-11-11_0851';\nconst versionNumber = Number(versionDisplay);\nconst configFile = \"/data/controller_iteration_params.json\";\nconst trendExportDir = \"/data/trends\";\nconst notesFile = \"/data/iteration_notes.json\";\nconst emptyExportSnapshot = { labels: [], value: [], step: [] };\nconst defaultSteps = [\n    { start: -1000, speed: 100, step: 100, end: 1000, pause: 0 },\n    { start: -500, speed: 150, step: 50, end: 500, pause: 100 },\n    { start: -250, speed: 200, step: 25, end: 250, pause: 100 },\n    { start: 0, speed: 250, step: 50, end: 500, pause: 200 },\n    { start: 500, speed: 300, step: 100, end: -500, pause: 0 }\n];\nconst changeLog = [\n    \"061120251343: Начальная версия. Добавлен пятишаговый контроллер итерации с управлением, чтением/записью параметров, панелью мониторинга и HTTP интерфейсом.\",\n    \"061120251400: Исправлено экранирование function-узлов и восстановлено разбиение шагов формы.\",\n    \"061120251523: Исправлены таймеры контроллера итерации, восстановлено чтение/запись параметров и VER теперь число.\",\n    \"061120251606: Формы сохраняют значения без очистки, график ограничен 10 минутами и 500 точками.\",\n    \"061120251656: Пропуск шагов со скоростью 0 не меняет ITERATION_VALUE; обновлена версия 2025-11-06_1656.\",\n    \"061120251854: Исправлены race conditions в таймерах, синхронизация состояния, логика пропуска шагов, finishStep при pause=0, валидация параметров и оптимизация производительности.\",\n    \"061120251923: Исправлена логика паузы при пропуске шага (пауза не выполняется если шаг пропущен), добавлен номер шага на график, история версий перенесена в конец дашборда.\",\n    \"061120252015: Шаг итерации теперь всегда положительный, направление определяется автоматически по начальному и конечному значениям. Добавлен тренд ITERATION_STEP на график итерации.\",\n    \"061120252036: Добавлены русские описания для всех переменных в секции 'Значения' на дашборде.\",\n    \"061120252139: Добавлены три графика итерации с разными масштабами времени: 30 секунд, 5 минут и 1 час. Тренды отключены по умолчанию при загрузке проекта с возможностью выборочного включения через легенду.\",\n    \"061120252244: Оставлен один график на 5 минут с количеством точек 500.\",\n    \"061120252305: Исправлены критические проблемы стабильности: race conditions в таймерах (добавлена защита флагом processing), исправлена логика пропуска шагов (значение ITERATION_VALUE не меняется при skip), убрана компенсация задержек (оставлен простой setTimeout), добавлена обработка ошибок записи файла, улучшена синхронизация состояния контроллера.\",\n    \"081120251732: Обновлены версия проекта и имя файла, синхронизирован flow.version.\",\n    \"081120251908: Исправлены версия/имя файла, добавлены линии без маркеров, миллисекунды на оси времени и кнопка рядом с графиком.\",\n    \"081120251945: Гарантирована выгрузка тренда при пропуске последнего шага; синхронизированы версия и имя файла.\",\n    \"081120252018: Добавлен экспорт данных тренда в файл по кнопке после завершения цикла.\",\n    \"081120252047: Исправлена конфигурация узла записи тренда, обеспечена запись файла экспорта.\",\n    \"091120250057: Добавлен столбец времени (мс) в экспорт тренда и убрана версия из имени файла экспорта.\",\n    \"091120250925: Добавлены глобальные переменные времени цикла и шагов итерации, отображение времени шагов на панели.\",\n    \"091120251048: Добавлены расчётные длительности шагов и цикла, фактические значения сохраняются до нового измерения.\",\n    \"091120251205: График итерации отображает фактические метки времени, учитывая реальные паузы между шагами.\",\n    \"091120251436: Исправлена структура файла и гарантирован автозапуск итерации при загрузке проекта.\",\n    \"091120251523: Добавлен теоретический график итерации, оба графика показывают время от 0 мс (относительное время от начала цикла).\",\n    \"091120251532: Исправлен график фактической итерации - временная шкала всегда начинается с нуля (первая точка всегда имеет время 0 мс).\",\n    \"091120251734: Обновлено имя файла на версию 091120251734.\",\n    \"091120251747: Временная шкала графиков в миллисекундах, теоретический график обновляется при рестарте.\",\n    \"091120252204: Исправлена функция экспорта тренда (убран некорректный Date.parse), исправлено количество outputs в функции сохранения шага (4→5), добавлены пояснения в названия графиков.\",\n    \"091120252022: Изменена интерполяция графиков с linear на step-after для отображения реальной ступенчатой картины итерации.\",\n    \"091120252300: Унифицированы настройки обоих графиков - установлена интерполяция step и формат времени mm:ss для одинакового отображения.\",\n    \"101120251042: Убрано дублирование конечной точки на теоретическом графике.\",\n    \"101120251143: Добавлена панель заметок на дашборде с сохранением и загрузкой записей из файла.\",\n    \"101120251228: Вынесены переменные, версия и заметки на отдельные вкладки, заметки показывают текущую версию.\",\n    \"101120251339: Добавлены отдельные вкладки «История версий» и «Заметки», запись заметок ведётся с новой строкой.\",\n    \"101120251456: Включено сохранение данных на вкладках и синхронизирована версия контекста.\",\n    \"101120251511: Добавлен узел ui_base для корректной работы дашборда, исправлена структура проекта.\",\n    \"101120251732: Увеличен буфер тренда с 2000 до 20000 точек для более детальной записи итераций.\",\n    \"101120251745: Поле 'Новая заметка' теперь активно сразу при загрузке проекта (добавлена инициализация формы).\",\n    \"101120252034: Исправлена блокировка поля ввода заметок - отключена прямая инициализация формы, textarea с resetAfterSubmit работает корректно.\",\n    \"101120252042: Исправлена недоступность поля ввода заметок - подключен 5-й выход узла инициализации к форме заметок для корректной инициализации при загрузке проекта.\",\n    \"101120252151: Удалена пустая вкладка Flow 3 и обновлена версия проекта.\",\n    \"101120252256: Синхронизированы версии контекста, вкладок и история изменений.\",\n    \"101120252311: Исправлена установка ITERATION_CYCLE_TIME после паузы после 5 шага, добавлена пауза после последнего шага перед завершением цикла.\",\n    \"101120252326: Исправлено отображение ITERATION_CYCLE_TIME - теперь вычисляется из суммы фактических времён шагов, если значение не установлено или равно 0.\",\n    "11112025851: Учтена пауза последнего шага при расчёте резервного времени цикла, удалены дубликаты ui_base и обновлена версия 2025-11-11_0851.",\n\n];\n\nfunction ensureNumber(key, fallback = 0) {\n    const numeric = Number(global.get(key));\n    if (!Number.isFinite(numeric)) {\n        global.set(key, fallback);\n    }\n}\n\nfunction calculateStepDuration(cfg) {\n    const speed = Number(cfg?.speed) || 0;\n    const stepValue = Math.abs(Number(cfg?.step) || 0);\n    if (speed <= 0 || stepValue <= 0) {\n        return 0;\n    }\n    const start = Number(cfg?.start) || 0;\n    const end = Number(cfg?.end) || 0;\n    const distance = Math.abs(end - start);\n    const iterations = distance === 0 ? 1 : Math.ceil(distance / stepValue);\n    return Math.max(0, Math.round(iterations * speed));\n}\n\nfunction updatePlanEstimates(steps) {\n    let cyclePlan = 0;\n    steps.forEach((cfg, index) => {\n        const duration = calculateStepDuration(cfg);\n        global.set(`ITER_STEP_TIME_PLAN_${index + 1}`, duration);\n        if (duration > 0) {\n            cyclePlan += duration;\n            if (index < steps.length - 1) {\n                const pause = Number(cfg?.pause) || 0;\n                cyclePlan += Math.max(0, pause);\n            }\n        }\n    });\n    global.set('ITERATION_CYCLE_TIME_PLAN', Math.max(0, Math.round(cyclePlan)));\n}\n\nflow.set('version', versionCode);\nflow.set('versionDisplay', versionDisplay);\nflow.set('configFile', configFile);\nflow.set('defaultSteps', defaultSteps);\nflow.set('changeLog', changeLog);\nflow.set('trendExportDir', trendExportDir);\nflow.set('trendExportData', emptyExportSnapshot);\nflow.set('trendExportReady', false);\nflow.set('notesFile', notesFile);\nflow.set('notes', []);\n\nfor (let i = 1; i <= 5; i += 1) {\n    ensureNumber(`ITER_STEP_TIME_${i}`, 0);\n}\nensureNumber('ITERATION_CYCLE_TIME', 0);\nupdatePlanEstimates(defaultSteps);\n\nglobal.set('VER', versionNumber);\n\nconst loadMsg = {\n    topic: 'loadParameters',\n    filename: configFile,\n    defaults: defaultSteps,\n    source: 'файл'\n};\nconst versionMsg = {\n    payload: `Текущая версия: ${versionCode} (${versionDisplay})`\n};\nconst changeMsg = {\n    payload: changeLog\n};\nconst notesMsg = {\n    topic: 'loadNotes',\n    filename: notesFile,\n    source: 'файл'\n};\nconst formInitMsg = {\n    payload: { text: \"\" },\n    topic: 'initForm'\n};\n\nreturn [loadMsg, versionMsg, changeMsg, notesMsg, formInitMsg];",
         "outputs": 5,
         "noerr": 0,
         "initialize": "",
@@ -1339,7 +1115,7 @@
         "type": "function",
         "z": "f54f1d203647689a",
         "name": "Сформировать список переменных",
-        "func": "if (msg.reason === \"tick\") {\n    return null;\n}\nconst dataList = [];\nconst versionDisplay = flow.get('versionDisplay') || \"\";\nconst versionCode = flow.get('version') || \"\";\nconst descriptions = {\n    'VER': 'Версия проекта (число)',\n    'flow.version': 'Версия проекта (строка)',\n    'versionDisplay': 'Отображаемая версия',\n    'ITERATION_CONTROL': 'Управление (0-стоп, 1-старт, 2-рестарт)',\n    'ITERATION_STEP': 'Номер текущего шага',\n    'ITERATION_VALUE': 'Текущее значение итерации',\n    'ITERATION_CYCLE_TIME': 'Время полного цикла (мс)',\n    'ITERATION_CYCLE_TIME_PLAN': 'Расчётное время полного цикла (мс)'\n};\ndataList.push({ name: \"VER\", value: global.get('VER'), description: descriptions['VER'] });\ndataList.push({ name: \"flow.version\", value: versionCode, description: descriptions['flow.version'] });\ndataList.push({ name: \"versionDisplay\", value: versionDisplay, description: descriptions['versionDisplay'] });\ndataList.push({ name: \"ITERATION_CONTROL\", value: global.get('ITERATION_CONTROL'), description: descriptions['ITERATION_CONTROL'] });\ndataList.push({ name: \"ITERATION_STEP\", value: global.get('ITERATION_STEP'), description: descriptions['ITERATION_STEP'] });\ndataList.push({ name: \"ITERATION_VALUE\", value: global.get('ITERATION_VALUE'), description: descriptions['ITERATION_VALUE'] });\nconst cycleRaw = global.get('ITERATION_CYCLE_TIME');\nlet cycleNumeric = Number(cycleRaw);\nif (!Number.isFinite(cycleNumeric) || cycleNumeric === 0) {\n    let cycleActual = 0;\n    for (let i = 1; i <= 5; i++) {\n        const stepTimeRaw = global.get(`ITER_STEP_TIME_${i}`);\n        const stepTimeNumeric = Number(stepTimeRaw);\n        const stepTime = Number.isFinite(stepTimeNumeric) ? Math.max(0, stepTimeNumeric) : 0;\n        if (stepTime > 0) {\n            cycleActual += stepTime;\n            if (i < 5) {\n                const pauseRaw = global.get(`ITER_PAUSE_${i}`);\n                const pauseNumeric = Number(pauseRaw);\n                const pause = Number.isFinite(pauseNumeric) ? Math.max(0, pauseNumeric) : 0;\n                cycleActual += pause;\n            }\n        }\n    }\n    cycleNumeric = Math.max(0, Math.round(cycleActual));\n}\ndataList.push({ name: \"ITERATION_CYCLE_TIME\", value: Math.max(0, Math.round(cycleNumeric)), description: descriptions['ITERATION_CYCLE_TIME'] });\nconst cyclePlanRaw = global.get('ITERATION_CYCLE_TIME_PLAN');\nconst cyclePlanNumeric = Number(cyclePlanRaw);\ndataList.push({ name: \"ITERATION_CYCLE_TIME_PLAN\", value: Number.isFinite(cyclePlanNumeric) ? Math.max(0, Math.round(cyclePlanNumeric)) : 0, description: descriptions['ITERATION_CYCLE_TIME_PLAN'] });\nconst stepMessages = [];\nfor (let i = 1; i <= 5; i++) {\n    const start = global.get(`ITER_START_${i}`);\n    const speed = global.get(`ITER_SPEED_${i}`);\n    const step = global.get(`ITER_STEP_${i}`);\n    const end = global.get(`ITER_END_${i}`);\n    const pause = global.get(`ITER_PAUSE_${i}`);\n    const stepTimeRaw = global.get(`ITER_STEP_TIME_${i}`);\n    const planTimeRaw = global.get(`ITER_STEP_TIME_PLAN_${i}`);\n    const stepTimeNumeric = Number(stepTimeRaw);\n    const planTimeNumeric = Number(planTimeRaw);\n    const actualValue = Number.isFinite(stepTimeNumeric) ? Math.max(0, Math.round(stepTimeNumeric)) : 0;\n    const planValue = Number.isFinite(planTimeNumeric) ? Math.max(0, Math.round(planTimeNumeric)) : 0;\n    dataList.push({ name: `ITER_START_${i}`, value: start, description: `Начальное значение шага ${i}` });\n    dataList.push({ name: `ITER_SPEED_${i}`, value: speed, description: `Скорость шага ${i} (мс)` });\n    dataList.push({ name: `ITER_STEP_${i}`, value: step, description: `Шаг изменения шага ${i}` });\n    dataList.push({ name: `ITER_END_${i}`, value: end, description: `Конечное значение шага ${i}` });\n    dataList.push({ name: `ITER_PAUSE_${i}`, value: pause, description: `Пауза после шага ${i} (мс)` });\n    dataList.push({ name: `ITER_STEP_TIME_${i}`, value: actualValue, description: `Длительность шага ${i} (мс)` });\n    dataList.push({ name: `ITER_STEP_TIME_PLAN_${i}`, value: planValue, description: `Расчётная длительность шага ${i} (мс)` });\n    stepMessages.push({\n        step: i,\n        payload: actualValue,\n        plan: planValue,\n        topic: `stepTime${i}`\n    });\n}\nmsg.payload = dataList;\nreturn [msg, stepMessages];",
+        "func": "if (msg.reason === \"tick\") {\n    return null;\n}\nconst dataList = [];\nconst versionDisplay = flow.get('versionDisplay') || \"\";\nconst versionCode = flow.get('version') || \"\";\nconst descriptions = {\n    'VER': 'Версия проекта (число)',\n    'flow.version': 'Версия проекта (строка)',\n    'versionDisplay': 'Отображаемая версия',\n    'ITERATION_CONTROL': 'Управление (0-стоп, 1-старт, 2-рестарт)',\n    'ITERATION_STEP': 'Номер текущего шага',\n    'ITERATION_VALUE': 'Текущее значение итерации',\n    'ITERATION_CYCLE_TIME': 'Время полного цикла (мс)',\n    'ITERATION_CYCLE_TIME_PLAN': 'Расчётное время полного цикла (мс)'\n};\ndataList.push({ name: \"VER\", value: global.get('VER'), description: descriptions['VER'] });\ndataList.push({ name: \"flow.version\", value: versionCode, description: descriptions['flow.version'] });\ndataList.push({ name: \"versionDisplay\", value: versionDisplay, description: descriptions['versionDisplay'] });\ndataList.push({ name: \"ITERATION_CONTROL\", value: global.get('ITERATION_CONTROL'), description: descriptions['ITERATION_CONTROL'] });\ndataList.push({ name: \"ITERATION_STEP\", value: global.get('ITERATION_STEP'), description: descriptions['ITERATION_STEP'] });\ndataList.push({ name: \"ITERATION_VALUE\", value: global.get('ITERATION_VALUE'), description: descriptions['ITERATION_VALUE'] });\nconst cycleRaw = global.get('ITERATION_CYCLE_TIME');\nlet cycleNumeric = Number(cycleRaw);\nif (!Number.isFinite(cycleNumeric) || cycleNumeric === 0) {\n    let cycleActual = 0;\n    for (let i = 1; i <= 5; i++) {\n        const stepTimeRaw = global.get(`ITER_STEP_TIME_${i}`);\n        const stepTimeNumeric = Number(stepTimeRaw);\n        const stepTime = Number.isFinite(stepTimeNumeric) ? Math.max(0, stepTimeNumeric) : 0;\n        if (stepTime > 0) {\n            cycleActual += stepTime;\n            const pauseRaw = global.get(`ITER_PAUSE_${i}`);\n            const pauseNumeric = Number(pauseRaw);\n            const pause = Number.isFinite(pauseNumeric) ? Math.max(0, pauseNumeric) : 0;\n            if (pause > 0) {\n                cycleActual += pause;\n            }\n        }\n    }\n    cycleNumeric = Math.max(0, Math.round(cycleActual));\n}\ndataList.push({ name: \"ITERATION_CYCLE_TIME\", value: Math.max(0, Math.round(cycleNumeric)), description: descriptions['ITERATION_CYCLE_TIME'] });\nconst cyclePlanRaw = global.get('ITERATION_CYCLE_TIME_PLAN');\nconst cyclePlanNumeric = Number(cyclePlanRaw);\ndataList.push({ name: \"ITERATION_CYCLE_TIME_PLAN\", value: Number.isFinite(cyclePlanNumeric) ? Math.max(0, Math.round(cyclePlanNumeric)) : 0, description: descriptions['ITERATION_CYCLE_TIME_PLAN'] });\nconst stepMessages = [];\nfor (let i = 1; i <= 5; i++) {\n    const start = global.get(`ITER_START_${i}`);\n    const speed = global.get(`ITER_SPEED_${i}`);\n    const step = global.get(`ITER_STEP_${i}`);\n    const end = global.get(`ITER_END_${i}`);\n    const pause = global.get(`ITER_PAUSE_${i}`);\n    const stepTimeRaw = global.get(`ITER_STEP_TIME_${i}`);\n    const planTimeRaw = global.get(`ITER_STEP_TIME_PLAN_${i}`);\n    const stepTimeNumeric = Number(stepTimeRaw);\n    const planTimeNumeric = Number(planTimeRaw);\n    const actualValue = Number.isFinite(stepTimeNumeric) ? Math.max(0, Math.round(stepTimeNumeric)) : 0;\n    const planValue = Number.isFinite(planTimeNumeric) ? Math.max(0, Math.round(planTimeNumeric)) : 0;\n    dataList.push({ name: `ITER_START_${i}`, value: start, description: `Начальное значение шага ${i}` });\n    dataList.push({ name: `ITER_SPEED_${i}`, value: speed, description: `Скорость шага ${i} (мс)` });\n    dataList.push({ name: `ITER_STEP_${i}`, value: step, description: `Шаг изменения шага ${i}` });\n    dataList.push({ name: `ITER_END_${i}`, value: end, description: `Конечное значение шага ${i}` });\n    dataList.push({ name: `ITER_PAUSE_${i}`, value: pause, description: `Пауза после шага ${i} (мс)` });\n    dataList.push({ name: `ITER_STEP_TIME_${i}`, value: actualValue, description: `Длительность шага ${i} (мс)` });\n    dataList.push({ name: `ITER_STEP_TIME_PLAN_${i}`, value: planValue, description: `Расчётная длительность шага ${i} (мс)` });\n    stepMessages.push({\n        step: i,\n        payload: actualValue,\n        plan: planValue,\n        topic: `stepTime${i}`\n    });\n}\nmsg.payload = dataList;\nreturn [msg, stepMessages];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -1784,7 +1560,7 @@
                 "t": "set",
                 "p": "version",
                 "pt": "flow",
-                "to": "2025-11-10_2256",
+                "to": "2025-11-11_0851",
                 "tot": "str"
             }
         ],
